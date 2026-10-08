@@ -1,0 +1,686 @@
+{
+ "rules": {
+  "_note": "Pre-registered on 2026-10-07, before any track-record number was computed or collected. Compares the real record of each political group's most recent government. Results are published whichever way they point.",
+  "groups": {
+   "pl": {
+    "label": "Grupo de Flávio (PL) - governo Jair Bolsonaro",
+    "years": [
+     2019,
+     2022
+    ],
+    "excluded": "2020 e 2021 (pandemia), a pedido do usuário"
+   },
+   "pt": {
+    "label": "Grupo de Lula (PT) - governo Lula atual",
+    "years": [
+     2023,
+     2024,
+     2025
+    ],
+    "excluded": "2026 (ano incompleto)"
+   }
+  },
+  "measure": {
+   "flow": "média dos valores anuais nos anos do grupo",
+   "stock": "média da variação anual (valor do ano menos valor do ano anterior) nos anos do grupo"
+  },
+  "metrics": [
+   {
+    "key": "gdp_growth",
+    "kind": "flow",
+    "better": "higher",
+    "tie_below": 0.3,
+    "source": "IBGE via BCB SGS 22099 (média anual do índice)"
+   },
+   {
+    "key": "inflation",
+    "kind": "flow",
+    "better": "target",
+    "target": 3.0,
+    "tie_below": 0.3,
+    "source": "IBGE IPCA dez/dez via BCB SGS 13522"
+   },
+   {
+    "key": "selic",
+    "kind": "flow",
+    "better": "lower",
+    "tie_below": 0.5,
+    "source": "BCB SGS 4189 (média anual)"
+   },
+   {
+    "key": "unemployment",
+    "kind": "stock",
+    "better": "lower",
+    "tie_below": 0.2,
+    "source": "IBGE PNAD Contínua via BCB SGS 24369 (dezembro)"
+   },
+   {
+    "key": "debt_gdp",
+    "kind": "stock",
+    "better": "lower",
+    "tie_below": 0.5,
+    "source": "BCB SGS 13762 (dezembro)"
+   },
+   {
+    "key": "primary_balance",
+    "kind": "flow",
+    "better": "higher",
+    "tie_below": 0.3,
+    "source": "BCB SGS 5793 (dezembro, sinal invertido)"
+   },
+   {
+    "key": "poverty_rate",
+    "kind": "stock",
+    "better": "lower",
+    "tie_below": 0.5,
+    "source": "IBGE Síntese de Indicadores Sociais"
+   },
+   {
+    "key": "gini",
+    "kind": "stock",
+    "better": "lower",
+    "tie_below": 0.003,
+    "source": "IBGE PNAD Contínua (rendimento domiciliar per capita)"
+   },
+   {
+    "key": "infant_mortality",
+    "kind": "stock",
+    "better": "lower",
+    "tie_below": 0.1,
+    "source": "Ministério da Saúde / IBGE"
+   },
+   {
+    "key": "homicides_per_100k",
+    "kind": "stock",
+    "better": "lower",
+    "tie_below": 0.5,
+    "source": "Atlas da Violência (Ipea/FBSP) ou Anuário FBSP"
+   },
+   {
+    "key": "deforestation_km2",
+    "kind": "stock",
+    "better": "lower",
+    "tie_below": 200,
+    "source": "INPE PRODES Amazônia (ano PRODES ago-jul)"
+   }
+  ],
+  "rule": "Para cada indicador, vence o grupo com o melhor valor pela regra acima; diferença menor que tie_below é empate. Quando uma fonte oficial não for encontrada para todos os anos, o indicador fica marcado como 'sem dados' em vez de estimado.",
+  "amendment": {
+   "date": "2026-10-07",
+   "before_computing": true,
+   "text": "Dados oficiais saem com 1 a 2 anos de atraso. Por isso, cada grupo usa os anos do seu período que tenham dado oficial; se nenhum ano tiver dado verificado, o indicador fica 'sem dados'. Variações de 2022 são medidas sobre 2021 (ano de pandemia) e podem refletir recuperação; isso é sinalizado no resultado, sem mudar a regra."
+  }
+ },
+ "rows": [
+  {
+   "key": "gdp_growth",
+   "kind": "flow",
+   "better": "higher",
+   "pl": 2.119,
+   "pt": 2.982,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024,
+    2025
+   ],
+   "winner": "pt",
+   "annual": {
+    "2018": 1.783,
+    "2019": 1.221,
+    "2020": -3.276,
+    "2021": 4.761,
+    "2022": 3.017,
+    "2023": 3.241,
+    "2024": 3.419,
+    "2025": 2.287
+   },
+   "rebound_2022": false
+  },
+  {
+   "key": "inflation",
+   "kind": "flow",
+   "better": "target",
+   "pl": 2.05,
+   "pt": 1.57,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024,
+    2025
+   ],
+   "winner": "pt",
+   "annual": {
+    "2017": 2.95,
+    "2018": 3.75,
+    "2019": 4.31,
+    "2020": 4.52,
+    "2021": 10.06,
+    "2022": 5.79,
+    "2023": 4.62,
+    "2024": 4.83,
+    "2025": 4.26
+   },
+   "rebound_2022": false
+  },
+  {
+   "key": "selic",
+   "kind": "flow",
+   "better": "lower",
+   "pl": 9.185,
+   "pt": 12.785,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024,
+    2025
+   ],
+   "winner": "pl",
+   "annual": {
+    "2017": 10.079,
+    "2018": 6.483,
+    "2019": 5.94,
+    "2020": 2.789,
+    "2021": 4.419,
+    "2022": 12.431,
+    "2023": 13.2,
+    "2024": 10.839,
+    "2025": 14.317
+   },
+   "rebound_2022": false
+  },
+  {
+   "key": "unemployment",
+   "kind": "stock",
+   "better": "lower",
+   "pl": -1.9,
+   "pt": -0.933,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024,
+    2025
+   ],
+   "winner": "pl",
+   "annual": {
+    "2017": 11.9,
+    "2018": 11.7,
+    "2019": 11.1,
+    "2020": 14.2,
+    "2021": 11.1,
+    "2022": 7.9,
+    "2023": 7.4,
+    "2024": 6.2,
+    "2025": 5.1
+   },
+   "rebound_2022": true
+  },
+  {
+   "key": "debt_gdp",
+   "kind": "stock",
+   "better": "lower",
+   "pl": -3.23,
+   "pt": 2.32,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024,
+    2025
+   ],
+   "winner": "pl",
+   "annual": {
+    "2017": 73.72,
+    "2018": 75.27,
+    "2019": 74.44,
+    "2020": 86.94,
+    "2021": 77.31,
+    "2022": 71.68,
+    "2023": 73.83,
+    "2024": 76.27,
+    "2025": 78.64
+   },
+   "rebound_2022": true
+  },
+  {
+   "key": "primary_balance",
+   "kind": "flow",
+   "better": "higher",
+   "pl": 0.205,
+   "pt": -1.037,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024,
+    2025
+   ],
+   "winner": "pl",
+   "annual": {
+    "2017": -1.68,
+    "2018": -1.55,
+    "2019": -0.84,
+    "2020": -9.24,
+    "2021": 0.72,
+    "2022": 1.25,
+    "2023": -2.28,
+    "2024": -0.4,
+    "2025": -0.43
+   },
+   "rebound_2022": false
+  },
+  {
+   "key": "poverty_rate",
+   "kind": "stock",
+   "better": "lower",
+   "pl": -5.2,
+   "pt": -4.25,
+   "pl_years": [
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024
+   ],
+   "winner": "pl",
+   "annual": {
+    "2021": 36.8,
+    "2022": 31.6,
+    "2023": 27.4,
+    "2024": 23.1
+   },
+   "rebound_2022": true
+  },
+  {
+   "key": "gini",
+   "kind": "stock",
+   "better": "lower",
+   "pl": null,
+   "pt": -0.006,
+   "pl_years": [],
+   "pt_years": [
+    2023,
+    2024
+   ],
+   "winner": "sem dados",
+   "annual": {
+    "2018": 0.545,
+    "2022": 0.518,
+    "2023": 0.518,
+    "2024": 0.506
+   },
+   "rebound_2022": false
+  },
+  {
+   "key": "infant_mortality",
+   "kind": "stock",
+   "better": "lower",
+   "pl": null,
+   "pt": null,
+   "pl_years": [],
+   "pt_years": [],
+   "winner": "sem dados",
+   "annual": {},
+   "rebound_2022": false
+  },
+  {
+   "key": "homicides_per_100k",
+   "kind": "stock",
+   "better": "lower",
+   "pl": -3.4,
+   "pt": -0.8,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024
+   ],
+   "winner": "pl",
+   "annual": {
+    "2018": 27.8,
+    "2019": 21.7,
+    "2021": 22.4,
+    "2022": 21.7,
+    "2023": 21.2,
+    "2024": 20.1
+   },
+   "rebound_2022": true
+  },
+  {
+   "key": "deforestation_km2",
+   "kind": "stock",
+   "better": "lower",
+   "pl": 574.5,
+   "pt": -1954.333,
+   "pl_years": [
+    2019,
+    2022
+   ],
+   "pt_years": [
+    2023,
+    2024,
+    2025
+   ],
+   "winner": "pt",
+   "annual": {
+    "2018": 7536,
+    "2019": 10129,
+    "2020": 10851,
+    "2021": 13038,
+    "2022": 11594,
+    "2023": 9064,
+    "2024": 6518,
+    "2025": 5731
+   },
+   "rebound_2022": true
+  }
+ ],
+ "tally": {
+  "pt": 3,
+  "pl": 6,
+  "empate": 0,
+  "sem dados": 2
+ },
+ "without_rebound": {
+  "rows": [
+   {
+    "key": "gdp_growth",
+    "kind": "flow",
+    "better": "higher",
+    "pl": 2.119,
+    "pt": 2.982,
+    "pl_years": [
+     2019,
+     2022
+    ],
+    "pt_years": [
+     2023,
+     2024,
+     2025
+    ],
+    "winner": "pt",
+    "annual": {
+     "2018": 1.783,
+     "2019": 1.221,
+     "2020": -3.276,
+     "2021": 4.761,
+     "2022": 3.017,
+     "2023": 3.241,
+     "2024": 3.419,
+     "2025": 2.287
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "inflation",
+    "kind": "flow",
+    "better": "target",
+    "pl": 2.05,
+    "pt": 1.57,
+    "pl_years": [
+     2019,
+     2022
+    ],
+    "pt_years": [
+     2023,
+     2024,
+     2025
+    ],
+    "winner": "pt",
+    "annual": {
+     "2017": 2.95,
+     "2018": 3.75,
+     "2019": 4.31,
+     "2020": 4.52,
+     "2021": 10.06,
+     "2022": 5.79,
+     "2023": 4.62,
+     "2024": 4.83,
+     "2025": 4.26
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "selic",
+    "kind": "flow",
+    "better": "lower",
+    "pl": 9.185,
+    "pt": 12.785,
+    "pl_years": [
+     2019,
+     2022
+    ],
+    "pt_years": [
+     2023,
+     2024,
+     2025
+    ],
+    "winner": "pl",
+    "annual": {
+     "2017": 10.079,
+     "2018": 6.483,
+     "2019": 5.94,
+     "2020": 2.789,
+     "2021": 4.419,
+     "2022": 12.431,
+     "2023": 13.2,
+     "2024": 10.839,
+     "2025": 14.317
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "unemployment",
+    "kind": "stock",
+    "better": "lower",
+    "pl": -0.6,
+    "pt": -0.933,
+    "pl_years": [
+     2019
+    ],
+    "pt_years": [
+     2023,
+     2024,
+     2025
+    ],
+    "winner": "pt",
+    "annual": {
+     "2017": 11.9,
+     "2018": 11.7,
+     "2019": 11.1,
+     "2020": 14.2,
+     "2021": 11.1,
+     "2022": 7.9,
+     "2023": 7.4,
+     "2024": 6.2,
+     "2025": 5.1
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "debt_gdp",
+    "kind": "stock",
+    "better": "lower",
+    "pl": -0.83,
+    "pt": 2.32,
+    "pl_years": [
+     2019
+    ],
+    "pt_years": [
+     2023,
+     2024,
+     2025
+    ],
+    "winner": "pl",
+    "annual": {
+     "2017": 73.72,
+     "2018": 75.27,
+     "2019": 74.44,
+     "2020": 86.94,
+     "2021": 77.31,
+     "2022": 71.68,
+     "2023": 73.83,
+     "2024": 76.27,
+     "2025": 78.64
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "primary_balance",
+    "kind": "flow",
+    "better": "higher",
+    "pl": 0.205,
+    "pt": -1.037,
+    "pl_years": [
+     2019,
+     2022
+    ],
+    "pt_years": [
+     2023,
+     2024,
+     2025
+    ],
+    "winner": "pl",
+    "annual": {
+     "2017": -1.68,
+     "2018": -1.55,
+     "2019": -0.84,
+     "2020": -9.24,
+     "2021": 0.72,
+     "2022": 1.25,
+     "2023": -2.28,
+     "2024": -0.4,
+     "2025": -0.43
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "poverty_rate",
+    "kind": "stock",
+    "better": "lower",
+    "pl": null,
+    "pt": -4.25,
+    "pl_years": [],
+    "pt_years": [
+     2023,
+     2024
+    ],
+    "winner": "sem dados",
+    "annual": {
+     "2021": 36.8,
+     "2022": 31.6,
+     "2023": 27.4,
+     "2024": 23.1
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "gini",
+    "kind": "stock",
+    "better": "lower",
+    "pl": null,
+    "pt": -0.006,
+    "pl_years": [],
+    "pt_years": [
+     2023,
+     2024
+    ],
+    "winner": "sem dados",
+    "annual": {
+     "2018": 0.545,
+     "2022": 0.518,
+     "2023": 0.518,
+     "2024": 0.506
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "infant_mortality",
+    "kind": "stock",
+    "better": "lower",
+    "pl": null,
+    "pt": null,
+    "pl_years": [],
+    "pt_years": [],
+    "winner": "sem dados",
+    "annual": {},
+    "rebound_2022": false
+   },
+   {
+    "key": "homicides_per_100k",
+    "kind": "stock",
+    "better": "lower",
+    "pl": -6.1,
+    "pt": -0.8,
+    "pl_years": [
+     2019
+    ],
+    "pt_years": [
+     2023,
+     2024
+    ],
+    "winner": "pl",
+    "annual": {
+     "2018": 27.8,
+     "2019": 21.7,
+     "2021": 22.4,
+     "2022": 21.7,
+     "2023": 21.2,
+     "2024": 20.1
+    },
+    "rebound_2022": false
+   },
+   {
+    "key": "deforestation_km2",
+    "kind": "stock",
+    "better": "lower",
+    "pl": 2593.0,
+    "pt": -1954.333,
+    "pl_years": [
+     2019
+    ],
+    "pt_years": [
+     2023,
+     2024,
+     2025
+    ],
+    "winner": "pt",
+    "annual": {
+     "2018": 7536,
+     "2019": 10129,
+     "2020": 10851,
+     "2021": 13038,
+     "2022": 11594,
+     "2023": 9064,
+     "2024": 6518,
+     "2025": 5731
+    },
+    "rebound_2022": false
+   }
+  ],
+  "tally": {
+   "pt": 4,
+   "pl": 4,
+   "empate": 0,
+   "sem dados": 3
+  }
+ }
+}

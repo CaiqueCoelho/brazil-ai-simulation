@@ -1,0 +1,210 @@
+{
+  "candidate": "Flávio Bolsonaro",
+  "plan_title": "Para o Brasil Vencer o Atraso (TSE, 76 pages, 9 axes)",
+  "sources": [
+    "https://static.poder360.com.br/uploads/2026/08/plano-flavio.pdf",
+    "https://www.congressoemfoco.com.br/noticia/121271/eua--tesouraco-e-presidios-o-que-preve-o-plano-de-governo-de-flavio",
+    "https://www.spacemoney.com.br/politica/plano-governo-flavio-bolsonaro-economia/",
+    "https://acritica.net/eleicoes-2026/plano-de-flavio-bolsonaro-preve-manter-programas-sociais-e-ampliar-foco-em-infraestrutura/",
+    "https://www.band.com.br/politica/eleicoes/2026/flavio-propoe-limitar-stf-reduzir-maioridade-e-acabar-com-reeleicao-202608131847",
+    "https://www.osul.com.br/flavio-bolsonaro-planeja-reajustar-aposentadorias-e-despesas-com-saude-e-educacao-so-pela-inflacao/",
+    "https://oeco.org.br/noticias/flavio-bolsonaro-repete-o-pai-e-apresenta-7-propostas-antiambientais/",
+    "https://portalamazonia.com/amazonia/planos-governo-presidencia-amazonia-26/",
+    "https://www.em.com.br/politica/2026/08/7490602-flavio-bolsonaro-2026-conheca-as-principais-propostas-do-plano-de-governo.html"
+  ],
+  "policies": [
+    {
+      "id": "P01",
+      "title": "Major federal budget cut",
+      "description": "A large, fast cut of federal discretionary and administrative spending to rebalance public accounts.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": -1.0
+      },
+      "title_pt": "Grande corte de gastos (\"tesouraço\")"
+    },
+    {
+      "id": "P02",
+      "title": "Administrative reform: eliminate at least ten ministries",
+      "description": "Merge or eliminate at least ten ministries and cut commissioned positions and administrative expenses.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": -0.25
+      },
+      "title_pt": "Reforma administrativa: extinguir 10+ ministérios"
+    },
+    {
+      "id": "P03",
+      "title": "Cheaper living costs via tax cuts",
+      "description": "Cut taxes on food and energy and revise the new consumption-tax reform to lower the standard VAT rate.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "tax": -0.5
+      },
+      "title_pt": "\"Brasil Mais Barato\": cortes de impostos"
+    },
+    {
+      "id": "P04",
+      "title": "Resume privatizations and shrink the state",
+      "description": "Restart the privatization program for federal state-owned companies and reduce state participation in the economy.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "business_climate": 0.5
+      },
+      "title_pt": "Retomar privatizações e enxugar o Estado"
+    },
+    {
+      "id": "P05",
+      "title": "R$ 900 billion infrastructure program",
+      "description": "R$ 900 billion of infrastructure investment over four years, mostly through concessions and private partnerships; state bank refocused on infrastructure, critical minerals, energy and data centers.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "private_investment": 0.25,
+        "public_investment": 0.05,
+        "business_climate": 0.25
+      },
+      "title_pt": "Programa de R$ 900 bi em infraestrutura"
+    },
+    {
+      "id": "P06",
+      "title": "Keep current social programs",
+      "description": "Maintain the existing cash-transfer and social programs.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {},
+      "title_pt": "Manter os programas sociais"
+    },
+    {
+      "id": "P07",
+      "title": "Classify criminal factions as terrorist organizations; new max-security prisons",
+      "description": "Legally classify criminal factions as terrorist organizations and build five new federal maximum-security prisons.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": true,
+      "levers": {
+        "security": 0.5,
+        "spending": 0.05
+      },
+      "title_pt": "Facções como organizações terroristas; novos presídios"
+    },
+    {
+      "id": "P08",
+      "title": "Lower the age of criminal responsibility",
+      "description": "Lower it from 18 to 16, and to 14 for heinous crimes such as murder, rape and drug trafficking.",
+      "needs_congress": true,
+      "constitutional_amendment": true,
+      "stf_risk": true,
+      "levers": {
+        "security": 0.25
+      },
+      "title_pt": "Reduzir a maioridade penal"
+    },
+    {
+      "id": "P09",
+      "title": "Harsher criminal penalties",
+      "description": "Chemical castration for rapists, end of sentence progression for femicide, higher penalties for cell-phone theft.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": true,
+      "levers": {
+        "security": 0.25
+      },
+      "title_pt": "Penas mais duras"
+    },
+    {
+      "id": "P10",
+      "title": "Limit the powers of the Supreme Court",
+      "description": "Constitutional changes restricting individual (monocratic) decisions and the scope of the Supreme Court.",
+      "needs_congress": true,
+      "constitutional_amendment": true,
+      "stf_risk": true,
+      "levers": {
+        "institutional_conflict": 1.0
+      },
+      "title_pt": "Limitar os poderes do STF"
+    },
+    {
+      "id": "P11",
+      "title": "End presidential re-election",
+      "description": "Constitutional amendment ending re-election for the presidency.",
+      "needs_congress": true,
+      "constitutional_amendment": true,
+      "stf_risk": false,
+      "levers": {},
+      "title_pt": "Fim da reeleição"
+    },
+    {
+      "id": "P12",
+      "title": "Digital economy and data centers",
+      "description": "Digitalize public services and the economy, and attract data-center and critical-mineral investment.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "business_climate": 0.25
+      },
+      "title_pt": "Economia digital e data centers"
+    },
+    {
+      "id": "P13",
+      "title": "Closer alignment with the US, Argentina and Israel",
+      "description": "Prioritize relations with the US, Argentina and Israel while keeping trade with China and other partners.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {},
+      "title_pt": "Aproximação com EUA, Argentina e Israel"
+    },
+    {
+      "id": "P14",
+      "title": "Index health, education and pension floors to inflation only",
+      "title_pt": "Pisos de saúde, educação e aposentadorias corrigidos só pela inflação",
+      "description": "Unlink the constitutional minimum spending on health and education from revenue, and unlink the pension/BPC floor from real minimum-wage gains; all adjusted by inflation only.",
+      "needs_congress": true,
+      "constitutional_amendment": true,
+      "stf_risk": false,
+      "levers": {
+        "health": -0.25,
+        "social_transfers": -0.25,
+        "spending": -0.1,
+        "pension_floor_real": -2.5
+      }
+    },
+    {
+      "id": "P15",
+      "title": "Zero illegal deforestation by 2029 through monitoring",
+      "title_pt": "Desmatamento ilegal zero até 2029 com monitoramento",
+      "description": "Satellites, artificial intelligence and coordination between agencies to prevent and police illegal deforestation, prioritising the Amazon.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "environment": 0.5
+      }
+    },
+    {
+      "id": "P16",
+      "title": "Loosen environmental licensing",
+      "title_pt": "Flexibilizar o licenciamento ambiental",
+      "description": "'Modernize' environmental licensing so rural producers, ranchers and miners can expand activities and exploit mineral resources more easily.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": true,
+      "levers": {
+        "environment": -0.5,
+        "business_climate": 0.25
+      }
+    }
+  ]
+}

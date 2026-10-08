@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+*.log
+out/**/cache.sqlite
+out/dry-run*/
+out/check/
+out/tiny/
+out/smoke/

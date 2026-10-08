@@ -1,0 +1,112 @@
+{
+  "_note": "Pre-registered on 2026-10-07, before any track-record number was computed or collected. Compares the real record of each political group's most recent government. Results are published whichever way they point.",
+  "groups": {
+    "pl": {
+      "label": "Grupo de Flávio (PL) - governo Jair Bolsonaro",
+      "years": [
+        2019,
+        2022
+      ],
+      "excluded": "2020 e 2021 (pandemia), a pedido do usuário"
+    },
+    "pt": {
+      "label": "Grupo de Lula (PT) - governo Lula atual",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "excluded": "2026 (ano incompleto)"
+    }
+  },
+  "measure": {
+    "flow": "média dos valores anuais nos anos do grupo",
+    "stock": "média da variação anual (valor do ano menos valor do ano anterior) nos anos do grupo"
+  },
+  "metrics": [
+    {
+      "key": "gdp_growth",
+      "kind": "flow",
+      "better": "higher",
+      "tie_below": 0.3,
+      "source": "IBGE via BCB SGS 22099 (média anual do índice)"
+    },
+    {
+      "key": "inflation",
+      "kind": "flow",
+      "better": "target",
+      "target": 3.0,
+      "tie_below": 0.3,
+      "source": "IBGE IPCA dez/dez via BCB SGS 13522"
+    },
+    {
+      "key": "selic",
+      "kind": "flow",
+      "better": "lower",
+      "tie_below": 0.5,
+      "source": "BCB SGS 4189 (média anual)"
+    },
+    {
+      "key": "unemployment",
+      "kind": "stock",
+      "better": "lower",
+      "tie_below": 0.2,
+      "source": "IBGE PNAD Contínua via BCB SGS 24369 (dezembro)"
+    },
+    {
+      "key": "debt_gdp",
+      "kind": "stock",
+      "better": "lower",
+      "tie_below": 0.5,
+      "source": "BCB SGS 13762 (dezembro)"
+    },
+    {
+      "key": "primary_balance",
+      "kind": "flow",
+      "better": "higher",
+      "tie_below": 0.3,
+      "source": "BCB SGS 5793 (dezembro, sinal invertido)"
+    },
+    {
+      "key": "poverty_rate",
+      "kind": "stock",
+      "better": "lower",
+      "tie_below": 0.5,
+      "source": "IBGE Síntese de Indicadores Sociais"
+    },
+    {
+      "key": "gini",
+      "kind": "stock",
+      "better": "lower",
+      "tie_below": 0.003,
+      "source": "IBGE PNAD Contínua (rendimento domiciliar per capita)"
+    },
+    {
+      "key": "infant_mortality",
+      "kind": "stock",
+      "better": "lower",
+      "tie_below": 0.1,
+      "source": "Ministério da Saúde / IBGE"
+    },
+    {
+      "key": "homicides_per_100k",
+      "kind": "stock",
+      "better": "lower",
+      "tie_below": 0.5,
+      "source": "Atlas da Violência (Ipea/FBSP) ou Anuário FBSP"
+    },
+    {
+      "key": "deforestation_km2",
+      "kind": "stock",
+      "better": "lower",
+      "tie_below": 200,
+      "source": "INPE PRODES Amazônia (ano PRODES ago-jul)"
+    }
+  ],
+  "rule": "Para cada indicador, vence o grupo com o melhor valor pela regra acima; diferença menor que tie_below é empate. Quando uma fonte oficial não for encontrada para todos os anos, o indicador fica marcado como 'sem dados' em vez de estimado.",
+  "amendment": {
+    "date": "2026-10-07",
+    "before_computing": true,
+    "text": "Dados oficiais saem com 1 a 2 anos de atraso. Por isso, cada grupo usa os anos do seu período que tenham dado oficial; se nenhum ano tiver dado verificado, o indicador fica 'sem dados'. Variações de 2022 são medidas sobre 2021 (ano de pandemia) e podem refletir recuperação; isso é sinalizado no resultado, sem mudar a regra."
+  }
+}

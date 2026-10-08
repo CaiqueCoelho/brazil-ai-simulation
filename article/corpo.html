@@ -1,0 +1,141 @@
+<div class="kicker">Experimento · Inteligência artificial · Eleições 2026</div>
+<h1>Deixamos uma IA governar o Brasil até 2030 com Lula e com Flávio Bolsonaro. Deu empate, e o desempate depende de um personagem: o mercado</h1>
+<p class="dek">200 brasileiros virtuais, um Congresso que negocia, um STF que derruba leis e um Banco Central que mexe nos juros. Simulamos quatro anos de cada plano de governo registrado no TSE, cinco vezes cada, e comparamos com o que de fato aconteceu nos últimos governos de cada grupo. O placar muda conforme quem confia em quem.</p>
+<div class="byline">Texto, código, execução e análise produzidos por inteligência artificial (Claude, da Anthropic) · 7 de outubro de 2026 · Código e dados abertos: {{repo}}</div>
+
+<div class="box warn"><p><strong>Antes de tudo: isto não é uma previsão.</strong> É um experimento. Modelos de IA interpretam papéis (presidente, Congresso, STF, mercado, cidadãos) e um modelo matemático transforma as decisões em números. Os resultados dependem das hipóteses do modelo e dos vieses das próprias IAs. Use como ferramenta para entender os trade-offs de cada plano, não como guia de voto.</p></div>
+
+<p class="lede">Você já viu aqueles experimentos que viralizaram, em que dezenas de personagens movidos por IA vivem numa cidade virtual. Levamos a ideia para o tamanho de um país: <strong>e se uma IA simulasse o Brasil de 2027 a 2030 seguindo à risca o plano de governo de cada candidato?</strong> Pegamos as propostas de <strong>Lula</strong> ("Diretrizes para o Programa de Transformação do Brasil") e de <strong>Flávio Bolsonaro</strong> ("Para o Brasil Vencer o Atraso"), transformamos cada uma em medidas concretas e soltamos tudo num Brasil virtual. Para ter uma régua, rodamos também um terceiro Brasil, o <strong>cenário base</strong>, onde ninguém muda nada.</p>
+
+{{hero}}
+
+<div class="pull">Pelo placar simples, empate: {{tally:lula}} a {{tally:flavio}}, mesmo com o "mercado" de IA confiando mais em Flávio. Se o mercado e o Banco Central tratassem os dois governos do mesmo jeito, Lula venceria por {{dec:ambos:lula}} a {{dec:ambos:flavio}}.</div>
+
+<h2>Em 30 segundos</h2>
+<ul>
+<li><strong>Placar simples:</strong> empate, Lula {{tally:lula}} × {{tally:flavio}} Flávio, com {{tally:empate}} empates técnicos. Flávio leva economia e contas públicas; Lula leva desigualdade, saúde, Amazônia e democracia.</li>
+<li><strong>As vitórias econômicas de Flávio vêm do "mercado" de IA,</strong> que confiou bem mais no plano dele e levou o Banco Central virtual a cortar juros mais rápido. Com mercado e Banco Central reagindo igual aos dois, <strong>Lula vence por {{dec:ambos:lula}} a {{dec:ambos:flavio}}</strong>: mais crescimento, menos pobreza, menos fome e menos homicídios.</li>
+<li><strong>Contando uma vez por área</strong> (para o ajuste fiscal não valer três vezes), Lula vence a simulação principal.</li>
+<li><strong>No mundo real</strong> (governo Bolsonaro 2019/2022 contra governo Lula 2023–2025, dados oficiais), o placar é empate.</li>
+<li><strong>Em todas as simulações, Lula vence na desigualdade, na Amazônia, na saúde e na democracia (risco democrático e estabilidade institucional), e Flávio vence nas contas públicas.</strong> No histórico real, Lula vence na Amazônia e Bolsonaro nas contas públicas.</li>
+</ul>
+
+<h2>Como o experimento foi feito</h2>
+<h3>As ferramentas</h3>
+<ul>
+<li><strong>Claude Code</strong> (Anthropic) planejou o experimento, escreveu todo o código em Python, baixou os dados oficiais, calibrou o modelo, executou as simulações, analisou os resultados, desenhou os gráficos e escreveu este texto.</li>
+<li><strong>DeepSeek</strong> (modelo <code>deepseek-flash</code>), um dos modelos de IA mais baratos do mercado, deu voz aos personagens: presidente, ministro da Fazenda, Centrão, três blocos do Congresso, STF, Banco Central, mercado financeiro, imprensa e 200 cidadãos.</li>
+<li><strong>Dados oficiais</strong> do Banco Central, IBGE, INPE, Atlas da Violência, FBSP e FAO, de 2018 a 2026.</li>
+</ul>
+<p>Cada rodada teve {{calls}} decisões tomadas por IA, em cerca de 25 minutos de processamento. A rodada principal custou cerca de <strong>US$ 3,30</strong> (R$ 17) e a rodada "informada" (explicada adiante), cerca de US$ 3,00. Somando testes e versões anteriores, o projeto consumiu US$ 11,36 de créditos de IA, medidos pelo saldo da conta. No caminho descobrimos que nosso contador de custos subestimava em cerca de 30% o preço dos tokens em cache; os valores acima já estão corrigidos.</p>
+
+<h3>As regras do jogo</h3>
+<p>A cada trimestre, o mundo sorteia choques externos (commodities, juros americanos, secas, escândalos), <strong>idênticos para os três Brasis</strong>. O <strong>presidente</strong> escolhe até três propostas para tocar. Medidas administrativas saem por decreto; as que precisam de lei vão ao <strong>Congresso</strong>, onde três blocos votam conforme o próprio interesse: esquerda (27% das cadeiras), Centrão (48%) e direita (25%). Projeto comum precisa de maioria; emenda constitucional, de 3/5. Medidas polêmicas podem ser contestadas no <strong>STF</strong>. Depois o <strong>Banco Central</strong> mexe na Selic, o <strong>mercado</strong> reage, a <strong>imprensa</strong> escreve a manchete e os <strong>200 cidadãos</strong> (sorteados para refletir o perfil do brasileiro segundo o IBGE) dizem como a vida está e se aprovam o presidente.</p>
+<p><strong>A IA nunca inventa o PIB.</strong> Os personagens só decidem; quem calcula os indicadores é um conjunto de equações calibrado com 34 trimestres de dados reais (2018–2026). Na simulação principal, <strong>os personagens nunca souberam o nome do presidente</strong>, apenas a lista de propostas. Cada proposta recebeu um tamanho de efeito numa escala única para os dois candidatos.</p>
+<p><strong>Como decidimos quem vence:</strong> comparamos a média das {{seeds}} simulações. Só há vencedor quando a vantagem supera metade da variação natural entre as simulações; senão, é empate técnico. Essa regra foi fixada antes de qualquer resultado.</p>
+
+<h2>Auditoria: o que corrigimos pelo caminho</h2>
+<p>A primeira versão do experimento deu Flávio {{v1tally:flavio}} × {{v1tally:lula}} Lula. Revisamos código, dados e os dois planos com o mesmo rigor, e corrigimos erros reais sem olhar para quem eles favoreciam:</p>
+<ul>
+<li><strong>Custo de Lula contado em dobro</strong> (programas sociais, habitação e crédito industrial). Corrigido.</li>
+<li><strong>Infraestrutura de Flávio tratada como 100% pública</strong>, quando é majoritariamente concessão privada. Corrigido.</li>
+<li><strong>Propostas que faltavam:</strong> de Flávio, corrigir os pisos de saúde, educação e aposentadorias apenas pela inflação, monitorar o desmatamento por satélite e flexibilizar o licenciamento ambiental; de Lula, "Agora tem Especialistas" e a ampliação da Farmácia Popular.</li>
+<li><strong>Motor econômico corrigido.</strong> Testado contra o que de fato aconteceu, o motor original era otimista demais com os anos Bolsonaro (PIB 1,6 ponto acima do real) e pessimista com os anos Lula: não reproduzia a queda recorde do desemprego, que ficava travado em 7,7% enquanto o real caiu para 5,1%. Acrescentamos, com regras registradas antes do ajuste, dois mecanismos estimados a partir dos dados para os dois lados igualmente: o efeito das transferências de renda (Bolsa Família/Auxílio Brasil) sobre o consumo e a queda estrutural do desemprego desde 2018. O erro do desemprego caiu de 2,0 para 1,1 ponto, e o viés nos anos Lula, de +1,1 para +0,3 ponto. As decisões já gravadas dos personagens foram reprocessadas pelo motor corrigido.</li>
+<li><strong>Desigualdade e estabilidade institucional</strong>, depois de uma revisão de leitura. O efeito das transferências de renda sobre a desigualdade passou a seguir a estimativa do IBGE (sem Bolsa Família e BPC, o Gini de 2024 seria 0,542 em vez de 0,506). E a estabilidade institucional passou a "lembrar" por mais tempo das tentativas de limitar o STF, como o risco democrático já fazia. Não acrescentamos efeito das privatizações sobre a desigualdade, porque a evidência é mista. Regras em <code>data/engine_v3_rules.json</code>.</li>
+<li><strong>Inflação fora da desigualdade.</strong> Ao decompor a queda do Gini, vimos que mais da metade da queda no governo Flávio vinha de um termo de inflação que nós mesmos tínhamos chutado, sem dados, e cuja forma acumulava efeito sem limite. O termo foi retirado (regras em <code>data/engine_v4_rules.json</code>). Essa correção foi identificada depois de vermos os resultados e favorece Lula: sem ela, a desigualdade seria empate técnico e o placar simples seria Flávio 5 × 4.</li>
+<li><strong>Salário mínimo e aposentadorias na desigualdade</strong>, com base em pesquisas publicadas. Segundo o Ipea, as aposentadorias (cujo piso acompanha o salário mínimo) responderam por 22% da queda da desigualdade de 2023 para 2024; por isso, a proposta de corrigir o piso das aposentadorias e o BPC só pela inflação passou a pesar mais na desigualdade do governo Flávio. A valorização do salário mínimo, uma das principais causas da queda da desigualdade no Brasil (Firpo e Reis; Engbom e Moser), entrou no modelo para os três cenários, porque a regra é lei e nenhum dos planos propõe revogá-la. A isenção do Imposto de Renda até R$ 5 mil e a taxação de altas rendas já estão em vigor para todos e quase não alteram o Gini do IBGE, que mede a renda antes do imposto. Regras em <code>data/engine_v5_rules.json</code>.</li>
+<li><strong>Forma de contar.</strong> Além do placar por indicador, mostramos o placar por área, explicado adiante.</li>
+</ul>
+
+<h2>O placar completo</h2>
+<p class="legend"><i style="border-color:#2a78d6"></i>Lula <i style="border-color:#eb6834"></i>Flávio Bolsonaro <i class="d" style="border-color:#1baf7a"></i>Cenário base (sem novas políticas)</p>
+{{scoreboard}}
+<figure>{{advantage}}<figcaption>Quanto maior a barra, mais clara a vitória. Barras dentro da faixa cinza indicam diferenças menores que o acaso entre as simulações. Câmbio fica sem vencedor de propósito: dólar caro ajuda exportadores e dólar barato ajuda quem importa.</figcaption></figure>
+
+<h2>Resultado por área</h2>
+
+<h3>Economia: vantagem de Flávio, puxada pelo mercado</h3>
+<div class="charts">{{chart:gdp_growth}}{{chart:selic}}</div>
+<p>No Brasil de Flávio a economia cresceu em média <strong>{{val:gdp_growth:flavio}}% ao ano</strong>, contra <strong>{{val:gdp_growth:lula}}%</strong> com Lula e {{val:gdp_growth:baseline}}% no cenário base. A Selic média ficou em {{val:selic:flavio}}% contra {{val:selic:lula}}%. O desemprego terminou baixo nos dois ({{val:unemployment:flavio}}% com Flávio, {{val:unemployment:lula}}% com Lula), dentro da margem de empate. As faixas coloridas mostram a variação entre as cinco simulações: quando se sobrepõem, a diferença pode ser acaso.</p>
+
+<h3>Contas públicas: a vantagem mais firme de Flávio</h3>
+<div class="charts">{{chart:debt_gdp}}{{chart:primary_balance}}</div>
+<p>O "tesouraço" (aprovado em versão desidratada nas cinco simulações), a extinção de ministérios e a correção dos pisos só pela inflação levaram o governo Flávio a um resultado primário médio de {{val:primary_balance:flavio}}% do PIB, contra {{val:primary_balance:lula}}% com Lula, que amplia programas sociais, saúde, educação e habitação. A dívida termina 2030 em <strong>{{val:debt_gdp:flavio}}% do PIB com Flávio</strong> e <strong>{{val:debt_gdp:lula}}% com Lula</strong>; o cenário base fica em {{val:debt_gdp:baseline}}%. É a única área em que Flávio vence em todas as versões do experimento.</p>
+
+<h3>Social e fome: desigualdade para Lula; pobreza e fome empatam</h3>
+<div class="charts">{{chart:poverty_rate}}{{chart:food_insecurity}}</div>
+<p>Pobreza, desigualdade e fome caem nos dois governos. A <strong>desigualdade cai mais com Lula</strong> (Gini de {{val:gini:lula}} contra {{val:gini:flavio}}), puxada pelas transferências de renda. No governo Flávio, a correção das aposentadorias do piso e do BPC só pela inflação trabalha no sentido contrário, e a desigualdade termina praticamente igual à do cenário base ({{val:gini:baseline}}). O plano de Flávio também não se compromete com a valorização do salário mínimo: num teste à parte em que ele congela o ganho real do mínimo, o Gini do seu governo sobe para 0,504, pior do que não fazer nada. Pelo placar simples, pobreza e fome empatam: pobreza de {{val:poverty_rate:lula}}% com Lula e {{val:poverty_rate:flavio}}% com Flávio; fome de {{val:food_insecurity:lula}}% e {{val:food_insecurity:flavio}}%, ambas abaixo dos 2,5% do Mapa da Fome. Com mercado e Banco Central reagindo igual aos dois, Lula passa a vencer pobreza e fome. Lula reduz a pobreza com transferências; a correção das aposentadorias mínimas e do BPC só pela inflação, aprovada em versão branda em 4 das 5 simulações, puxa no sentido contrário no governo Flávio.</p>
+
+<h3>Saúde: vitória de Lula</h3>
+<div class="charts">{{chart:infant_mortality}}{{chart:homicides_per_100k}}</div>
+<p>A mortalidade infantil cai para <strong>{{val:infant_mortality:lula}} por mil nascidos vivos com Lula</strong>, contra {{val:infant_mortality:flavio}} com Flávio e {{val:infant_mortality:baseline}} no cenário base. O plano de Lula amplia o SUS ("Agora tem Especialistas", Farmácia Popular); o de Flávio corrige o piso da saúde apenas pela inflação.</p>
+
+<h3>Segurança: os dois derrubam homicídios</h3>
+<p>Os homicídios caem com os dois ({{val:homicides_per_100k:lula}} por 100 mil com Lula, {{val:homicides_per_100k:flavio}} com Flávio, {{val:homicides_per_100k:baseline}} sem mudanças), empate no placar simples e vitória de Lula com o mercado neutro. As medidas de Lula (Ministério da Segurança, asfixia financeira das facções) passaram sem contestação. As de Flávio esbarraram no STF: as penas mais duras foram suspensas nas cinco simulações e a redução da maioridade penal, em três.</p>
+
+<h3>Meio ambiente: vitória de Lula</h3>
+<div class="charts">{{chart:deforestation_km2}}{{chart:approval}}</div>
+<p>O desmatamento cai para <strong>{{val:deforestation_km2:lula}} km² por ano com Lula</strong>. Com Flávio fica em {{val:deforestation_km2:flavio}} km², melhor que o cenário base ({{val:deforestation_km2:baseline}} km²) graças ao monitoramento por satélite. A flexibilização do licenciamento ambiental foi aprovada pelo Congresso nas cinco simulações, mas suspensa pelo STF em quatro.</p>
+
+<h3>Popularidade: empate</h3>
+<p>Os cidadãos virtuais deram em média {{val:approval:lula}}% de aprovação a Lula e {{val:approval:flavio}}% a Flávio; o "governo que não faz nada" ficou com {{val:approval:baseline}}%. No Brasil de Lula: "Ainda procuro emprego, mas o crédito industrial e o SUS melhorando me dão esperança". No de Flávio: "Diesel caro ainda aperta, mas cortar imposto de comida ajudou. Que mantenham os sociais". No cenário base: "Termina o governo e nada mudou pra quem trabalha: comida cara e salário curto".</p>
+
+<h3>Democracia: vitória de Lula</h3>
+<div class="charts">{{chart:democracy_risk}}{{chart:institutional_stability}}</div>
+<p>O risco democrático termina 2030 em <strong>{{val:democracy_risk:flavio}} com Flávio</strong> e <strong>{{val:democracy_risk:lula}} com Lula</strong>, com pico de 42 no governo Flávio em 2029. A estabilidade institucional cai para 56 no fim de 2028 no governo Flávio e termina em <strong>{{val:institutional_stability:flavio}}</strong>, contra <strong>{{val:institutional_stability:lula}}</strong> com Lula. <strong>Em todas as cinco simulações, o Congresso aprovou uma versão desidratada da emenda que limita os poderes do STF, e o próprio STF a suspendeu.</strong> O Supremo suspendeu em média 3,6 medidas do governo Flávio por simulação; no governo Lula, nenhuma.</p>
+
+<h2>O personagem que decide o placar: o mercado</h2>
+<p>O "mercado financeiro" de IA deu confiança média de <strong>+0,45</strong> (escala de −1 a +1) ao governo Flávio, contra <strong>+0,19</strong> ao de Lula. O Banco Central de IA, por sua vez, cortou juros mais rápido com Flávio. Juros menores barateiam a dívida, estimulam o crédito e fazem o PIB crescer mais.</p>
+<p>Para medir o peso disso, refizemos as contas dando aos dois governos, trimestre a trimestre, <strong>exatamente a mesma reação do mercado e do Banco Central</strong>. O placar vira: <strong>Lula {{dec:ambos:lula}} × {{dec:ambos:flavio}} Flávio</strong>, com {{dec:ambos:empate}} empates. Lula passa a vencer em crescimento, pobreza, fome e homicídios, além de saúde, Amazônia e democracia; Flávio mantém dívida e resultado primário. Ou seja, com o motor corrigido, <strong>as vitórias econômicas de Flávio dependem de os personagens de IA terem confiado mais no plano dele</strong>; sem essa confiança extra, o empate do placar simples vira vitória clara de Lula. Se essa confiança reflete o mercado real ou um viés dos modelos de IA, treinados com muito texto de economia de mercado, o experimento não consegue dizer.</p>
+
+<h2>O resultado se sustenta?</h2>
+<p>Três hipóteses do modelo foram definidas pela IA, e não pelos dados: quanto privatizações aceleram o PIB, quanto gasto público acelera o PIB e quanto cortes de impostos sobre alimentos derrubam a inflação. Fixamos valores alternativos antes de ver os resultados e refizemos as contas em {{sens_total}} combinações:</p>
+<figure>{{sensitivity}}<figcaption>Placar Lula × Flávio em cada combinação de hipóteses. Flávio termina à frente em {{sens_overall:flavio}}, Lula em {{sens_overall:lula}} e há empate em {{sens_overall:empate}}.</figcaption></figure>
+<p>Com o motor corrigido, <strong>Lula vence em {{sens_overall:lula}} das {{sens_total}} combinações</strong>, e as outras {{sens_overall:empate}} terminam empatadas. <strong>Flávio não vence em nenhuma.</strong></p>
+
+<h2>Como contamos importa</h2>
+<p>O placar simples conta indicadores. Mas 6 dos 15 indicadores com vencedor são de economia e contas públicas, e três deles (Selic, dívida e resultado primário) medem quase a mesma coisa: o ajuste fiscal. Por isso mostramos também o placar <strong>por área</strong> (economia, contas públicas, social, saúde, segurança, meio ambiente, política e democracia), em que cada área vale um voto. Essa contagem foi acrescentada depois de vermos os resultados, a partir de uma crítica de leitura, e aparece ao lado da original.</p>
+{{lenses}}
+
+<h2>O que diz o histórico real</h2>
+<p>Uma simulação é sempre um "e se". Por isso comparamos também o que <strong>de fato aconteceu</strong> no governo mais recente de cada grupo: o de Jair Bolsonaro, do mesmo grupo e partido de Flávio, em 2019 e 2022 (2020 e 2021, anos de pandemia, ficaram de fora), e o atual governo Lula, de 2023 a 2025. As regras foram registradas antes de qualquer número ser calculado (<code>data/track_record_rules.json</code>).</p>
+{{track}}
+<p class="small">Fluxos (PIB, inflação, Selic, resultado primário) usam a média anual; estoques usam a variação média por ano. * A variação de 2022 é medida contra 2021, ano de pandemia, e inclui a recuperação pós-pandemia; a última coluna refaz a comparação sem ela. "Sem dados": não há série oficial consistente para os dois períodos. Fontes: IBGE, Banco Central, INPE (PRODES), Atlas da Violência (Ipea/FBSP).</p>
+<p>A comparação mais justa é a da última coluna, sem o efeito de rebote da pandemia: <strong>empate em {{track_tally:alt:pt}} a {{track_tally:alt:pl}}</strong>. O governo Lula se destaca em crescimento, inflação, desemprego e Amazônia; o governo Bolsonaro, em juros, contas públicas e homicídios (com uma queda forte em 2019 que já vinha de 2018). Com o rebote incluído, Bolsonaro venceria por {{track_tally:main:pl}} a {{track_tally:main:pt}}.</p>
+<div class="box"><p><strong>Contexto que a tabela não captura.</strong></p>
+<ul>
+<li><strong>Fome:</strong> o Brasil voltou ao Mapa da Fome da ONU no triênio 2019–2021 e saiu de novo em julho de 2025, com a subalimentação em 2,4% em 2022–2024 (FAO).</li>
+<li><strong>Violência em 2025:</strong> as mortes violentas intencionais caíram 8,2%, para 19,1 por 100 mil, a menor taxa da série (Anuário FBSP 2026).</li>
+<li><strong>Precatórios:</strong> a PEC dos Precatórios (2021) adiou pagamentos de dívidas judiciais, e o governo Lula quitou R$ 92,4 bilhões desse estoque em 2023. Sem esse pagamento, o déficit de 2023 cairia de 2,1% para 1,3% do PIB (Tesouro Nacional); a vantagem fiscal do período Bolsonaro diminui, mas não desaparece.</li>
+<li><strong>Selic:</strong> o Banco Central é autônomo desde 2021. A Selic baixa de 2019 veio antes da pandemia; a alta de 2021–2022 já estava em curso quando Lula assumiu.</li>
+</ul></div>
+
+<h2>E se os personagens conhecessem o histórico de cada grupo?</h2>
+<p>Fizemos uma segunda rodada completa, a <strong>versão informada</strong>, em que todos os personagens recebem a tabela acima, com dois fatos favoráveis e dois desfavoráveis de cada lado escritos no mesmo modelo, e o ponto de partida atualizado com os dados mais recentes.</p>
+{{i_hero}}
+<p>Ao ver o histórico, o "mercado" de IA ficou mais pessimista com o grupo de Lula (confiança de +0,19 para −0,21; Flávio em +0,33), citando "déficit persistente", "expansão fiscal" e a jornada de 40 horas; os cidadãos virtuais deram {{i_val:approval:lula}}% de aprovação a Lula e {{i_val:approval:flavio}}% a Flávio. Pelo placar simples, <strong>Flávio vence por {{i_tally:flavio}} a {{i_tally:lula}}</strong>. Mas, de novo, com mercado e Banco Central reagindo igual aos dois, <strong>Lula vence por {{i_dec:ambos:lula}} a {{i_dec:ambos:flavio}}</strong>. Lula mantém mortalidade infantil, Amazônia, risco democrático e estabilidade institucional em qualquer cenário.</p>
+<div class="charts">{{i_chart:approval}}{{i_chart:debt_gdp}}</div>
+<p>Uma leitura possível: diante do histórico, os modelos de IA deram mais peso aos números fiscais (déficit de 2023, dívida subindo, Selic a 15%) do que aos ganhos sociais (saída do Mapa da Fome, queda da pobreza e do desmatamento). Também é possível que, com o histórico na tela, tenham reconhecido os grupos políticos e trazido opiniões aprendidas na internet.</p>
+
+<h2>Então, quem venceu?</h2>
+<p><strong>Depende de em quem você confia, mas a balança pende para Lula.</strong> Com os personagens de IA reagindo como reagiram, mais otimistas com ajuste fiscal e privatizações, a simulação principal termina empatada. Se o mercado e o Banco Central reagissem igual aos dois, ou se cada área da vida do país valer um voto, Lula vence. Flávio só fica à frente na versão informada, em que os personagens conheciam o histórico de cada grupo. Nos dados reais dos últimos governos, empate.</p>
+<p>O que não muda em nenhuma simulação: <strong>Lula vence na desigualdade, na Amazônia, na saúde e na democracia; Flávio vence nas contas públicas.</strong> No histórico real, o padrão se repete onde há dados: Amazônia para Lula, contas públicas para Bolsonaro. É por isso que o resultado vai incomodar os dois lados. E os dois planos foram melhores do que deixar tudo como está na maioria dos indicadores: Lula em 11 de 15, Flávio em 13 de 15.</p>
+
+<h2>O que o experimento não diz</h2>
+<ul>
+<li><strong>Não é previsão.</strong> O motor econômico é simples. Mesmo corrigido, erra em média 1,7 ponto na inflação e 1,1 ponto no desemprego por trimestre, ainda é um pouco otimista com os anos Bolsonaro e não captura todos os canais da economia real. Dois parâmetros do ajuste ficaram no limite registrado (queda estrutural do desemprego e sensibilidade do emprego ao PIB).</li>
+<li><strong>Os personagens de IA podem ter vieses.</strong> Esconder os nomes reduz, mas não elimina, esse efeito, e a reação do "mercado" de IA pesa muito no placar simples.</li>
+<li><strong>O salário mínimo segue a regra atual nos três cenários.</strong> O plano de Flávio não se compromete com a valorização, mas também não propõe revogá-la; por isso, o congelamento do ganho real aparece apenas como teste à parte, fora do placar.</li>
+<li><strong>O tamanho de cada proposta foi um julgamento da IA</strong>, com a mesma escala para os dois candidatos.</li>
+<li><strong>Só entraram as propostas encontradas nas fontes consultadas</strong> (TSE e imprensa).</li>
+<li><strong>O experimento avalia planos, não biografias.</strong> A investigação da Polícia Federal sobre Flávio Bolsonaro no caso Banco Master (em andamento, sem conclusão) e as condenações de Lula na Lava Jato (anuladas pelo STF em 2021) não entram nos números. Também não medimos educação e valorização de professores, nem carga tributária.</li>
+<li><strong>O Congresso usa as bancadas de 2023–2026;</strong> o resultado da eleição de 2026 não foi incorporado.</li>
+<li><strong>Cinco simulações por cenário.</strong> Mais repetições estreitariam as margens de empate.</li>
+</ul>
+
+<div class="box"><p><strong>Feito por IA, do começo ao fim.</strong> O planejamento, o código, a coleta de dados, a calibração, as simulações, a auditoria, a análise, os gráficos e este texto foram produzidos por inteligência artificial (Claude, da Anthropic, no Claude Code; personagens interpretados pelo DeepSeek). Nenhum ser humano editou resultados ou escreveu trechos deste artigo. A participação humana se limitou a pedir o experimento, aprovar o orçamento, validar a lista de propostas, apontar pontos a revisar e publicar; todas as correções seguiram regras registradas antes do cálculo e valem para os dois lados. Isso não significa ausência de viés: as escolhas de modelagem são da IA, e os modelos carregam vieses próprios. Por isso todo o código, os dados e os resultados estão abertos em {{repo}}.</p></div>
+
+<h2>Glossário: o que cada indicador mede</h2>
+{{glossary}}
+
+<p class="small">Fontes das propostas: plano de governo de Lula no TSE (tse.jus.br), Agência Brasil, Congresso em Foco, planodegoverno2026.com.br e Gazeta SP; plano de Flávio Bolsonaro (Poder360), Congresso em Foco, Jornal O Sul, ((o))eco, Portal Amazônia, Estado de Minas, SpaceMoney e Band. Dados: Banco Central do Brasil (SGS), IBGE, INPE (PRODES), Atlas da Violência (Ipea/FBSP), Anuário Brasileiro de Segurança Pública, FAO, Tesouro Nacional, Ministério do Desenvolvimento e Assistência Social. Propostas modeladas e tamanhos atribuídos: <code>data/policies_lula.json</code> e <code>data/policies_flavio.json</code>; regras do motor corrigido: <code>data/engine_v2_rules.json</code> a <code>data/engine_v5_rules.json</code>. Estudos sobre desigualdade: Ipea (decomposição do Gini 2021–2024), Firpo e Reis (2007), Engbom e Moser (American Economic Review, 2022).</p>

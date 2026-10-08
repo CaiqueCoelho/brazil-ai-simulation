@@ -1,0 +1,261 @@
+{
+ "_note": "Modelling inputs, one row per quarter: intensities in the engine's units (1.0 = the calibrated historical event). Chosen by the AI from documented events; edit and re-run sim/calibrate.py to test sensitivity.",
+ "start_other": {
+  "poverty_rate": 26.5,
+  "gini": 0.539,
+  "homicides_per_100k": 31.6,
+  "deforestation_km2": 7536,
+  "approval": 50,
+  "institutional_stability": 60,
+  "infant_mortality": 12.8,
+  "democracy_risk": 35,
+  "food_insecurity": 4.0
+ },
+ "quarters": {
+  "2018Q1": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.2,
+   "event": "recovery after 2015-16 recession"
+  },
+  "2018Q2": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": -0.5,
+   "event": "truckers' strike (May 2018) paralyses supply"
+  },
+  "2018Q3": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": -0.3,
+   "event": "election uncertainty"
+  },
+  "2018Q4": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.1,
+   "event": ""
+  },
+  "2019Q1": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.2,
+   "event": "new government, pension-reform expectations"
+  },
+  "2019Q2": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2019Q3": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2019Q4": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.1,
+   "event": "pension reform approved"
+  },
+  "2020Q1": {
+   "commodity": -0.3,
+   "drought": 0.0,
+   "pandemic": 0.3,
+   "confidence": -0.5,
+   "event": "COVID-19 arrives"
+  },
+  "2020Q2": {
+   "commodity": -0.6,
+   "drought": 0.0,
+   "pandemic": 1.0,
+   "confidence": -0.8,
+   "event": "COVID-19 lockdowns"
+  },
+  "2020Q3": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.3,
+   "confidence": -0.2,
+   "event": ""
+  },
+  "2020Q4": {
+   "commodity": 0.3,
+   "drought": 0.0,
+   "pandemic": 0.1,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2021Q1": {
+   "commodity": 0.6,
+   "drought": 0.0,
+   "pandemic": 0.2,
+   "confidence": 0.0,
+   "event": "second COVID wave; commodity boom"
+  },
+  "2021Q2": {
+   "commodity": 0.6,
+   "drought": 0.5,
+   "pandemic": 0.0,
+   "confidence": 0.2,
+   "event": "water crisis begins"
+  },
+  "2021Q3": {
+   "commodity": 0.6,
+   "drought": 1.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": "worst drought in 91 years, energy tariffs up"
+  },
+  "2021Q4": {
+   "commodity": 0.5,
+   "drought": 0.5,
+   "pandemic": 0.0,
+   "confidence": -0.2,
+   "event": ""
+  },
+  "2022Q1": {
+   "commodity": 0.8,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.2,
+   "event": "war in Ukraine lifts commodities"
+  },
+  "2022Q2": {
+   "commodity": 0.6,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.1,
+   "event": ""
+  },
+  "2022Q3": {
+   "commodity": 0.2,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2022Q4": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": -0.1,
+   "event": "election"
+  },
+  "2023Q1": {
+   "commodity": 0.3,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": "record harvest"
+  },
+  "2023Q2": {
+   "commodity": 0.2,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.2,
+   "event": ""
+  },
+  "2023Q3": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.1,
+   "event": ""
+  },
+  "2023Q4": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.1,
+   "event": ""
+  },
+  "2024Q1": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.1,
+   "event": ""
+  },
+  "2024Q2": {
+   "commodity": 0.0,
+   "drought": 0.3,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": "Rio Grande do Sul floods (climate shock)"
+  },
+  "2024Q3": {
+   "commodity": 0.0,
+   "drought": 0.5,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": "drought and wildfires"
+  },
+  "2024Q4": {
+   "commodity": 0.0,
+   "drought": 0.3,
+   "pandemic": 0.0,
+   "confidence": -0.5,
+   "event": "fiscal-package stress, BRL sell-off"
+  },
+  "2025Q1": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": -0.2,
+   "event": ""
+  },
+  "2025Q2": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2025Q3": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": -0.3,
+   "event": "US tariffs on Brazilian exports"
+  },
+  "2025Q4": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2026Q1": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2026Q2": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": 0.0,
+   "event": ""
+  },
+  "2026Q3": {
+   "commodity": 0.0,
+   "drought": 0.0,
+   "pandemic": 0.0,
+   "confidence": -0.1,
+   "event": "election campaign"
+  }
+ }
+}

@@ -1,0 +1,187 @@
+{
+  "candidate": "Lula",
+  "plan_title": "Diretrizes para o Programa de Transformação do Brasil (TSE, 84 pages, 13 chapters)",
+  "sources": [
+    "https://www.tse.jus.br/eleicoes/eleicoes-2026-content/propostas-de-governo-dos-candidatos-ao-cargo-de-presidente-da-republica-eleicoes-2026/lula-propostas-de-governo",
+    "https://congressoemfoco.com.br/noticia/121121/pt-registra-novo-plano-de-governo-de-lula-no-tse-veja-a-integra",
+    "https://acritica.net/politica/plano-governo-lula-2026-soberania-seguranca-arcabouco-fiscal/",
+    "https://abcdoabc.com.br/eleicoes-2026-saiba-planos-governo-lula-flavio",
+    "https://agenciabrasil.ebc.com.br/politica/noticia/2026-09/lula-propoe-criar-ministerio-da-seguranca-e-aumento-real-do-minimo",
+    "https://planodegoverno2026.com.br/candidatos/presidente/lula/",
+    "https://www.gazetasp.com.br/politica/eleicoes-2026-compare-as-propostas-de-governo-de-flavio-bolsonaro-e-lula-para-os-proximos-quatro-anos/"
+  ],
+  "policies": [
+    {
+      "id": "P01",
+      "title": "Keep the current fiscal framework",
+      "description": "Preserve the existing fiscal rule: primary spending grows below revenue growth, with primary-balance targets kept.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "business_climate": 0.25
+      },
+      "title_pt": "Manter o arcabouço fiscal"
+    },
+    {
+      "id": "P02",
+      "title": "End the 6x1 work schedule / 40-hour week",
+      "description": "Reduce the legal work week to 40 hours and end the six-days-on/one-off schedule, without salary reduction.",
+      "needs_congress": true,
+      "constitutional_amendment": true,
+      "stf_risk": false,
+      "levers": {
+        "labor_cost": 0.5
+      },
+      "title_pt": "Fim da escala 6x1 / jornada de 40h"
+    },
+    {
+      "id": "P03",
+      "title": "Create a Ministry of Public Security",
+      "description": "Split public security from the Justice ministry into a dedicated ministry that coordinates with states and municipalities.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "security": 0.25,
+        "spending": 0.05
+      },
+      "title_pt": "Criar o Ministério da Segurança Pública"
+    },
+    {
+      "id": "P04",
+      "title": "Financial offensive against criminal factions",
+      "description": "Expand money-laundering investigations and asset seizure against organized crime; body cameras for police; tighter arms and ammunition control.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "security": 0.5
+      },
+      "title_pt": "Ofensiva financeira contra facções"
+    },
+    {
+      "id": "P05",
+      "title": "Reindustrialization with state credit",
+      "description": "Industrial policy with subsidized development-bank credit and public procurement for strategic sectors.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "public_investment": 0.25
+      },
+      "title_pt": "Reindustrialização com crédito público"
+    },
+    {
+      "id": "P06",
+      "title": "Expand social protection and minimum-wage real gains",
+      "description": "Keep and expand cash-transfer programs and continue real annual increases of the minimum wage.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "social_transfers": 0.25
+      },
+      "title_pt": "Ampliar proteção social e ganho real do salário mínimo"
+    },
+    {
+      "id": "P07",
+      "title": "Implement the consumption tax reform on schedule",
+      "description": "Roll out the already-approved dual VAT (CBS/IBS) from 2027 as legislated.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "business_climate": 0.25
+      },
+      "title_pt": "Implementar a reforma tributária no prazo"
+    },
+    {
+      "id": "P08",
+      "title": "Higher taxation of top incomes",
+      "description": "Minimum effective income tax on very high incomes and dividends to fund social spending.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "tax": 0.25
+      },
+      "title_pt": "Tributar altas rendas"
+    },
+    {
+      "id": "P09",
+      "title": "Zero illegal deforestation and ecological transition",
+      "description": "Stronger environmental enforcement in the Amazon and green-industry incentives.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "environment": 1.0,
+        "spending": 0.05
+      },
+      "title_pt": "Desmatamento ilegal zero e transição ecológica"
+    },
+    {
+      "id": "P10",
+      "title": "Invest in the Armed Forces and national sovereignty",
+      "description": "Raise defense investment and frame foreign policy around national sovereignty and trade diversification.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": 0.05,
+        "public_investment": 0.05
+      },
+      "title_pt": "Investir nas Forças Armadas e na soberania"
+    },
+    {
+      "id": "P11",
+      "title": "Expand subsidized housing",
+      "description": "Grow the subsidized housing program for low-income families.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "public_investment": 0.1,
+        "social_transfers": 0.05
+      },
+      "title_pt": "Ampliar a habitação popular"
+    },
+    {
+      "id": "P12",
+      "title": "Expand education programs",
+      "description": "Full-time schools, daycare construction and the high-school student savings incentive (Pé-de-Meia).",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "social_transfers": 0.05,
+        "spending": 0.1
+      },
+      "title_pt": "Ampliar programas de educação"
+    },
+    {
+      "id": "P13",
+      "title": "Trade diversification and new trade agreements",
+      "description": "Pursue new trade agreements and diversify export markets away from dependence on any single partner.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {},
+      "title_pt": "Diversificar o comércio exterior"
+    },
+    {
+      "id": "P14",
+      "title": "Strengthen the public health system (SUS)",
+      "title_pt": "Fortalecer o SUS: especialistas e Farmácia Popular",
+      "description": "'Agora tem Especialistas' programme to cut waiting lists for exams and surgeries, and expanded free medicines and lab tests at Farmácia Popular.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "health": 0.25,
+        "spending": 0.1
+      }
+    }
+  ]
+}

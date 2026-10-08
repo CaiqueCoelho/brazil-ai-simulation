@@ -1,0 +1,15 @@
+{
+  "_note": "Rounded IBGE Censo 2022 / PNAD shares and 2022 TSE runoff result; good enough to sample a smoke-test population.",
+  "region": {"Norte": 8.5, "Nordeste": 26.9, "Sudeste": 41.8, "Sul": 14.7, "Centro-Oeste": 8.1},
+  "income": {"up to 1 minimum wage": 30, "1-2 minimum wages": 32, "2-5 minimum wages": 26, "over 5 minimum wages": 12},
+  "age": {"16-24": 15, "25-39": 30, "40-59": 33, "60+": 22},
+  "area": {"urban": 87, "rural": 13},
+  "religion": {"Catholic": 50, "Evangelical": 27, "No religion": 10, "Other": 13},
+  "vote_2022": {"voted for the PT candidate": 38, "voted for the PL candidate": 37, "abstained or voted null/blank": 25},
+  "occupation_by_income": {
+    "up to 1 minimum wage": ["informal street vendor", "rural day laborer", "unemployed and looking for work", "domestic worker", "app delivery rider", "retiree on minimum pension"],
+    "1-2 minimum wages": ["supermarket cashier", "construction worker", "call-center operator", "truck driver", "nursing technician", "small farmer"],
+    "2-5 minimum wages": ["public school teacher", "small business owner", "police officer", "bank clerk", "IT support technician", "agribusiness technician"],
+    "over 5 minimum wages": ["doctor", "software engineer", "agribusiness producer", "lawyer", "senior civil servant", "company manager"]
+  }
+}

@@ -1,0 +1,50 @@
+{
+ "_note": "Valores anuais oficiais coletados em 2026-10-07. Só entram valores confirmados em fonte oficial ou reportagem que cita a fonte oficial; anos não confirmados ficam de fora.",
+ "deforestation_km2": {
+  "source": "INPE PRODES (taxa consolidada, ano ago-jul): gov.br/inpe notas técnicas 2021, 2022, 2023, 2025",
+  "values": {
+   "2018": 7536,
+   "2019": 10129,
+   "2020": 10851,
+   "2021": 13038,
+   "2022": 11594,
+   "2023": 9064,
+   "2024": 6518,
+   "2025": 5731
+  }
+ },
+ "homicides_per_100k": {
+  "source": "Atlas da Violência (Ipea/FBSP), edições 2021-2026",
+  "values": {
+   "2018": 27.8,
+   "2019": 21.7,
+   "2021": 22.4,
+   "2022": 21.7,
+   "2023": 21.2,
+   "2024": 20.1
+  }
+ },
+ "poverty_rate": {
+  "source": "IBGE Síntese de Indicadores Sociais, linha US$ 6,85 PPC/dia",
+  "values": {
+   "2021": 36.8,
+   "2022": 31.6,
+   "2023": 27.4,
+   "2024": 23.1
+  }
+ },
+ "gini": {
+  "source": "IBGE PNAD Contínua, rendimento domiciliar per capita (todas as fontes)",
+  "values": {
+   "2018": 0.545,
+   "2022": 0.518,
+   "2023": 0.518,
+   "2024": 0.506
+  }
+ },
+ "infant_mortality": {
+  "source": "Fontes divergentes (Ministério da Saúde x IBGE) para os mesmos anos",
+  "values": {},
+  "status": "sem dados consistentes: excluído pela regra"
+ }
+}

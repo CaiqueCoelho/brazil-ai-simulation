@@ -1,0 +1,555 @@
+{
+ "params": {
+  "trend_growth": 2.124999999999999,
+  "neutral_real_rate": 6.3999999999999995,
+  "nairu": 10.549999999999995,
+  "growth_real_rate": 0.225,
+  "growth_confidence": 1.0,
+  "growth_commodity": 1.0,
+  "growth_drought": 1.0,
+  "growth_pandemic": 14.0,
+  "fiscal_multiplier": 0.1,
+  "infl_persistence": 0.8200000000000001,
+  "infl_gap": 0.05,
+  "infl_fx": 0.08000000000000002,
+  "infl_drought": 0.6,
+  "infl_commodity": 2.25,
+  "effective_rate_share": 0.8600000000000001,
+  "effective_rate_smoothing": 0.85,
+  "okun": 0.2,
+  "growth_business_climate": 0.6,
+  "growth_investment": 0.5,
+  "tax_cut_passthrough": 0.3,
+  "fx_market_confidence": 3.0,
+  "growth_transfers": 1.1249999999999998,
+  "nairu_trend": -0.8
+ },
+ "fit": {
+  "default_rmse": {
+   "gdp_growth": 3.646,
+   "inflation": 3.089,
+   "unemployment": 2.913,
+   "debt_gdp": 10.789
+  },
+  "fitted_rmse": {
+   "gdp_growth": 2.767,
+   "inflation": 1.68,
+   "unemployment": 1.118,
+   "debt_gdp": 2.298
+  }
+ },
+ "fit_window": "2018Q4..2026Q2 (quarterly, official BCB/IBGE series)",
+ "series": [
+  {
+   "q": "2018Q1",
+   "model": {
+    "gdp_growth": 3.34,
+    "inflation": 3.06,
+    "unemployment": 11.59,
+    "debt_gdp": 73.98
+   },
+   "actual": {
+    "gdp_growth": 1.9,
+    "inflation": 2.68,
+    "unemployment": 13.2,
+    "debt_gdp": 74.6
+   }
+  },
+  {
+   "q": "2018Q2",
+   "model": {
+    "gdp_growth": 2.75,
+    "inflation": 4.33,
+    "unemployment": 11.52,
+    "debt_gdp": 74.2
+   },
+   "actual": {
+    "gdp_growth": 1.62,
+    "inflation": 4.39,
+    "unemployment": 12.6,
+    "debt_gdp": 76.13
+   }
+  },
+  {
+   "q": "2018Q3",
+   "model": {
+    "gdp_growth": 2.76,
+    "inflation": 4.43,
+    "unemployment": 11.32,
+    "debt_gdp": 74.23
+   },
+   "actual": {
+    "gdp_growth": 2.06,
+    "inflation": 4.53,
+    "unemployment": 12.0,
+    "debt_gdp": 75.99
+   }
+  },
+  {
+   "q": "2018Q4",
+   "model": {
+    "gdp_growth": 2.9,
+    "inflation": 3.98,
+    "unemployment": 11.01,
+    "debt_gdp": 74.28
+   },
+   "actual": {
+    "gdp_growth": 1.55,
+    "inflation": 3.75,
+    "unemployment": 11.7,
+    "debt_gdp": 75.27
+   }
+  },
+  {
+   "q": "2019Q1",
+   "model": {
+    "gdp_growth": 2.86,
+    "inflation": 3.9,
+    "unemployment": 10.74,
+    "debt_gdp": 74.33
+   },
+   "actual": {
+    "gdp_growth": 0.9,
+    "inflation": 4.58,
+    "unemployment": 12.8,
+    "debt_gdp": 76.71
+   }
+  },
+  {
+   "q": "2019Q2",
+   "model": {
+    "gdp_growth": 3.07,
+    "inflation": 3.65,
+    "unemployment": 10.51,
+    "debt_gdp": 74.46
+   },
+   "actual": {
+    "gdp_growth": 1.17,
+    "inflation": 3.37,
+    "unemployment": 12.1,
+    "debt_gdp": 76.67
+   }
+  },
+  {
+   "q": "2019Q3",
+   "model": {
+    "gdp_growth": 3.1,
+    "inflation": 4.26,
+    "unemployment": 10.3,
+    "debt_gdp": 74.45
+   },
+   "actual": {
+    "gdp_growth": 1.11,
+    "inflation": 2.89,
+    "unemployment": 11.9,
+    "debt_gdp": 76.6
+   }
+  },
+  {
+   "q": "2019Q4",
+   "model": {
+    "gdp_growth": 3.06,
+    "inflation": 3.83,
+    "unemployment": 10.03,
+    "debt_gdp": 74.3
+   },
+   "actual": {
+    "gdp_growth": 1.69,
+    "inflation": 4.31,
+    "unemployment": 11.1,
+    "debt_gdp": 74.44
+   }
+  },
+  {
+   "q": "2020Q1",
+   "model": {
+    "gdp_growth": 1.87,
+    "inflation": 5.14,
+    "unemployment": 10.72,
+    "debt_gdp": 74.98
+   },
+   "actual": {
+    "gdp_growth": 0.41,
+    "inflation": 3.3,
+    "unemployment": 12.4,
+    "debt_gdp": 76.78
+   }
+  },
+  {
+   "q": "2020Q2",
+   "model": {
+    "gdp_growth": -1.24,
+    "inflation": 3.25,
+    "unemployment": 12.93,
+    "debt_gdp": 79.13
+   },
+   "actual": {
+    "gdp_growth": -10.14,
+    "inflation": 2.13,
+    "unemployment": 13.6,
+    "debt_gdp": 82.87
+   }
+  },
+  {
+   "q": "2020Q3",
+   "model": {
+    "gdp_growth": -1.88,
+    "inflation": 3.36,
+    "unemployment": 13.07,
+    "debt_gdp": 81.5
+   },
+   "actual": {
+    "gdp_growth": -3.04,
+    "inflation": 3.14,
+    "unemployment": 14.9,
+    "debt_gdp": 87.42
+   }
+  },
+  {
+   "q": "2020Q4",
+   "model": {
+    "gdp_growth": -1.93,
+    "inflation": 3.38,
+    "unemployment": 12.67,
+    "debt_gdp": 83.26
+   },
+   "actual": {
+    "gdp_growth": -0.33,
+    "inflation": 4.52,
+    "unemployment": 14.2,
+    "debt_gdp": 86.94
+   }
+  },
+  {
+   "q": "2021Q1",
+   "model": {
+    "gdp_growth": -1.19,
+    "inflation": 5.39,
+    "unemployment": 12.59,
+    "debt_gdp": 84.73
+   },
+   "actual": {
+    "gdp_growth": 1.75,
+    "inflation": 6.1,
+    "unemployment": 14.9,
+    "debt_gdp": 85.1
+   }
+  },
+  {
+   "q": "2021Q2",
+   "model": {
+    "gdp_growth": 1.84,
+    "inflation": 5.67,
+    "unemployment": 12.25,
+    "debt_gdp": 84.58
+   },
+   "actual": {
+    "gdp_growth": 12.4,
+    "inflation": 8.35,
+    "unemployment": 14.2,
+    "debt_gdp": 80.6
+   }
+  },
+  {
+   "q": "2021Q3",
+   "model": {
+    "gdp_growth": 2.36,
+    "inflation": 7.85,
+    "unemployment": 11.97,
+    "debt_gdp": 83.33
+   },
+   "actual": {
+    "gdp_growth": 4.21,
+    "inflation": 10.25,
+    "unemployment": 12.7,
+    "debt_gdp": 79.62
+   }
+  },
+  {
+   "q": "2021Q4",
+   "model": {
+    "gdp_growth": 2.47,
+    "inflation": 8.67,
+    "unemployment": 11.49,
+    "debt_gdp": 81.45
+   },
+   "actual": {
+    "gdp_growth": 1.46,
+    "inflation": 10.06,
+    "unemployment": 11.1,
+    "debt_gdp": 77.31
+   }
+  },
+  {
+   "q": "2022Q1",
+   "model": {
+    "gdp_growth": 3.32,
+    "inflation": 8.38,
+    "unemployment": 10.76,
+    "debt_gdp": 79.34
+   },
+   "actual": {
+    "gdp_growth": 1.48,
+    "inflation": 11.3,
+    "unemployment": 11.1,
+    "debt_gdp": 76.4
+   }
+  },
+  {
+   "q": "2022Q2",
+   "model": {
+    "gdp_growth": 3.59,
+    "inflation": 9.69,
+    "unemployment": 10.24,
+    "debt_gdp": 77.23
+   },
+   "actual": {
+    "gdp_growth": 3.54,
+    "inflation": 11.89,
+    "unemployment": 9.3,
+    "debt_gdp": 75.61
+   }
+  },
+  {
+   "q": "2022Q3",
+   "model": {
+    "gdp_growth": 3.9,
+    "inflation": 9.27,
+    "unemployment": 9.78,
+    "debt_gdp": 75.52
+   },
+   "actual": {
+    "gdp_growth": 4.32,
+    "inflation": 7.17,
+    "unemployment": 8.7,
+    "debt_gdp": 74.15
+   }
+  },
+  {
+   "q": "2022Q4",
+   "model": {
+    "gdp_growth": 3.85,
+    "inflation": 7.91,
+    "unemployment": 9.41,
+    "debt_gdp": 74.49
+   },
+   "actual": {
+    "gdp_growth": 2.7,
+    "inflation": 5.79,
+    "unemployment": 7.9,
+    "debt_gdp": 71.68
+   }
+  },
+  {
+   "q": "2023Q1",
+   "model": {
+    "gdp_growth": 3.61,
+    "inflation": 7.58,
+    "unemployment": 8.93,
+    "debt_gdp": 73.63
+   },
+   "actual": {
+    "gdp_growth": 4.44,
+    "inflation": 4.65,
+    "unemployment": 8.8,
+    "debt_gdp": 71.54
+   }
+  },
+  {
+   "q": "2023Q2",
+   "model": {
+    "gdp_growth": 3.66,
+    "inflation": 6.88,
+    "unemployment": 8.43,
+    "debt_gdp": 73.19
+   },
+   "actual": {
+    "gdp_growth": 3.85,
+    "inflation": 3.16,
+    "unemployment": 8.0,
+    "debt_gdp": 71.97
+   }
+  },
+  {
+   "q": "2023Q3",
+   "model": {
+    "gdp_growth": 3.61,
+    "inflation": 6.56,
+    "unemployment": 8.05,
+    "debt_gdp": 73.19
+   },
+   "actual": {
+    "gdp_growth": 2.35,
+    "inflation": 5.19,
+    "unemployment": 7.7,
+    "debt_gdp": 73.01
+   }
+  },
+  {
+   "q": "2023Q4",
+   "model": {
+    "gdp_growth": 3.76,
+    "inflation": 5.74,
+    "unemployment": 7.61,
+    "debt_gdp": 73.63
+   },
+   "actual": {
+    "gdp_growth": 2.38,
+    "inflation": 4.62,
+    "unemployment": 7.4,
+    "debt_gdp": 73.83
+   }
+  },
+  {
+   "q": "2024Q1",
+   "model": {
+    "gdp_growth": 3.6,
+    "inflation": 5.56,
+    "unemployment": 7.31,
+    "debt_gdp": 74.24
+   },
+   "actual": {
+    "gdp_growth": 2.46,
+    "inflation": 3.93,
+    "unemployment": 7.9,
+    "debt_gdp": 75.02
+   }
+  },
+  {
+   "q": "2024Q2",
+   "model": {
+    "gdp_growth": 3.35,
+    "inflation": 6.22,
+    "unemployment": 7.05,
+    "debt_gdp": 74.8
+   },
+   "actual": {
+    "gdp_growth": 3.47,
+    "inflation": 4.23,
+    "unemployment": 6.9,
+    "debt_gdp": 76.68
+   }
+  },
+  {
+   "q": "2024Q3",
+   "model": {
+    "gdp_growth": 3.22,
+    "inflation": 5.82,
+    "unemployment": 6.8,
+    "debt_gdp": 75.38
+   },
+   "actual": {
+    "gdp_growth": 4.14,
+    "inflation": 4.42,
+    "unemployment": 6.4,
+    "debt_gdp": 77.09
+   }
+  },
+  {
+   "q": "2024Q4",
+   "model": {
+    "gdp_growth": 2.75,
+    "inflation": 6.58,
+    "unemployment": 6.76,
+    "debt_gdp": 75.65
+   },
+   "actual": {
+    "gdp_growth": 3.58,
+    "inflation": 4.83,
+    "unemployment": 6.2,
+    "debt_gdp": 76.27
+   }
+  },
+  {
+   "q": "2025Q1",
+   "model": {
+    "gdp_growth": 2.65,
+    "inflation": 5.38,
+    "unemployment": 6.54,
+    "debt_gdp": 75.93
+   },
+   "actual": {
+    "gdp_growth": 3.15,
+    "inflation": 5.48,
+    "unemployment": 7.0,
+    "debt_gdp": 75.55
+   }
+  },
+  {
+   "q": "2025Q2",
+   "model": {
+    "gdp_growth": 2.49,
+    "inflation": 4.57,
+    "unemployment": 6.41,
+    "debt_gdp": 76.5
+   },
+   "actual": {
+    "gdp_growth": 2.36,
+    "inflation": 5.35,
+    "unemployment": 5.8,
+    "debt_gdp": 76.3
+   }
+  },
+  {
+   "q": "2025Q3",
+   "model": {
+    "gdp_growth": 2.22,
+    "inflation": 4.07,
+    "unemployment": 6.37,
+    "debt_gdp": 77.47
+   },
+   "actual": {
+    "gdp_growth": 1.82,
+    "inflation": 5.17,
+    "unemployment": 5.6,
+    "debt_gdp": 77.84
+   }
+  },
+  {
+   "q": "2025Q4",
+   "model": {
+    "gdp_growth": 2.22,
+    "inflation": 4.14,
+    "unemployment": 6.32,
+    "debt_gdp": 78.52
+   },
+   "actual": {
+    "gdp_growth": 1.84,
+    "inflation": 4.26,
+    "unemployment": 5.1,
+    "debt_gdp": 78.64
+   }
+  },
+  {
+   "q": "2026Q1",
+   "model": {
+    "gdp_growth": 2.04,
+    "inflation": 3.52,
+    "unemployment": 6.24,
+    "debt_gdp": 79.88
+   },
+   "actual": {
+    "gdp_growth": 1.84,
+    "inflation": 4.14,
+    "unemployment": 6.1,
+    "debt_gdp": 79.88
+   }
+  },
+  {
+   "q": "2026Q2",
+   "model": {
+    "gdp_growth": 1.89,
+    "inflation": 3.34,
+    "unemployment": 6.23,
+    "debt_gdp": 81.44
+   },
+   "actual": {
+    "gdp_growth": 1.98,
+    "inflation": 4.64,
+    "unemployment": 5.4,
+    "debt_gdp": 81.95
+   }
+  }
+ ],
+ "source": "sim/calibrate.py against data/history_2018_2026.json"
+}

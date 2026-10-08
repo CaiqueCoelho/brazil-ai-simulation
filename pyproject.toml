@@ -1,0 +1,17 @@
+[project]
+name = "brazil-sim"
+version = "0.1.0"
+description = "LLM-agent simulation of Brazil 2027-2030 under two presidential platforms"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.40",
+    "pydantic>=2.8",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,29 @@
+{
+  "_note": "Registered on 2026-10-07 before fitting. Motivated by the backtest: engine v1 was too optimistic for 2019/2022 and too pessimistic for 2023-2026 (unemployment stuck near 7.7% while the real rate fell to 5.1%).",
+  "changes": [
+    {
+      "name": "transfers_consumption_channel",
+      "equation": "growth += growth_transfers * social_transfers (level, % of GDP above the 2019 level)",
+      "bounds": [0.0, 1.5],
+      "why": "Cash transfers to low-income households are mostly spent, so a higher level supports consumption while it lasts."
+    },
+    {
+      "name": "structural_unemployment_trend",
+      "equation": "nairu(year) = max(4.5, nairu + nairu_trend * (year - 2018))",
+      "bounds": {"nairu": [5.0, 12.0], "nairu_trend": [-0.8, 0.0]},
+      "why": "Brazil's unemployment fell from 12% to 5% over 2018-2025 for structural reasons the v1 engine could not reproduce. The fitted trend continues into 2027-2030 with a 4.5% floor, identically for every scenario."
+    }
+  ],
+  "historical_transfers": {
+    "series": "Bolsa Familia / Auxilio Brasil spending as % of GDP minus the 2019 level (0.63%). Emergency aid of 2020-2021 stays in general spending.",
+    "values_pct_gdp_above_2019": {"2018": 0.0, "2019": 0.0, "2020": 0.0, "2021": 0.02, "2022": 0.42, "2023": 0.91, "2024": 0.80, "2025": 0.63, "2026": 0.60},
+    "sources": [
+      "https://agenciagov.ebc.com.br/noticias/202412/governo-federal-repassa-r-168-3-bilhoes-pelo-bolsa-familia-em-2024-1",
+      "https://www.poder360.com.br/poder-governo/governo-federal-deu-r-156-trilhao-em-auxilios-desde-a-pandemia/",
+      "https://en.wikipedia.org/wiki/Aux%C3%ADlio_Brasil",
+      "https://exame.com/brasil/bolsa-familia-o-que-explica-a-saida-de-1-milhao-de-beneficiarios-e-o-futuro-do-programa/"
+    ]
+  },
+  "procedure": "Refit all calibrated parameters on the same 34 quarters with these two additions; general spending in the backtest = observed primary deficit - 0.4 - transfers, so the fiscal total is unchanged. Then replay the recorded agent decisions of both runs (principal and informed) through engine v2 and report the result whatever it is, next to the v1 result.",
+  "applies_to": "all scenarios identically"
+}

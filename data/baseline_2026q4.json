@@ -1,0 +1,19 @@
+{
+  "_note": "Starting point for 2027 Q1. Economic values are the latest official BCB/IBGE readings available on 7 Oct 2026 (see data/bcb/; GDP = 2026Q2 year-on-year). Poverty, Gini, homicides, deforestation and infant mortality are approximate recent values (IBGE, FBSP, INPE PRODES, DataSUS). Informed-run update (2026-10-07): homicides = FBSP violent-death rate 2025 (19.1); poverty = IBGE SIS 2024 (23.1%); food_insecurity = FAO prevalence of undernourishment 2022-2024 (2.4%).",
+  "gdp_growth": 1.98,
+  "inflation": 4.22,
+  "selic": 13.78,
+  "unemployment": 5.3,
+  "debt_gdp": 82.86,
+  "primary_balance": -0.62,
+  "brl_usd": 5.18,
+  "poverty_rate": 23.1,
+  "gini": 0.506,
+  "homicides_per_100k": 19.1,
+  "deforestation_km2": 5800.0,
+  "approval": 50.0,
+  "institutional_stability": 65.0,
+  "infant_mortality": 12.5,
+  "democracy_risk": 30.0,
+  "food_insecurity": 2.4
+}
