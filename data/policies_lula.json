@@ -13,175 +13,224 @@
   "policies": [
     {
       "id": "P01",
-      "title": "Keep the current fiscal framework",
-      "description": "Preserve the existing fiscal rule: primary spending grows below revenue growth, with primary-balance targets kept.",
+      "title": "Keep the current fiscal rule",
+      "description": "Keep the fiscal rule in force: primary spending grows less than revenue, with yearly primary-balance targets.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "business_climate": 0.25
+        "business_climate": 0.15,
+        "spending_cap": 0.1
       },
-      "title_pt": "Manter o arcabouço fiscal"
+      "title_pt": "Manter a regra fiscal atual"
     },
     {
       "id": "P02",
-      "title": "End the 6x1 work schedule / 40-hour week",
-      "description": "Reduce the legal work week to 40 hours and end the six-days-on/one-off schedule, without salary reduction.",
+      "title": "40-hour work week with two days off",
+      "description": "Constitutional amendment cutting the legal work week from 44 to 40 hours and ending the six-days-on schedule, with no cut in monthly pay.",
       "needs_congress": true,
       "constitutional_amendment": true,
       "stf_risk": false,
       "levers": {
-        "labor_cost": 0.5
+        "labor_cost": 0.1
       },
-      "title_pt": "Fim da escala 6x1 / jornada de 40h"
+      "title_pt": "Jornada de 40 horas com duas folgas"
     },
     {
       "id": "P03",
-      "title": "Create a Ministry of Public Security",
-      "description": "Split public security from the Justice ministry into a dedicated ministry that coordinates with states and municipalities.",
+      "title": "Create a federal security ministry",
+      "description": "If the public-security constitutional amendment passes, move public security out of the Justice ministry into its own ministry that coordinates with states and cities.",
       "needs_congress": true,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "security": 0.25,
-        "spending": 0.05
+        "security": 0.05,
+        "spending": 0.01
       },
-      "title_pt": "Criar o Ministério da Segurança Pública"
+      "title_pt": "Criar um ministério federal da segurança"
     },
     {
       "id": "P04",
-      "title": "Financial offensive against criminal factions",
-      "description": "Expand money-laundering investigations and asset seizure against organized crime; body cameras for police; tighter arms and ammunition control.",
+      "title": "Target the finances of organized crime",
+      "description": "More money-laundering investigations and asset seizures against criminal groups; body cameras for police; tighter control of guns and ammunition.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "security": 0.5
+        "security": 0.35
       },
-      "title_pt": "Ofensiva financeira contra facções"
+      "title_pt": "Atacar as finanças do crime organizado"
     },
     {
       "id": "P05",
-      "title": "Reindustrialization with state credit",
-      "description": "Industrial policy with subsidized development-bank credit and public procurement for strategic sectors.",
+      "title": "Industrial policy with public-bank credit",
+      "description": "Subsidized credit from the development bank and public purchases for selected industrial sectors.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "public_investment": 0.25
+        "public_investment": 0.02,
+        "private_investment": 0.05
       },
-      "title_pt": "Reindustrialização com crédito público"
+      "title_pt": "Política industrial com crédito de banco público"
     },
     {
       "id": "P06",
-      "title": "Expand social protection and minimum-wage real gains",
-      "description": "Keep and expand cash-transfer programs and continue real annual increases of the minimum wage.",
+      "title": "Larger cash transfers and real minimum-wage gains",
+      "description": "Keep the cash-transfer programs and raise their coverage or value, and keep real yearly increases of the minimum wage.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "social_transfers": 0.25
+        "social_transfers": 0.05
       },
-      "title_pt": "Ampliar proteção social e ganho real do salário mínimo"
+      "title_pt": "Ampliar transferências de renda e ganho real do salário mínimo"
     },
     {
       "id": "P07",
-      "title": "Implement the consumption tax reform on schedule",
-      "description": "Roll out the already-approved dual VAT (CBS/IBS) from 2027 as legislated.",
-      "needs_congress": false,
-      "constitutional_amendment": false,
-      "stf_risk": false,
-      "levers": {
-        "business_climate": 0.25
-      },
-      "title_pt": "Implementar a reforma tributária no prazo"
-    },
-    {
-      "id": "P08",
-      "title": "Higher taxation of top incomes",
-      "description": "Minimum effective income tax on very high incomes and dividends to fund social spending.",
-      "needs_congress": true,
-      "constitutional_amendment": false,
-      "stf_risk": false,
-      "levers": {
-        "tax": 0.25
-      },
-      "title_pt": "Tributar altas rendas"
-    },
-    {
-      "id": "P09",
-      "title": "Zero illegal deforestation and ecological transition",
-      "description": "Stronger environmental enforcement in the Amazon and green-industry incentives.",
-      "needs_congress": false,
-      "constitutional_amendment": false,
-      "stf_risk": false,
-      "levers": {
-        "environment": 1.0,
-        "spending": 0.05
-      },
-      "title_pt": "Desmatamento ilegal zero e transição ecológica"
-    },
-    {
-      "id": "P10",
-      "title": "Invest in the Armed Forces and national sovereignty",
-      "description": "Raise defense investment and frame foreign policy around national sovereignty and trade diversification.",
-      "needs_congress": false,
-      "constitutional_amendment": false,
-      "stf_risk": false,
-      "levers": {
-        "spending": 0.05,
-        "public_investment": 0.05
-      },
-      "title_pt": "Investir nas Forças Armadas e na soberania"
-    },
-    {
-      "id": "P11",
-      "title": "Expand subsidized housing",
-      "description": "Grow the subsidized housing program for low-income families.",
-      "needs_congress": false,
-      "constitutional_amendment": false,
-      "stf_risk": false,
-      "levers": {
-        "public_investment": 0.1,
-        "social_transfers": 0.05
-      },
-      "title_pt": "Ampliar a habitação popular"
-    },
-    {
-      "id": "P12",
-      "title": "Expand education programs",
-      "description": "Full-time schools, daycare construction and the high-school student savings incentive (Pé-de-Meia).",
-      "needs_congress": false,
-      "constitutional_amendment": false,
-      "stf_risk": false,
-      "levers": {
-        "social_transfers": 0.05,
-        "spending": 0.1
-      },
-      "title_pt": "Ampliar programas de educação"
-    },
-    {
-      "id": "P13",
-      "title": "Trade diversification and new trade agreements",
-      "description": "Pursue new trade agreements and diversify export markets away from dependence on any single partner.",
+      "title": "Implement the approved consumption-tax reform",
+      "description": "Carry out the dual VAT (CBS/IBS) reform already in law during its transition.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {},
-      "title_pt": "Diversificar o comércio exterior"
+      "title_pt": "Implementar a reforma tributária aprovada"
     },
     {
-      "id": "P14",
-      "title": "Strengthen the public health system (SUS)",
-      "title_pt": "Fortalecer o SUS: especialistas e Farmácia Popular",
-      "description": "'Agora tem Especialistas' programme to cut waiting lists for exams and surgeries, and expanded free medicines and lab tests at Farmácia Popular.",
+      "id": "P09",
+      "title": "Net-zero deforestation by 2030",
+      "description": "More environmental enforcement (fines, embargoes) aiming at net-zero deforestation by 2030, plus incentives for low-carbon industry.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "health": 0.25,
-        "spending": 0.1
+        "environment": 0.7,
+        "spending": 0.02
+      },
+      "title_pt": "Desmatamento líquido zero até 2030"
+    },
+    {
+      "id": "P10",
+      "title": "More defense investment",
+      "description": "Raise defense investment; foreign policy focused on sovereignty and on more trade partners.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": 0.01,
+        "public_investment": 0.01
+      },
+      "title_pt": "Mais investimento em defesa"
+    },
+    {
+      "id": "P11",
+      "title": "More subsidized housing",
+      "description": "Increase subsidized housing for low-income families.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "public_investment": 0.02,
+        "social_transfers": 0.01
+      },
+      "title_pt": "Mais moradia subsidiada"
+    },
+    {
+      "id": "P12",
+      "title": "More full-time schools and student savings",
+      "description": "More full-time schools and daycare places, and a savings incentive paid to low-income high-school students who stay in school.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "social_transfers": 0.02,
+        "spending": 0.03
+      },
+      "title_pt": "Mais escola integral e poupança estudantil"
+    },
+    {
+      "id": "P13",
+      "title": "New trade agreements",
+      "description": "Sign new trade agreements and sell to more export markets.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {},
+      "title_pt": "Novos acordos comerciais"
+    },
+    {
+      "id": "P14",
+      "title": "Shorter waits in the public health system",
+      "title_pt": "Reduzir filas no sistema público de saúde",
+      "description": "Cut waiting lists for specialist exams and surgeries in the public health system; keep free essential medicines.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "health": 0.08,
+        "spending": 0.05
       }
+    },
+    {
+      "id": "P15",
+      "title": "Universal water and sewage",
+      "description": "Federal support for states and cities to reach universal treated water and sewage.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "health": 0.08,
+        "spending": 0.04
+      },
+      "title_pt": "Água e esgoto para todos"
+    },
+    {
+      "id": "P16",
+      "title": "Full-time school in the education fund",
+      "description": "Constitutional amendment to finance full-time schooling through the federal basic-education fund (Fundeb).",
+      "needs_congress": true,
+      "constitutional_amendment": true,
+      "stf_risk": false,
+      "levers": {
+        "spending": 0.015
+      },
+      "title_pt": "Escola integral no fundo da educação básica"
+    },
+    {
+      "id": "P17",
+      "title": "Internet in every public school",
+      "description": "Connect every public school to the internet.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": 0.01
+      },
+      "title_pt": "Internet em todas as escolas públicas"
+    },
+    {
+      "id": "P18",
+      "title": "Private hospitals doing public-system procedures",
+      "description": "Private hospitals perform public-system exams and surgeries in exchange for tax credits or debt relief.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": 0.015
+      },
+      "title_pt": "Hospitais privados fazendo procedimentos do sistema público"
+    },
+    {
+      "id": "P19",
+      "title": "Infrastructure investment and concessions",
+      "description": "Raise investment in infrastructure through the federal public-works program and concessions: keep the pace of road concessions and extend them to railways, ports and regional airports.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "private_investment": 0.1
+      },
+      "title_pt": "Investimento em infraestrutura e concessões"
     }
   ]
 }

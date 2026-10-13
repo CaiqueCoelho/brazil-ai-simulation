@@ -1,0 +1,50 @@
+{
+  "_note": "Registered on 2026-10-10 before the v7 live runs. Every proposal size was re-checked against published evidence with the same yardstick for both candidates, and every proposal against the plan text registered at the TSE. Results are published whatever they are.",
+  "rules": {
+    "plan_text_only": "Only proposals written in each candidate's TSE plan are modeled. Removed: Lula P08 (taxing high incomes is already law, Lei 15.270/2025; the plan mentions it in the past tense) and Flavio P14 (inflation-only health/education floors and pension/BPC floor: not in the plan, only in press reports; the candidate publicly denied cutting pensions). Added proposals found in the plans but missing before: Lula P15-P18, Flavio P17-P20.",
+    "baseline_is_current_law": "Programs in the 2026 budget and laws already in force belong to all three scenarios; only the increment proposed by a candidate counts. Already law: CBS/IBS tax reform, high-income minimum tax, Redata data-center regime (Law 15.504/2026), environmental licensing law (Law 15.190/2025), minimum-wage valorisation rule.",
+    "credit_is_not_spending": "Development-bank and FGTS credit is not primary spending; only the Treasury subsidy counts.",
+    "fiscal_rule_cap": "A candidate who keeps the arcabouço fiscal (Lula P01) cannot add net primary spending above about 0.1% of GDP a year; the excess is cut from discretionary spending (engine lever 'spending_cap'). Same credibility weight (business_climate 0.15) for keeping the arcabouço (Lula) and for the new surplus rule (Flavio).",
+    "gdp_for_conversions": "R$ 13.7 trillion in 2026 (PLOA 2027), so 0.1% of GDP is about R$ 13.7 billion."
+  },
+  "lula": {
+    "P01": {"old": {"business_climate": 0.25}, "new": {"business_climate": 0.15, "spending_cap": 0.1}, "why": "IMF WP 2025/195 and Itau on fiscal rules and spreads; LC 200/2023 caps spending growth at 70% of revenue growth; IFI: discretionary room near its floor."},
+    "P02": {"old": {"labor_cost": 0.5}, "new": {"labor_cost": 0.3}, "why": "0.5 equals the CNI worst case; Ipea finds no clear GDP loss; Gonzaga, Menezes-Filho & Camargo (2003) found no job loss in 1988. The PEC passed the Chamber in May 2026 and awaits the Senate."},
+    "P03": {"old": {"security": 0.25, "spending": 0.05}, "new": {"security": 0.05, "spending": 0.01}, "why": "No evidence that ministry structure lowers homicides; conditional on the PEC."},
+    "P04": {"old": {"security": 0.5}, "new": {"security": 0.35}, "why": "Body cameras cut police killings 57% in Sao Paulo; intelligence-led Pacto pela Vida; no causal evidence for asset seizure alone."},
+    "P05": {"old": {"public_investment": 0.25}, "new": {"public_investment": 0.02, "private_investment": 0.05}, "why": "About 90% of Nova Industria Brasil is BNDES/Finep credit; Lazzarini et al. (2015) find low additionality."},
+    "P06": {"old": {"social_transfers": 0.25}, "new": {"social_transfers": 0.05}, "why": "Bolsa Familia (R$ 157 bi) and the minimum-wage rule are already in the 2026/2027 budget; the plan only commits to continuity and expansion without a figure."},
+    "P07": {"old": {"business_climate": 0.25}, "new": {}, "why": "The tax reform is law for all scenarios; the plan only promises to consolidate it."},
+    "P08": {"old": {"tax": 0.25}, "new": "removed", "why": "Already law (Lei 15.270/2025), baseline for all."},
+    "P09": {"old": {"environment": 1.0, "spending": 0.05}, "new": {"environment": 0.7, "spending": 0.02}, "why": "Enforcement cut deforestation 73% in 2007-11 (AEJ Applied); further cuts are harder from today's lower base; plan target is net-zero by 2030."},
+    "P10": {"old": {"spending": 0.05, "public_investment": 0.05}, "new": {"spending": 0.01, "public_investment": 0.01}, "why": "LC 221/2025 already exempts R$ 5 bi a year of strategic defense projects."},
+    "P11": {"old": {"public_investment": 0.1, "social_transfers": 0.05}, "new": {"public_investment": 0.02, "social_transfers": 0.01}, "why": "MCMV budget subsidy about R$ 13 bi in 2026; most funding is FGTS credit."},
+    "P12": {"old": {"social_transfers": 0.05, "spending": 0.1}, "new": {"social_transfers": 0.02, "spending": 0.03}, "why": "Pe-de-Meia (R$ 11.5 bi) already in the 2026 budget."},
+    "P14": {"old": {"health": 0.25, "spending": 0.1}, "new": {"health": 0.08, "spending": 0.05}, "why": "Mais Medicos had no aggregate infant-mortality effect (only where it was above 25 per 1,000); Farmacia Popular is only maintained."},
+    "P15": {"new": {"health": 0.08, "spending": 0.04}, "why": "Piped water and sewage reduce infant mortality (NBER w14365; FGV); investment need R$ 45-50 bi a year, mostly operators."},
+    "P16": {"new": {"spending": 0.015}, "why": "Mostly reallocation inside Fundeb (PEC 45/2024)."},
+    "P17": {"new": {"spending": 0.01}, "why": "Escolas Conectadas: R$ 8.8 bi plan, 99k schools already connected."},
+    "P18": {"new": {"spending": 0.015}, "why": "Tax-credit swap already capped at R$ 2 bi a year by MP."}
+  },
+  "flavio": {
+    "P01": {"old": {"spending": -1.0}, "new": {"spending": -0.5, "business_climate": 0.15}, "why": "Plan gives no amount; the campaign cites R$ 190 bi, but Executive discretionary spending is only R$ 184-227 bi and near its floor; asset sales are one-off financing. Credibility weight equal to Lula P01."},
+    "P02": {"old": {"spending": -0.25}, "new": {"spending": -0.05}, "why": "Merging ministries saves little; -0.25 would double count with P01."},
+    "P03": {"old": {"tax": -0.5}, "new": {"tax": -0.3}, "why": "1 pp of CBS costs about 0.35-0.4% of GDP; fuel and energy cuts 0.1-0.3%; the plan has no food tax cut (cesta basica already zero-rated)."},
+    "P04": {"old": {"business_climate": 0.5}, "new": {"business_climate": 0.15}, "why": "Megginson & Netter (2001): firm efficiency gains; cross-country evidence finds privatization neutral for growth; Eletrobras and Sabesp already sold; plan says 'case by case'."},
+    "P05": {"old": {"private_investment": 0.25, "public_investment": 0.05, "business_climate": 0.25}, "new": {"private_investment": 0.1}, "why": "R$ 225 bi a year is below today's infrastructure pace (R$ 280 bi in 2025, 84% private) and matches the existing concession pipeline; business_climate double counted the investment."},
+    "P07": {"old": {"security": 0.5, "spending": 0.05}, "new": {"security": 0.15, "spending": 0.01}, "why": "El Salvador evidence transfers poorly (gang-pact critiques); Brazil already has 5 federal max-security prisons; mass incarceration strengthened PCC/CV."},
+    "P08": {"old": {"security": 0.25}, "new": {"security": 0.05}, "why": "Minors are a small share of killers; age-18 deterrence about zero in the US (Lee & McCrary); gangs recruit younger."},
+    "P09": {"old": {"security": 0.25}, "new": {"security": 0.05}, "why": "Severity deters little; certainty matters more (Chalfin & McCrary 2017)."},
+    "P12": {"old": {"business_climate": 0.25}, "new": {}, "why": "Redata is already law (Law 15.504/2026)."},
+    "P14": {"old": {"health": -0.25, "social_transfers": -0.25, "spending": -0.1, "pension_floor_real": -2.5}, "new": "removed", "why": "Not in the TSE plan."},
+    "P15": {"old": {"environment": 0.5}, "new": {"environment": 0.15}, "why": "DETER satellite monitoring existed in 2019-21 while deforestation rose; reductions come from fines and embargoes, not detection."},
+    "P16": {"old": {"environment": -0.5, "business_climate": 0.25}, "new": {"environment": -0.3}, "why": "Licensing law already in force since Feb 2026; only further relaxation is incremental."},
+    "P17": {"new": {"labor_cost": -0.1, "tax": -0.05}, "why": "Ipea TD 2357: 2012+ payroll tax relief had no employment effect; small fiscal cost inferred."},
+    "P18": {"new": {"spending": 0.04}, "why": "300-600k vouchers at R$ 8-12k a year (inferred)."},
+    "P19": {"new": {"spending": 0.02}, "why": "Subsidy of 20-40% of lending (inferred)."},
+    "P20": {"new": {"spending": -0.03}, "why": "Savings from benefit reviews; the associative-discount fraud took money from pensioners, not the budget."}
+  },
+  "not_modeled": "Flavio's gradual CDE energy-subsidy cut: paid through tariffs, so no primary-balance effect, and about -0.1 pp on the price level by 2030 (negligible).",
+  "no_cost_preview": "Replaying the v6 agent decisions with these values: 3 x 3 with the old market and central-bank reactions, Lula 4 x 1 with equal reactions; primary deficits 0.46% (Lula) and 0.37% (Flavio) with equal reactions.",
+  "runs": "Main and informed versions re-run live on DeepSeek into out/scale-v7 and out/informed-v7 with the Chamber elected on 2026-10-04 (left 24.2%, Centrao 50.1%, right 25.7%)."
+}

@@ -1,0 +1,153 @@
+{
+ "_note": "Registered on 2026-10-13, before running any of the tests below. Same yardstick for both candidates; results are published whatever they are.",
+ "premise_review": {
+  "lula_P02_40h_week": {
+   "old": {
+    "labor_cost": 0.3
+   },
+   "new": {
+    "labor_cost": 0.1
+   },
+   "why": "No study found job losses from cutting the legal week: Brazil 1988 (48->44h) cut hours without raising the affected workers' unemployment (Gonzaga, Menezes-Filho & Camargo 2003); Portugal 1996 (44->40h) raised employment through fewer separations (Raposo & van Ours 2010); France 35h had no significant aggregate effect (Chemin & Wasmer 2009; Estevao & Sa). Cost exists but is small for most firms: Ipea (Feb 2026) estimates +7.84% on the hourly cost of affected CLT workers and under 1% of operating cost in industry and retail. The lever keeps a small cost and a small price push.",
+   "sources": [
+    "https://www.econ.puc-rio.br/uploads/adm/trabalhos/files/td458.pdf",
+    "https://docs.iza.org/dp3723.pdf",
+    "https://www.iza.org/publications/dp2459",
+    "https://www.itatiaia.com.br/economia/fim-da-escala-6x1-teria-impacto-inferior-a-1-do-custo-operacional-diz-ipea/"
+   ]
+  },
+  "flavio_P17_lower_labor_costs": {
+   "old": {
+    "labor_cost": -0.1,
+    "tax": -0.05
+   },
+   "new": {
+    "tax": -0.05
+   },
+   "why": "Brazil's payroll-tax relief (2012+) had no effect on employment (Ipea TD 2357, Garcia, Sachsida & Ywata 2018); later Ipea work and international studies also find no employment effect. The fiscal cost stays.",
+   "sources": [
+    "https://ideas.repec.org/p/ipe/ipetds/2357.html",
+    "https://static.poder360.com.br/2024/05/efeito-desoneracao-ipea.pdf"
+   ]
+  },
+  "kept_unchanged": {
+   "lula_P06": "The plan adds measures (community childcare, Bolsa Familia integrated with housing) but no amounts, and the fiscal rule Lula keeps caps net new spending; social_transfers 0.05 stays.",
+   "flavio_P06_and_min_wage": "On 2026-10-11 Flavio publicly promised to keep Bolsa Familia and above-inflation minimum-wage increases; the plan text does not change them. The main result keeps both for him; the freeze stays a side test only.",
+   "fiscal_multiplier": "Brazilian estimates put public-investment multipliers above 2 in recessions and at most 0.8 in expansions (Orair & Siqueira 2019); the engine's 0.1 is fitted to 2018-2026 and the existing sensitivity already tests 0.4 and 0.7.",
+   "fuel_tax_incidence": "No study found measuring who gained from fuel-tax cuts by income; no distributional effect is added."
+  },
+  "sources_social": [
+   "https://www.oliberal.com/politica/flavio-repete-que-mantera-reajuste-do-salario-minimo-e-bolsa-familia-caso-eleito-1.1181449",
+   "https://viva.com.br/politica/o-que-os-candidatos-a-presidencia-falam-sobre-bolsa-familia-confira.html",
+   "https://revistas.usp.br/ee/en/article/view/141640"
+  ]
+ },
+ "central_bank": {
+  "rule": "Taylor rule with partial adjustment: target = neutral real rate (engine, 6.4) + inflation + 1.5 x (inflation - 3) + 0.5 x (growth - trend growth); each quarter the Selic moves 30% of the way to the target, rounded to 0.25 pp, at most 1.5 pp.",
+  "coefficients": {
+   "inflation": 1.5,
+   "output_gap": 0.5,
+   "speed": 0.3,
+   "step": 0.25,
+   "max_move": 1.5
+  },
+  "why": "Taylor's original weights; Brazilian estimates find the BCB broadly consistent with a Taylor rule, with weights that vary over time and no agreed smoothing value.",
+  "sources": [
+   "https://repositorio.ipea.gov.br/bitstream/11058/13059/1/PPE_v52_n2_Artigo4_estimacoes_da_regra_de_taylor_para_o_brasil.pdf"
+  ]
+ },
+ "market": {
+  "rule": "Confidence = 0.2 x (primary balance - end-2026 value) - 0.1 x (debt change over the last four quarters) - 0.1 x (distance of inflation from 3%, relative to end-2026) + 0.1 x (growth - trend) + 0.01 x (institutional stability - end-2026 value), clipped to [-1, 1]. Zero means as confident as at the end of 2026.",
+  "coefficients": {
+   "primary_balance": 0.2,
+   "debt_change": -0.1,
+   "inflation_gap": -0.1,
+   "output_gap": 0.1,
+   "stability": 0.01
+  },
+  "why": "Markets price Brazil's fiscal path and institutional risk (CDS rose with fiscal doubts in 2024 and fell to 116 in May 2026). No published estimate maps these variables to a confidence score, so the weights are the author's choice and are tested at half and double strength."
+ },
+ "sensitivity": {
+  "market_weights_scale": {
+   "half": 0.5,
+   "double": 2.0
+  }
+ },
+ "procedure": "1) Apply the two premise changes to data/policies_*.json. 2) Replay out/blind-v7 with the recorded agents (premise effect only). 3) Replay with the rule-based market and central bank (sim/rule_agents.py), plus the half/double market-weight variants. No new model calls.",
+ "full_cut_test": {
+  "_registered": "2026-10-13, before running it.",
+  "question": "Flavio's plan formulator (Daniella Marques) puts the cut at 1.5% of GDP (R$ 190 bi); the model only applies 0.5% from discretionary spending. Executive discretionary spending is R$ 213.7 bi in the 2027 budget, so the rest must come from mandatory items. His team named: pensions and BPC no longer following the minimum wage's real gains, and health and education floors corrected by inflation only. The candidate denies the pension change; his coordinator says Bolsa Familia and BPC will not be cut.",
+  "levers_added_to_flavio": {
+   "spending": -0.5,
+   "health": -0.25,
+   "pension_floor_real": -2.5
+  },
+  "why_values": "Extra 0.5% GDP brings the spending cut to about 1.0% plus the pension saving, about 1.5% in total; health -0.25 and pension_floor_real -2.5 are the values registered for the old Flavio P14 (engine_v5/v7), without its social_transfers cut, because Bolsa Familia and BPC values are promised.",
+  "status": "Promoted to the platform on 2026-10-13 by the author's decision: Flavio P01 now carries the full cut (spending -1.0, health -0.25, pension_floor_real -2.5, business_climate 0.15). It needs a constitutional amendment because health and education floors are in the Constitution.",
+  "sources": [
+   "https://www.gazetadopovo.com.br/eleicoes/2026/daniella-marques-diz-que-plano-de-flavio-bolsonaro-preve-corte-de-r-190-bi-em-gastos/",
+   "https://viva.com.br/politica/reajuste-de-aposentadorias-e-bpc-vai-mudar-com-flavio-bolsonaro-entenda.html",
+   "https://www.poder360.com.br/poder-economia/durigan-chama-ajuste-fiscal-de-flavio-de-ilusao-barata/",
+   "https://sbtnews.sbt.com.br/noticia/politica/governo-guarda-r-44-8-bi-para-emendas-parlamentares-em-2027"
+  ]
+ },
+ "consolidation_effect": {
+  "_registered": "2026-10-13, after the attribution test and before running it on the candidates.",
+  "finding": "Without this rule, about 85% of Flavio's lower unemployment came from the market rewarding the spending cut with more confidence, which lifted GDP (removing the fiscal terms from confidence cut the gap from 0.30 to 0.04 pp); the fiscal multiplier itself barely mattered.",
+  "rule": "Spending cuts and increases act on GDP through a net multiplier of 0.43, and the market's fiscal judgement moves the exchange rate but not GDP directly, so the confidence gain is not counted twice. Applies to both candidates.",
+  "fiscal_multiplier": 0.43,
+  "evidence": "Guajardo, Leigh & Pescatori (JEEA 2014): deficit-driven consolidations are contractionary; 1% of GDP lowers GDP by 0.43% and raises unemployment by 0.28 pp within two years, net of confidence effects (NBER 2010 draft figures). In the engine, 0.43 gives -0.44% GDP and +0.26 pp unemployment after two years for a 1% cut.",
+  "sources": [
+   "https://ideas.repec.org/a/bla/jeurec/v12y2014i4p949-968.html",
+   "https://conference.nber.org/confer/2010/MEf10/Guajardo_Leigh.pdf"
+  ]
+ },
+ "second_review": {
+  "_registered": "2026-10-13, before running it.",
+  "flavio_P03_tax_cuts": {
+   "decision": "kept (tax -0.3)",
+   "why": "Germany's 2020 VAT cut raised consumption; GDP gain about one third of the revenue cost (ifo) or 0.3 pp (DSGE). In the engine a tax cut acts at half weight through the 0.43 multiplier (about 0.2 per unit of revenue), in line with that. Fuel-subsidy evidence (IMF) shows the richest quintile captures about six times more in absolute terms, but it is for subsidies in developing countries, so no distributional effect is added.",
+   "sources": [
+    "https://ifo.de/en/node/56478",
+    "https://bfi.uchicago.edu/wp-content/uploads/2021/10/BFI_WP_2021-128.pdf",
+    "https://greenfiscalpolicy.org/the-unequal-benefits-of-fuel-subsidies-revisited-evidence-for-developing-countries-imf-working-paper/"
+   ]
+  },
+  "flavio_P04_privatization": {
+   "old": {
+    "business_climate": 0.15
+   },
+   "new": {
+    "business_climate": 0.05
+   },
+   "why": "Across 117 countries (1988-2003) privatization was neutral for growth; firm-level employment effects of domestic privatization are close to zero (Brown, Earle & Telegdy 2010). Same small weight as Lula P05 industrial credit (low additionality, Lazzarini et al. 2015).",
+   "sources": [
+    "https://jte.ut.ac.ir/article_20738.html?lang=en",
+    "https://docs.iza.org/dp3688.pdf"
+   ]
+  },
+  "fiscal_rules": {
+   "decision": "kept",
+   "why": "Both candidates get the same credibility weight (business_climate 0.15) for their fiscal rule."
+  },
+  "lula_P19_infrastructure": {
+   "new": {
+    "private_investment": 0.1
+   },
+   "why": "Lula's TSE plan makes the Novo PAC and concessions (keep the road-concession pace, extend to railways, ports, regional airports) its axis to raise investment; the model had no such proposal for him while Flavio's R$ 900 bi concession program (P05) gets private_investment 0.1. Same lever and size for both.",
+   "replay_note": "Recorded decisions never pushed P19, so in replays it is applied as already implemented from the start; in a new live run it is a normal executive proposal.",
+   "sources": [
+    "https://investnews.com.br/economia/lula-economia-planos-mandato/amp/"
+   ]
+  }
+ },
+ "one_off_price_changes": {
+  "_registered": "2026-10-13, after the attribution test and before running it on the candidates.",
+  "finding": "A consumption-tax cut or a labor-cost rise changes the price level once, but the engine fed that one-quarter jump into next quarter's inflation through persistence (0.82), so it kept lowering (or raising) inflation for years: Flavio's tax-cut gap was still 0.15 pp in 2029.",
+  "rule": "The price effect of a change in consumption taxes or labor costs counts only in the quarter the change phases in and is not carried into the next quarter's inflation. Applies to both candidates (Flavio P03/P17 tax cuts, Lula P02 shorter week).",
+  "evidence": "Brazil 2022: the fuel and energy tax cut lowered the IPCA once and the effect reversed when the taxes came back in 2023 (IFI/Senado). A tax change moves the price level, not the inflation trend.",
+  "sources": [
+   "https://www12.senado.leg.br/ifi"
+  ]
+ }
+}

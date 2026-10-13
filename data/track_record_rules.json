@@ -65,7 +65,7 @@
       "kind": "flow",
       "better": "higher",
       "tie_below": 0.3,
-      "source": "BCB SGS 5793 (dezembro, sinal invertido)"
+      "source": "BCB SGS 5783, governo central (dezembro, sinal invertido); até informed v3 usava SGS 5793, setor público consolidado"
     },
     {
       "key": "poverty_rate",

@@ -46,16 +46,26 @@ async def run_scenario(name: str, seed: int, cfg: dict, client: LLMClient, perso
     raw = json.loads((DATA / f"policies_{name}.json").read_text())
     baseline = json.loads((DATA / "baseline_2026q4.json").read_text())
     world = World(Metrics.from_dict(baseline), load_policies(raw), seed=seed)
+    rules = None
+    if cfg.get("rule_agents"):
+        from sim.rule_agents import load_rules, rule_inputs, rule_params
+
+        rules = load_rules()
+        world.params = rule_params(rules, world.params)
+        rule_override = rule_inputs(rules, world.params)
+        seen = [world.metrics]
     shocks = shock_schedule(seed, cfg["ticks"])
     mt_inst, mt_cit = cfg["max_tokens"]["institution"], cfg["max_tokens"]["citizen"]
     blocs = cfg["congress_blocs"]
     seats = {b["id"]: b["seats"] for b in blocs}
     record = ""
-    if cfg.get("track_record") and name in RECORD_GROUP:
+    group = RECORD_GROUP.get(name)
+    if cfg.get("track_record") and group:
         from sim.track_record import record_text
 
-        record = record_text(RECORD_GROUP[name])
-    systems = {role: system_prompt(world.policies, role, record=record) for role in INSTITUTION_ROLES}
+        record = record_text(group)
+    # The central bank is autonomous by law (LC 179/2021) and decides on current data, not on a party's past.
+    systems = {role: system_prompt(world.policies, role, record="" if role == "central_bank" else record) for role in INSTITUTION_ROLES}
     for b in blocs:
         systems[f"bloc:{b['id']}"] = system_prompt(
             world.policies, "bloc", f"YOUR BLOC: {b['name']}, holding {b['seats']:.0%} of the seats.", record=record)
@@ -133,12 +143,19 @@ async def run_scenario(name: str, seed: int, cfg: dict, client: LLMClient, perso
                 f"Finance Minister extra fiscal adjustment {fin.fiscal_adjust_pct_gdp:+.2f}% GDP; "
                 f"Centrão support {cen.support:.2f}."
             )
-            (bc, fb1), (mkt, fb2), (media, fb3) = await asyncio.gather(
-                ask(client, "central_bank", systems["central_bank"], f"{sit}\n{decisions}", CentralBankDecision, mt_inst, fake_for("central_bank", world)),
-                ask(client, "markets", systems["markets"], f"{sit}\n{decisions}", MarketsDecision, mt_inst, fake_for("markets", world)),
-                ask(client, "media", systems["media"], f"{public_sit}\n{decisions}", MediaDecision, mt_inst, fake_for("media", world)),
-            )
-            fallbacks += fb1 + fb2 + fb3
+            if rules:
+                fixed = rule_override(seen)
+                bc = CentralBankDecision(selic_change_pp=fixed["selic_change"], note="fixed rule")
+                mkt = MarketsDecision(confidence=fixed["market_confidence"], note="fixed rule")
+                media, fb3 = await ask(client, "media", systems["media"], f"{public_sit}\n{decisions}", MediaDecision, mt_inst, fake_for("media", world))
+                fallbacks += fb3
+            else:
+                (bc, fb1), (mkt, fb2), (media, fb3) = await asyncio.gather(
+                    ask(client, "central_bank", systems["central_bank"], f"{sit}\n{decisions}", CentralBankDecision, mt_inst, fake_for("central_bank", world)),
+                    ask(client, "markets", systems["markets"], f"{sit}\n{decisions}", MarketsDecision, mt_inst, fake_for("markets", world)),
+                    ask(client, "media", systems["media"], f"{public_sit}\n{decisions}", MediaDecision, mt_inst, fake_for("media", world)),
+                )
+                fallbacks += fb1 + fb2 + fb3
 
             # Shared text first and persona last keeps the prompt prefix identical across citizens, which is what DeepSeek's cache keys on.
             shared = f"{public_sit}\n{decisions}\nHEADLINE: {media.headline}\n"
@@ -171,7 +188,11 @@ async def run_scenario(name: str, seed: int, cfg: dict, client: LLMClient, perso
                 "court_curb_struck_down": curbs(suspended),
                 "approval_sd": statistics.pstdev(c.approval for c in citizens),
             }
+            if rules:
+                inputs["growth_market_confidence"] = fixed.get("growth_market_confidence")
             metrics = world.step(TickInputs(shock=shock, **inputs))
+            if rules:
+                seen.append(metrics)
             news.append(f"{q}: {media.headline}")
 
             concerns: dict[str, int] = {}

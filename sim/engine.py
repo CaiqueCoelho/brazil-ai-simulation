@@ -60,6 +60,8 @@ class Params:
     gini_pension_floor: float = 0.0007
     gini_min_wage: float = 0.0004
     min_wage_real_baseline: float = 2.5
+    poverty_pension_floor: float = 0.03
+    poverty_min_wage: float = 0.05
     stability_conflict: float = 1.0
     noise_scale: float = 1.0
 
@@ -133,6 +135,7 @@ class TickInputs:
     extra_transfers: float = 0.0
     approval_sd: float = 0.0
     fx_change_override: float | None = None
+    growth_market_confidence: float | None = None
 
 
 @dataclass
@@ -150,6 +153,7 @@ class World:
         self._prev_levers = {k: 0.0 for k in LEVERS}
         self._effective_rate = self.params.effective_rate_share * self.metrics.selic
         self._court_conflict = 0.0
+        self._one_off_inflation = 0.0
 
     def policy(self, policy_id: str) -> PolicyState | None:
         return next((p for p in self.policies if p.id == policy_id), None)
@@ -190,10 +194,20 @@ class World:
         return False
 
     def levers(self) -> dict[str, float]:
+        """A policy with a 'spending_cap' lever (a fiscal rule) limits net new primary spending; the excess is cut from discretionary spending."""
         totals = {k: 0.0 for k in LEVERS}
+        cap = None
         for p in self.policies:
             for lever, magnitude in p.levers.items():
+                if lever == "spending_cap":
+                    if p.status == "approved":
+                        cap = magnitude
+                    continue
                 totals[lever] += magnitude * p.implemented * p.strength
+        if cap is not None:
+            excess = totals["spending"] + totals["social_transfers"] + totals["public_investment"] - cap
+            if excess > 0:
+                totals["spending"] -= excess
         return totals
 
     def step(self, inputs: TickInputs) -> Metrics:
@@ -214,7 +228,8 @@ class World:
         fiscal_prev = prev["spending"] + prev["social_transfers"] + prev["public_investment"] - 0.5 * prev["tax"]
         # Fiscal multiplier acts on the quarterly change (impulse), not the level, so a cut drags only while it phases in.
         fiscal_impulse = (fiscal_now - fiscal_prev) * 4
-        confidence = 0.5 * inputs.market_confidence + 0.5 * inputs.citizen_sentiment
+        market_for_growth = inputs.market_confidence if inputs.growth_market_confidence is None else inputs.growth_market_confidence
+        confidence = 0.5 * market_for_growth + 0.5 * inputs.citizen_sentiment
         real_rate = m.selic - m.inflation
 
         growth = (
@@ -249,19 +264,24 @@ class World:
         brl_usd = max(2.0, m.brl_usd * (1 + fx_change / 100))
 
         # Monetary policy reaches prices only through the output gap; a direct real-rate term would count it twice.
+        one_off = (
+            0.2 * (lv["labor_cost"] - prev["labor_cost"]) * 4
+            # Only cuts pass through to prices: the modeled cuts are on consumption, the modeled increase is on top incomes.
+            + k.tax_cut_passthrough * min(0.0, lv["tax"] - prev["tax"]) * 4
+        )
+        # Tax and labor-cost changes move the price level once, so last quarter's jump is not carried forward.
         inflation = (
-            k.infl_persistence * m.inflation
+            k.infl_persistence * (m.inflation - self._one_off_inflation)
             + (1 - k.infl_persistence) * INFLATION_TARGET
             + k.infl_gap * output_gap
             + k.infl_fx * fx_change
             + k.infl_drought * s.drought
             + k.infl_commodity * s.commodity
-            + 0.2 * lv["labor_cost"]
-            # Only cuts pass through to prices: the modeled cuts are on consumption, the modeled increase is on top incomes.
-            + k.tax_cut_passthrough * min(0.0, lv["tax"] - prev["tax"]) * 4
+            + one_off
             + noise(0.2)
         )
         inflation = max(-1.0, min(25.0, inflation))
+        self._one_off_inflation = one_off
 
         selic = max(2.0, min(25.0, m.selic + inputs.selic_change))
 
@@ -271,7 +291,6 @@ class World:
             m.unemployment
             - k.okun * output_gap
             + 0.05 * (nairu - m.unemployment)
-            + 0.15 * lv["labor_cost"] * RAMP_PER_TICK
             + noise(0.1)
         )
         unemployment = max(3.0, min(20.0, unemployment))
@@ -295,6 +314,8 @@ class World:
             - 2.0 * d_social
             - 0.03 * output_gap
             + 0.03 * (inflation - 4.0)
+            - k.poverty_min_wage * (k.min_wage_real_baseline + lv["min_wage_real"]) / 4
+            - k.poverty_pension_floor * lv["pension_floor_real"] / 4
             + noise(0.1)
         )
         poverty_rate = max(2.0, min(60.0, poverty_rate))

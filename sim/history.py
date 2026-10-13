@@ -17,6 +17,7 @@ SERIES = {
     "unemployment": 24369,
     "gdp_index": 22099,
     "primary_deficit_12m": 5793,
+    "primary_central_12m": 5783,
 }
 SOURCES = {
     "selic": "BCB SGS 4189 - Selic acumulada no mes anualizada (% a.a.)",
@@ -26,6 +27,7 @@ SOURCES = {
     "unemployment": "BCB SGS 24369 - Taxa de desocupacao PNAD Continua (IBGE) (%)",
     "gdp_index": "BCB SGS 22099 - PIB trimestral, indice encadeado (IBGE)",
     "primary_deficit_12m": "BCB SGS 5793 - NFSP primario setor publico consolidado, 12 meses (% PIB, positivo = deficit)",
+    "primary_central_12m": "BCB SGS 5783 - NFSP primario governo central, 12 meses (% PIB, positivo = deficit)",
 }
 
 

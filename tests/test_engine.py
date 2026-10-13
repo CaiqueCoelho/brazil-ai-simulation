@@ -40,7 +40,7 @@ def test_executive_policy_is_enacted_immediately_and_ramps_to_full():
     for s in shock_schedule(42, 5):
         world.step(neutral_inputs(s))
     assert world.policy("P04").implemented == 1.0
-    assert world.levers()["security"] == 0.5
+    assert world.levers()["security"] == world.policy("P04").levers["security"]
 
 
 def test_congress_policy_waits_for_vote_and_amend_halves_strength():
@@ -49,7 +49,7 @@ def test_congress_policy_waits_for_vote_and_amend_halves_strength():
     world.congress_vote("P01", "amend")
     for s in shock_schedule(42, 4):
         world.step(neutral_inputs(s))
-    assert world.levers()["spending"] == -0.5
+    assert world.levers()["spending"] == 0.5 * world.policy("P01").levers["spending"]
 
 
 def test_rejected_policy_has_cooldown():
@@ -131,3 +131,53 @@ def test_rejected_bill_is_abandoned_after_max_attempts():
             world.step(neutral_inputs(s))
     assert world.policy("P10").status == "abandoned"
     assert world.push("P10") is None
+
+
+def world_with(levers: dict) -> World:
+    from sim.engine import Params, PolicyState
+    baseline = json.loads((DATA / "baseline_2026q4.json").read_text())
+    policy = PolicyState(id="X", title="t", description="", needs_congress=False, constitutional_amendment=False,
+                         stf_risk=False, levers=levers, status="approved", implemented=1.0)
+    return World(Metrics.from_dict(baseline), [policy], seed=1, params=Params().with_(noise_scale=0.0))
+
+
+def test_inflation_only_pension_floor_raises_poverty():
+    frozen, kept = world_with({"pension_floor_real": -2.5}), world_with({})
+    for s in shock_schedule(1, 8):
+        a, b = frozen.step(neutral_inputs(s)), kept.step(neutral_inputs(s))
+    assert a.poverty_rate > b.poverty_rate
+
+
+def test_shorter_working_week_raises_prices_once_not_forever():
+    world, base = world_with({}), world_with({})
+    world.policies[0].levers = {"labor_cost": 0.5}
+    world.policies[0].implemented = 0.0
+    world.policies[0].status = "approved"
+    gaps = []
+    for s in shock_schedule(1, 16):
+        gaps.append(world.step(neutral_inputs(s)).inflation - base.step(neutral_inputs(s)).inflation)
+    assert gaps[3] > 0
+    assert gaps[-1] < gaps[3] / 2
+
+
+def test_fiscal_rule_caps_net_new_spending_by_cutting_discretionary_spending():
+    world = world_with({"social_transfers": 0.3, "public_investment": 0.2})
+    capped = world_with({"social_transfers": 0.3, "public_investment": 0.2})
+    from sim.engine import PolicyState
+    capped.policies.append(PolicyState(id="R", title="rule", description="", needs_congress=False, constitutional_amendment=False,
+                                       stf_risk=False, levers={"spending_cap": 0.1}, status="approved", implemented=1.0))
+    lv = capped.levers()
+    assert lv["social_transfers"] == 0.3
+    assert abs(lv["spending"] + lv["social_transfers"] + lv["public_investment"] - 0.1) < 1e-9
+    assert world.levers()["spending"] == 0.0
+
+
+def test_consumption_tax_cut_lowers_prices_once_not_forever():
+    world, base = world_with({}), world_with({})
+    world.policies[0].levers = {"tax": -0.3}
+    world.policies[0].implemented = 0.0
+    gaps = []
+    for s in shock_schedule(1, 12):
+        gaps.append(world.step(neutral_inputs(s)).inflation - base.step(neutral_inputs(s)).inflation)
+    assert gaps[0] < 0
+    assert abs(gaps[6]) < abs(gaps[0]) / 4

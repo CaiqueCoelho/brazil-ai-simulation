@@ -15,151 +15,150 @@
   "policies": [
     {
       "id": "P01",
-      "title": "Major federal budget cut",
-      "description": "A large, fast cut of federal discretionary and administrative spending to rebalance public accounts.",
+      "title": "Federal spending cut of about 1.5% of GDP and new fiscal rules",
+      "description": "Cut federal spending by about 1.5% of GDP (R$ 190 billion): ministries' discretionary spending, pensions and disability benefits (BPC) adjusted by inflation only instead of following the minimum wage's real gains, and health and education spending floors adjusted by inflation only. New fiscal rules: primary-surplus targets, limits on subsidized credit and a cap on discretionary spending of the three branches.",
       "needs_congress": true,
-      "constitutional_amendment": false,
+      "constitutional_amendment": true,
       "stf_risk": false,
       "levers": {
-        "spending": -1.0
+        "spending": -1.0,
+        "health": -0.25,
+        "pension_floor_real": -2.5,
+        "business_climate": 0.15
       },
-      "title_pt": "Grande corte de gastos (\"tesouraço\")"
+      "title_pt": "Corte de gastos de cerca de 1,5% do PIB e novas regras fiscais"
     },
     {
       "id": "P02",
-      "title": "Administrative reform: eliminate at least ten ministries",
-      "description": "Merge or eliminate at least ten ministries and cut commissioned positions and administrative expenses.",
+      "title": "Merge or close at least ten ministries",
+      "description": "Merge or close at least ten ministries and cut appointed positions and administrative costs.",
       "needs_congress": true,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "spending": -0.25
+        "spending": -0.05
       },
-      "title_pt": "Reforma administrativa: extinguir 10+ ministérios"
+      "title_pt": "Fundir ou extinguir ao menos dez ministérios"
     },
     {
       "id": "P03",
-      "title": "Cheaper living costs via tax cuts",
-      "description": "Cut taxes on food and energy and revise the new consumption-tax reform to lower the standard VAT rate.",
+      "title": "Lower taxes on consumption, fuel and electricity",
+      "description": "Lower the dual VAT rate and revise the 2023 tax reform; cut taxes on electricity and fuels.",
       "needs_congress": true,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "tax": -0.5
+        "tax": -0.3
       },
-      "title_pt": "\"Brasil Mais Barato\": cortes de impostos"
+      "title_pt": "Reduzir impostos sobre consumo, combustíveis e energia"
     },
     {
       "id": "P04",
-      "title": "Resume privatizations and shrink the state",
-      "description": "Restart the privatization program for federal state-owned companies and reduce state participation in the economy.",
+      "title": "Resume privatizations",
+      "description": "Restart the federal privatization program, deciding company by company.",
       "needs_congress": true,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "business_climate": 0.5
+        "business_climate": 0.05
       },
-      "title_pt": "Retomar privatizações e enxugar o Estado"
+      "title_pt": "Retomar privatizações"
     },
     {
       "id": "P05",
       "title": "R$ 900 billion infrastructure program",
-      "description": "R$ 900 billion of infrastructure investment over four years, mostly through concessions and private partnerships; state bank refocused on infrastructure, critical minerals, energy and data centers.",
+      "description": "R$ 900 billion of infrastructure investment over four years, mostly through concessions and private partnerships; the development bank refocused on infrastructure, critical minerals, energy and data centers.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "private_investment": 0.25,
-        "public_investment": 0.05,
-        "business_climate": 0.25
+        "private_investment": 0.1
       },
-      "title_pt": "Programa de R$ 900 bi em infraestrutura"
+      "title_pt": "Programa de R$ 900 bilhões em infraestrutura"
     },
     {
       "id": "P06",
-      "title": "Keep current social programs",
-      "description": "Maintain the existing cash-transfer and social programs.",
+      "title": "Keep the current social programs",
+      "description": "Keep the existing cash-transfer and social programs.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {},
-      "title_pt": "Manter os programas sociais"
+      "title_pt": "Manter os programas sociais atuais"
     },
     {
       "id": "P07",
-      "title": "Classify criminal factions as terrorist organizations; new max-security prisons",
-      "description": "Legally classify criminal factions as terrorist organizations and build five new federal maximum-security prisons.",
+      "title": "Criminal factions as terrorist groups; new federal prisons",
+      "description": "Classify criminal factions as terrorist organizations in law and build five new federal maximum-security prisons.",
       "needs_congress": true,
       "constitutional_amendment": false,
       "stf_risk": true,
       "levers": {
-        "security": 0.5,
-        "spending": 0.05
+        "security": 0.15,
+        "spending": 0.01
       },
-      "title_pt": "Facções como organizações terroristas; novos presídios"
+      "title_pt": "Facções como organizações terroristas; novos presídios federais"
     },
     {
       "id": "P08",
       "title": "Lower the age of criminal responsibility",
-      "description": "Lower it from 18 to 16, and to 14 for heinous crimes such as murder, rape and drug trafficking.",
+      "description": "Constitutional amendment lowering it from 18 to 16, and to 14 for heinous crimes such as murder, rape and drug trafficking.",
       "needs_congress": true,
       "constitutional_amendment": true,
       "stf_risk": true,
       "levers": {
-        "security": 0.25
+        "security": 0.05
       },
       "title_pt": "Reduzir a maioridade penal"
     },
     {
       "id": "P09",
-      "title": "Harsher criminal penalties",
-      "description": "Chemical castration for rapists, end of sentence progression for femicide, higher penalties for cell-phone theft.",
+      "title": "Longer and stricter criminal penalties",
+      "description": "Chemical castration for rapists, no sentence progression for femicide, longer penalties for cell-phone theft.",
       "needs_congress": true,
       "constitutional_amendment": false,
       "stf_risk": true,
       "levers": {
-        "security": 0.25
+        "security": 0.05
       },
-      "title_pt": "Penas mais duras"
+      "title_pt": "Penas maiores e mais rígidas"
     },
     {
       "id": "P10",
-      "title": "Limit the powers of the Supreme Court",
-      "description": "Constitutional changes restricting individual (monocratic) decisions and the scope of the Supreme Court.",
+      "title": "Restrict the powers of the Supreme Court",
+      "description": "Constitutional amendment restricting single-justice rulings and the scope of the Supreme Court.",
       "needs_congress": true,
       "constitutional_amendment": true,
       "stf_risk": true,
       "levers": {
         "institutional_conflict": 1.0
       },
-      "title_pt": "Limitar os poderes do STF"
+      "title_pt": "Restringir os poderes do STF"
     },
     {
       "id": "P11",
       "title": "End presidential re-election",
-      "description": "Constitutional amendment ending re-election for the presidency.",
+      "description": "Constitutional amendment ending re-election for president.",
       "needs_congress": true,
       "constitutional_amendment": true,
       "stf_risk": false,
       "levers": {},
-      "title_pt": "Fim da reeleição"
+      "title_pt": "Fim da reeleição para presidente"
     },
     {
       "id": "P12",
       "title": "Digital economy and data centers",
-      "description": "Digitalize public services and the economy, and attract data-center and critical-mineral investment.",
+      "description": "Digitize public services and attract data-center and critical-mineral investment.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
-      "levers": {
-        "business_climate": 0.25
-      },
+      "levers": {},
       "title_pt": "Economia digital e data centers"
     },
     {
       "id": "P13",
-      "title": "Closer alignment with the US, Argentina and Israel",
-      "description": "Prioritize relations with the US, Argentina and Israel while keeping trade with China and other partners.",
+      "title": "Closer ties with the US, Argentina and Israel",
+      "description": "Give priority to relations with the US, Argentina and Israel while keeping trade with China and other partners.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
@@ -167,44 +166,76 @@
       "title_pt": "Aproximação com EUA, Argentina e Israel"
     },
     {
-      "id": "P14",
-      "title": "Index health, education and pension floors to inflation only",
-      "title_pt": "Pisos de saúde, educação e aposentadorias corrigidos só pela inflação",
-      "description": "Unlink the constitutional minimum spending on health and education from revenue, and unlink the pension/BPC floor from real minimum-wage gains; all adjusted by inflation only.",
-      "needs_congress": true,
-      "constitutional_amendment": true,
-      "stf_risk": false,
-      "levers": {
-        "health": -0.25,
-        "social_transfers": -0.25,
-        "spending": -0.1,
-        "pension_floor_real": -2.5
-      }
-    },
-    {
       "id": "P15",
       "title": "Zero illegal deforestation by 2029 through monitoring",
       "title_pt": "Desmatamento ilegal zero até 2029 com monitoramento",
-      "description": "Satellites, artificial intelligence and coordination between agencies to prevent and police illegal deforestation, prioritising the Amazon.",
+      "description": "Satellites, artificial intelligence and coordination between agencies to detect and police illegal deforestation, with priority for the Amazon.",
       "needs_congress": false,
       "constitutional_amendment": false,
       "stf_risk": false,
       "levers": {
-        "environment": 0.5
+        "environment": 0.15
       }
     },
     {
       "id": "P16",
-      "title": "Loosen environmental licensing",
-      "title_pt": "Flexibilizar o licenciamento ambiental",
-      "description": "'Modernize' environmental licensing so rural producers, ranchers and miners can expand activities and exploit mineral resources more easily.",
+      "title": "Looser environmental licensing",
+      "title_pt": "Licenciamento ambiental mais flexível",
+      "description": "Simplify environmental licensing so farmers, ranchers and miners can expand activities and mining more easily.",
       "needs_congress": true,
       "constitutional_amendment": false,
       "stf_risk": true,
       "levers": {
-        "environment": -0.5,
-        "business_climate": 0.25
+        "environment": -0.3
       }
+    },
+    {
+      "id": "P17",
+      "title": "Lower labor costs",
+      "description": "Gradually lower payroll costs without removing labor rights; cheaper contracts for first jobs (ages 18-24) and for workers over 50.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "tax": -0.05
+      },
+      "title_pt": "Reduzir o custo do trabalho"
+    },
+    {
+      "id": "P18",
+      "title": "Daycare and school vouchers",
+      "description": "Vouchers for accredited private daycare and schools when public places run out.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": 0.04
+      },
+      "title_pt": "Vouchers de creche e escola"
+    },
+    {
+      "id": "P19",
+      "title": "Student loans repaid as a share of income",
+      "description": "Replace student loans with repayment tied to the graduate's future income.",
+      "needs_congress": true,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": 0.02
+      },
+      "title_pt": "Crédito estudantil pago conforme a renda"
+    },
+    {
+      "id": "P20",
+      "title": "Anti-fraud reviews of social-security benefits",
+      "description": "Anti-fraud checks and benefit reviews at the national social-security institute; new rules for payroll loans to retirees.",
+      "needs_congress": false,
+      "constitutional_amendment": false,
+      "stf_risk": false,
+      "levers": {
+        "spending": -0.03
+      },
+      "title_pt": "Combate a fraudes em benefícios do INSS"
     }
   ]
 }

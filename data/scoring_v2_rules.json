@@ -1,0 +1,8 @@
+{
+  "_note": "Registered on 2026-10-10 after the v7 main run was scored, at the reader's request; disclosed in the article as a post-hoc change. Applies to every version and both candidates.",
+  "old_rule": "A side wins if its 5-seed average lead exceeds 50% of the average seed-to-seed spread.",
+  "new_rule": "Seeds are compared in pairs (each seed gives both candidates the same shocks and engine noise). A side wins an indicator only if it is better in every seed. Differences smaller than an official tolerance band are a tie: primary balance ±0.25 pp of GDP (arcabouço target band), inflation ±1.5 pp (inflation-target band).",
+  "why": "The old rule ignored the common-random-numbers design, so consistent differences (e.g. homicides lower for Lula in 5 of 5 seeds and in 100 of 100 engine-noise replays) counted as ties, while deterministic indicators with almost no spread (primary balance) turned economically trivial gaps into wins.",
+  "effect_on_main_v7": "Old rule: Lula 3 x 1. New rule: Lula 5 x 3 (Lula gains homicides and approval; Flavio gains economy and unemployment; the primary balance becomes a tie inside the ±0.25 band, debt keeps public accounts with Flavio).",
+  "real_record": "The real-record comparison has one value per government, so it keeps its own registered tie thresholds (data/track_record_rules.json)."
+}

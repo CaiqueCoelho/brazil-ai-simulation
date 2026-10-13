@@ -1,0 +1,645 @@
+{
+ "variants": {
+  "growth_business_climate": [
+   0.3,
+   0.6,
+   0.9
+  ],
+  "fiscal_multiplier": [
+   0.1,
+   0.4,
+   0.7
+  ],
+  "tax_cut_passthrough": [
+   0.3,
+   0.0
+  ]
+ },
+ "rows": [
+  {
+   "params": {
+    "growth_business_climate": 0.3,
+    "fiscal_multiplier": 0.1,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.3,
+    "fiscal_multiplier": 0.1,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.3,
+    "fiscal_multiplier": 0.4,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.3,
+    "fiscal_multiplier": 0.4,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.3,
+    "fiscal_multiplier": 0.7,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.3,
+    "fiscal_multiplier": 0.7,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.6,
+    "fiscal_multiplier": 0.1,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.6,
+    "fiscal_multiplier": 0.1,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.6,
+    "fiscal_multiplier": 0.4,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.6,
+    "fiscal_multiplier": 0.4,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.6,
+    "fiscal_multiplier": 0.7,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.6,
+    "fiscal_multiplier": 0.7,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.9,
+    "fiscal_multiplier": 0.1,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.9,
+    "fiscal_multiplier": 0.1,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.9,
+    "fiscal_multiplier": 0.4,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.9,
+    "fiscal_multiplier": 0.4,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.9,
+    "fiscal_multiplier": 0.7,
+    "tax_cut_passthrough": 0.3
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "params": {
+    "growth_business_climate": 0.9,
+    "fiscal_multiplier": 0.7,
+    "tax_cut_passthrough": 0.0
+   },
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  }
+ ],
+ "overall": {
+  "lula": 18,
+  "flavio": 0,
+  "empate": 0
+ },
+ "exploratory": [
+  {
+   "fx_market_confidence": 0.0,
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "fx_market_confidence": 1.5,
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  },
+  {
+   "fx_market_confidence": 3.0,
+   "tally": {
+    "lula": 9,
+    "flavio": 1,
+    "empate": 1
+   },
+   "overall": "lula",
+   "winners": {
+    "gdp_growth": "lula",
+    "inflation": "empate",
+    "selic": "flavio",
+    "unemployment": "lula",
+    "debt_gdp": "flavio",
+    "primary_balance": "flavio",
+    "poverty_rate": "lula",
+    "gini": "lula",
+    "infant_mortality": "lula",
+    "food_insecurity": "lula",
+    "homicides_per_100k": "lula",
+    "deforestation_km2": "lula",
+    "approval": "lula",
+    "institutional_stability": "lula",
+    "democracy_risk": "lula"
+   }
+  }
+ ]
+}

@@ -20,7 +20,8 @@ VARIANTS = {
 }
 
 
-def replay(scenario: dict, seed: int, params: Params, extra_levers: dict | None = None) -> list[dict]:
+def replay(scenario: dict, seed: int, params: Params, extra_levers: dict | None = None, override=None) -> list[dict]:
+    """override(metrics_so_far) returns engine inputs that replace the recorded ones (used to swap agents for fixed rules)."""
     raw = json.loads((DATA / f"policies_{scenario['scenario']}.json").read_text())
     baseline = json.loads((DATA / "baseline_2026q4.json").read_text())
     policies = load_policies(raw)
@@ -31,6 +32,7 @@ def replay(scenario: dict, seed: int, params: Params, extra_levers: dict | None 
     world = World(Metrics.from_dict(baseline), policies, seed=seed, params=params)
     shocks = shock_schedule(seed, len(scenario["history"]) - 1)
     history = [{**scenario["history"][0], "metrics": world.metrics.rounded()}]
+    seen = [world.metrics]
     for h in scenario["history"][1:]:
         for pid in h["president"]["priorities"]:
             world.push(pid)
@@ -38,18 +40,33 @@ def replay(scenario: dict, seed: int, params: Params, extra_levers: dict | None 
             world.congress_vote(pid, outcome)
         for pid in h["suspended"]:
             world.stf_ruling(pid, "suspend")
-        metrics = world.step(TickInputs(shock=shocks[h["tick"] - 1], **h["engine_inputs"]))
-        history.append({**h, "metrics": metrics.rounded()})
+        inputs = {**h["engine_inputs"], **(override(seen) if override else {})}
+        metrics = world.step(TickInputs(shock=shocks[h["tick"] - 1], **inputs))
+        seen.append(metrics)
+        history.append({**h, "metrics": metrics.rounded(), "engine_inputs": inputs})
     return history
 
 
-def replay_all(results: dict, params: Params, extra_levers: dict | None = None) -> dict:
+def base_params(results: dict) -> Params:
+    """Runs made with the fixed market and central-bank rules use the rules' fiscal multiplier."""
+    if results.get("config", {}).get("rule_agents"):
+        from sim.rule_agents import load_rules, rule_params
+
+        return rule_params(load_rules(), Params.load())
+    return Params.load()
+
+
+def replay_all(results: dict, params: Params, extra_levers: dict | None = None, override=None) -> dict:
     """extra_levers maps a scenario id to levers applied as an already-implemented assumption (used for what-if tests)."""
+    if override is None and results.get("config", {}).get("rule_agents"):
+        from sim.rule_agents import load_rules, rule_inputs
+
+        override = rule_inputs(load_rules(), params)
     out = copy.deepcopy(results)
     for run in out["runs"]:
         for scenario in run["scenarios"]:
             if scenario["completed"]:
-                scenario["history"] = replay(scenario, run["seed"], params, (extra_levers or {}).get(scenario["scenario"]))
+                scenario["history"] = replay(scenario, run["seed"], params, (extra_levers or {}).get(scenario["scenario"]), override)
     return out
 
 
@@ -58,7 +75,7 @@ def main() -> None:
     parser.add_argument("results", type=Path)
     path = parser.parse_args().results
     results = json.loads(path.read_text())
-    base = Params.load()
+    base = base_params(results)
     rows = []
     for combo in itertools.product(*VARIANTS.values()):
         changes = dict(zip(VARIANTS, combo))

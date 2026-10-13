@@ -1,15 +1,14 @@
 # brazil-sim
 
-> Experimento conduzido por IA: agentes de linguagem (DeepSeek) interpretam presidente, Congresso, STF, Banco Central, mercado, imprensa e 200 cidadãos para simular o Brasil de 2027 a 2030 sob os planos de governo de Lula e de Flávio Bolsonaro registrados no TSE, mais um cenário base. Um motor de equações calibrado com dados oficiais de 2018 a 2026 transforma as decisões em indicadores. Não é previsão.
+> Experimento conduzido por IA: agentes de linguagem (DeepSeek) interpretam presidente, Congresso, STF, imprensa e 100 cidadãos para simular o Brasil de 2027 a 2030 sob os planos de governo de Lula e de Flávio Bolsonaro registrados no TSE, mais um cenário base. Mercado e Banco Central seguem regras fixas iguais para os dois. Um motor de equações calibrado com dados oficiais de 2018 a 2026 transforma as decisões em indicadores. Não é previsão.
 
-## Resultados (motor v2)
-- [Relatório interativo, simulação principal](out/scale-e5/report.html): resumo, 16 gráficos em SVG com descrição, tabelas e relato trimestral, legíveis sem JavaScript.
-- [Relatório interativo, simulação informada](out/informed-e5/report.html): agentes veem o histórico real de cada grupo.
-- [Dados brutos](out/scale-e5/results.json), [análise por indicador](out/scale-e5/analysis.json), [placar por área](out/scale-e5/domains.json), [sensibilidade](out/scale-e5/sensitivity.json), [mercado e Banco Central iguais](out/scale-e5/decompose.json).
+## Resultados (motor v8)
+- [Relatório interativo](out/blind-v10/report.html): resumo, 15 gráficos em SVG com descrição, tabelas e relato trimestral, legíveis sem JavaScript.
+- [Dados brutos](out/blind-v10/results.json), [análise por indicador e por item](out/blind-v10/analysis.json), [sensibilidade](out/blind-v10/sensitivity.json).
 - [Histórico real Bolsonaro 2019/2022 × Lula 2023–2025](out/track_record.json), regras em [data/track_record_rules.json](data/track_record_rules.json).
 - [Artigo em PDF](article/artigo-ia-governa-brasil.pdf).
 
 ## Método
 - [README](README.md): arquitetura, como rodar, limitações.
-- [Propostas modeladas](data/policies_lula.json), [Flávio](data/policies_flavio.json); regras do motor corrigido em [data/engine_v2_rules.json](data/engine_v2_rules.json).
-- Código: `sim/engine.py` (motor), `sim/agents.py` (prompts), `sim/run.py` (orquestração), `sim/analysis.py` (vencedor por indicador), `sim/domains.py` (placar por área).
+- [Propostas modeladas](data/policies_lula.json), [Flávio](data/policies_flavio.json); regras do motor em [data/engine_v2_rules.json](data/engine_v2_rules.json) a [data/engine_v8_rules.json](data/engine_v8_rules.json); regra de vitória em [data/scoring_v2_rules.json](data/scoring_v2_rules.json).
+- Código: `sim/engine.py` (motor), `sim/agents.py` (prompts), `sim/rule_agents.py` (regras de mercado e Banco Central), `sim/run.py` (orquestração), `sim/analysis.py` (vencedor por indicador e por item, cada item conta uma vez).

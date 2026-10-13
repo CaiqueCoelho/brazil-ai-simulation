@@ -1,0 +1,22 @@
+seeds: [1, 2, 3, 4, 5]
+citizens: 200
+ticks: 16
+scenarios: [lula, flavio]
+concurrency: 50
+budget_usd: 3.6
+preflight_max_usd: 3.8
+expected_cost_ratio: 0.22
+prices_per_million:
+  input: 0.14
+  cache_hit: 0.020
+  output: 0.28
+max_tokens:
+  citizen: 150
+  institution: 400
+temperature: 0.7
+track_record: true
+quote_every: 5
+congress_blocs:
+  - {id: left, name: "Left bloc (PT, PSB, PDT, PSOL and allies)", seats: 0.242}
+  - {id: centrao, name: "Centrão (PP, União Brasil, PSD, MDB, Republicanos, Podemos)", seats: 0.501}
+  - {id: right, name: "Right bloc (PL, Novo and allies)", seats: 0.257}

@@ -6,7 +6,8 @@ import json
 import statistics
 from pathlib import Path
 
-from sim.metrics_pt import METRICS as METRICS_PT
+from sim.analysis import item_winners
+from sim.metrics_pt import BY_KEY, METRICS as METRICS_PT, item_of
 
 METRICS = [(m["key"], m["label"], m["unit"], m["dec"], m["explain"]) for m in METRICS_PT]
 COLOR_VARS = ["var(--series-1)", "var(--series-2)", "var(--series-3)"]
@@ -129,14 +130,20 @@ def summary_table(data: dict, rows_by_key: dict) -> str:
     """Shows each metric on the same basis the winner was decided on: 2027-2030 average for flows, end of 2030 for stocks."""
     head = "".join(f"<th scope='col' title='{esc(s['name'])}'>{esc(s['short'])}</th>" for s in data["series"])
     rows = []
+    items = items_from({k: r["winner"] for k, r in rows_by_key.items()})
+    keys = [m[0] for m in data["metrics"]]
     for key, label, unit, dec, _ in data["metrics"]:
         a = rows_by_key.get(key)
         values = [a["mean"][s["id"]] if a else s["stats"][key]["mean"][-1] for s in data["series"]]
         basis = a["basis"] if a else "fim de 2030"
         cells = "".join(f"<td>{fmt(v, dec)}</td>" for v in values)
-        w = f"<td>{esc(WINNER_LABEL.get(a['winner'], '—'))}</td>" if rows_by_key else ""
+        item = item_of(key)
+        span = sum(1 for k in keys if item_of(k) == item)
+        first = next(k for k in keys if item_of(k) == item) == key
+        merged = f"<br><span class='muted'>{esc(item)}: conta 1 vez</span>" if span > 1 else ""
+        w = (f"<td rowspan='{span}'>{esc(WINNER_LABEL.get(items.get(item), '—'))}{merged}</td>" if first else "") if rows_by_key else ""
         rows.append(f"<tr data-metric='{key}'><th scope='row'>{esc(label)}<br><span class='muted'>{esc(unit)} · {esc(basis)}</span></th>{cells}{w}</tr>")
-    whead = "<th scope='col'>Vencedor<br><span class='muted'>regra de empate</span></th>" if rows_by_key else ""
+    whead = "<th scope='col'>Vencedor<br><span class='muted'>cada item conta 1 vez</span></th>" if rows_by_key else ""
     legend = " · ".join(f"{esc(s['short'])} = {esc(s['name'])}" for s in data["series"] if s["short"] != s["name"])
     return (f"<p class='muted'>Médias das {len(data['seeds'])} simulações por cenário ({legend}). Fluxos (crescimento, inflação, juros, resultado primário, aprovação) pela média de 2027 a 2030; estoques pelo fim de 2030.</p>"
             f"<div class='scroll'><table class='summary'>"
@@ -180,22 +187,11 @@ def feed_html(data: dict, t: int) -> str:
     return "".join(cards)
 
 
-AREAS = ["Economia", "Contas públicas", "Social", "Saúde", "Segurança", "Meio ambiente", "Política", "Democracia"]
-AREA_OF = {m["key"]: m["group"] for m in METRICS_PT}
 CHIP = {"lula": ("w-l", "Lula"), "flavio": ("w-f", "Flávio"), "empate": ("w-t", "Empate"), None: ("w-t", "—")}
 
 
-def area_winners(winners: dict) -> dict:
-    per = {}
-    for key, w in winners.items():
-        if w in (None, "sem dados"):
-            continue
-        per.setdefault(AREA_OF.get(key, "Outros"), []).append(w)
-    out = {}
-    for area, ws in per.items():
-        lula, flavio = ws.count("lula"), ws.count("flavio")
-        out[area] = "lula" if lula > flavio else "flavio" if flavio > lula else "empate"
-    return out
+def items_from(winners: dict) -> dict:
+    return item_winners([{"item": item_of(k), "winner": w} for k, w in winners.items() if k in BY_KEY])
 
 
 def who_wins(run_dir: Path, rows_by_key: dict) -> str:
@@ -203,19 +199,17 @@ def who_wins(run_dir: Path, rows_by_key: dict) -> str:
     dec_path = run_dir / "decompose.json"
     if not rows_by_key or not dec_path.exists():
         return ""
-    simple = {k: r["winner"] for k, r in rows_by_key.items()}
-    equal = json.loads(dec_path.read_text())["ambos"]["winners"]
+    simple = items_from({k: r["winner"] for k, r in rows_by_key.items()})
+    equal = items_from(json.loads(dec_path.read_text())["ambos"]["winners"])
     count = lambda w: {k: sum(1 for v in w.values() if v == k) for k in ("lula", "flavio", "empate")}  # noqa: E731
     cs, ce = count(simple), count(equal)
-    as_, ae = area_winners(simple), area_winners(equal)
-    ca, cae = count(as_), count(ae)
     verdict = lambda c: "Lula" if c["lula"] > c["flavio"] else "Flávio" if c["flavio"] > c["lula"] else "Empate"  # noqa: E731
     chip = lambda w: f"<span class='chip {CHIP[w][0]}'>{CHIP[w][1]}</span>"  # noqa: E731
-    label_of = {m["key"]: m["label"] for m in METRICS_PT}
+    order = list(dict.fromkeys(item_of(m["key"]) for m in METRICS_PT))
 
-    def why(winners: dict, names: dict) -> str:
-        lula = [names[k] for k, v in winners.items() if v == "lula"]
-        flavio = [names[k] for k, v in winners.items() if v == "flavio"]
+    def why(winners: dict) -> str:
+        lula = [k for k in order if winners.get(k) == "lula"]
+        flavio = [k for k in order if winners.get(k) == "flavio"]
         parts = []
         if lula:
             parts.append("Lula vence: " + ", ".join(lula))
@@ -223,33 +217,27 @@ def who_wins(run_dir: Path, rows_by_key: dict) -> str:
             parts.append("Flávio vence: " + ", ".join(flavio))
         return ". ".join(parts) + "." if parts else "Tudo empatado."
 
-    area_names = {a: a for a in AREAS}
     lens_rows = [
-        ("Placar simples (como a simulação rodou)", cs, why(simple, label_of)),
-        ("Mercado e Banco Central reagindo igual aos dois", ce, why(equal, label_of)),
-        ("Uma vez por área (placar simples)", ca, why(as_, area_names)),
-        ("Uma vez por área (mercado e BC iguais)", cae, why(ae, area_names)),
+        ("Como a simulação rodou", cs, why(simple)),
+        ("Mercado e Banco Central reagindo igual aos dois", ce, why(equal)),
     ]
     rows = "".join(
         f"<tr><th scope='row'>{esc(label)}</th><td><strong>{verdict(c)}</strong> <span class='muted'>Lula {c['lula']} × {c['flavio']} Flávio</span></td><td class='why'>{esc(why)}</td></tr>"
         for label, c, why in lens_rows)
-    grid = "".join(f"<tr><th scope='row'>{a}</th><td>{chip(as_.get(a, 'empate'))}</td><td>{chip(ae.get(a, 'empate'))}</td></tr>" for a in AREAS if a in as_ or a in ae)
-    always_l = [a for a in AREAS if as_.get(a) == "lula" and ae.get(a) == "lula"]
-    always_f = [a for a in AREAS if as_.get(a) == "flavio" and ae.get(a) == "flavio"]
+    grid = "".join(f"<tr><th scope='row'>{esc(i)}</th><td>{chip(simple.get(i, 'empate'))}</td><td>{chip(equal.get(i, 'empate'))}</td></tr>" for i in order)
+    always_l = [i for i in order if simple.get(i) == "lula" and equal.get(i) == "lula"]
+    always_f = [i for i in order if simple.get(i) == "flavio" and equal.get(i) == "flavio"]
     return (
         "<section aria-labelledby='h-quem' class='who'><h2 id='h-quem'>Quem vence, e quando</h2>"
-        "<p class='lead'>Tudo depende de uma pergunta: <strong>como o \"mercado\" de IA reage a cada governo</strong>. "
-        + ("Como ele confiou mais no plano de Flávio, Flávio vence o placar simples. " if verdict(cs) == "Flávio"
-           else "Mesmo com ele confiando mais no plano de Flávio, o placar simples termina empatado. " if verdict(cs) == "Empate"
-           else "Mesmo com ele confiando mais no plano de Flávio, Lula vence o placar simples. ")
-        + f"Se ele reage igual aos dois, {verdict(ce)} vence.</p>"
+        f"<p class='lead'>Cada item conta uma vez. <strong>{'Empate' if verdict(cs) == 'Empate' else verdict(cs) + ' vence'}</strong> por {cs['lula'] if verdict(cs) != 'Flávio' else cs['flavio']} a {cs['flavio'] if verdict(cs) != 'Flávio' else cs['lula']}"
+        f". Se o mercado e o Banco Central reagissem igual aos dois, {verdict(ce)} venceria por {max(ce['lula'], ce['flavio'])} a {min(ce['lula'], ce['flavio'])}.</p>"
         f"<div class='scroll'><table class='lens'><thead><tr><th scope='col'>Situação</th><th scope='col'>Quem vence</th><th scope='col'>Por quê</th></tr></thead><tbody>{rows}</tbody></table></div>"
-        "<h3>Vencedor por área</h3>"
-        f"<div class='scroll'><table class='areas'><thead><tr><th scope='col'>Área</th><th scope='col'>Placar simples</th><th scope='col'>Mercado e BC iguais</th></tr></thead><tbody>{grid}</tbody></table></div>"
+        "<h3>Vencedor de cada item</h3>"
+        f"<div class='scroll'><table class='areas'><thead><tr><th scope='col'>Item</th><th scope='col'>Como rodou</th><th scope='col'>Mercado e BC iguais</th></tr></thead><tbody>{grid}</tbody></table></div>"
         f"<p class='always'><span class='chip w-l'>Lula vence sempre</span> {esc(', '.join(always_l) or '—')}"
         f"<br><span class='chip w-f'>Flávio vence sempre</span> {esc(', '.join(always_f) or '—')}</p>"
-        "<p class='muted'>\"Mercado e BC iguais\": as mesmas decisões gravadas, mas com a reação média do mercado e do Banco Central aplicada aos dois governos. "
-        "\"Por área\": cada área vale um voto, para o ajuste fiscal (Selic, dívida e resultado primário) não contar três vezes.</p></section>")
+        "<p class='muted'>Indicadores que medem a mesma coisa contam uma vez só: Economia (crescimento, inflação e juros), Contas públicas (dívida e resultado primário) e Democracia (estabilidade institucional e risco democrático). "
+        "\"Mercado e BC iguais\": as mesmas decisões gravadas, mas com a reação média do mercado e do Banco Central aplicada aos dois governos.</p></section>")
 
 
 def json_ld(data: dict, title: str) -> str:
@@ -528,8 +516,8 @@ def build(results_path: Path) -> Path:
         for key, label, unit, dec, explain in data["metrics"])
     tally = ""
     if win:
-        counts = {k: sum(1 for v in win.values() if v == k) for k in ("lula", "flavio", "empate")}
-        tally = (f"<p>Pela regra de empate (vence quem tem vantagem maior que metade da variação entre simulações): "
+        counts = {k: sum(1 for v in items_from(win).values() if v == k) for k in ("lula", "flavio", "empate")}
+        tally = (f"<p>Cada item conta uma vez; vence quem é melhor na média e na maioria das simulações, comparadas uma a uma: "
                  f"<strong>Lula {counts['lula']}</strong>, <strong>Flávio {counts['flavio']}</strong>, <strong>{counts['empate']} empates técnicos</strong>.</p>")
     sources = "".join(
         f"<h3>{esc(s['name'])}</h3><ul>" + "".join(f"<li>{esc(p.get('title_pt', p['title']))}</li>" for p in s["policies"]) + "</ul>"

@@ -4,6 +4,8 @@ import json
 import statistics
 from pathlib import Path
 
+from sim.metrics_pt import item_of
+
 DATA = Path(__file__).resolve().parent.parent / "data"
 RAW = DATA / "bcb"
 
@@ -17,7 +19,7 @@ def monthly(name: str) -> dict[tuple[int, int], float]:
 
 
 def bcb_annual() -> dict[str, dict[int, float]]:
-    ipca, selic, unemp, debt, primary = (monthly(n) for n in ("ipca_12m", "selic", "unemployment", "debt_gdp", "primary_deficit_12m"))
+    ipca, selic, unemp, debt, primary = (monthly(n) for n in ("ipca_12m", "selic", "unemployment", "debt_gdp", "primary_central_12m"))
     gdp_q = {}
     for row in json.loads((RAW / "gdp_index.json").read_text()):
         day, month, year = row["data"].split("/")
@@ -47,6 +49,18 @@ def group_value(series: dict[int, float], years: list[int], kind: str, metric: d
     return statistics.fmean(series[y] - series[y - 1] for y in used), used
 
 
+def item_tally(rows: list[dict]) -> dict[str, int]:
+    """Same single-count rule as the simulations: indicators that measure the same thing form one item."""
+    per: dict[str, list[str]] = {}
+    for r in rows:
+        if r["winner"] != "sem dados":
+            per.setdefault(item_of(r["key"]), []).append(r["winner"])
+    items = {i: "pt" if w.count("pt") > w.count("pl") else "pl" if w.count("pl") > w.count("pt") else "empate" for i, w in per.items()}
+    tally = {k: sum(1 for v in items.values() if v == k) for k in ("pt", "pl", "empate")}
+    tally["sem dados"] = sum(1 for r in rows if r["winner"] == "sem dados")
+    return tally
+
+
 def compare(rules: dict | None = None) -> dict:
     rules = rules or json.loads((DATA / "track_record_rules.json").read_text())
     manual = json.loads((DATA / "track_record_data.json").read_text())
@@ -70,8 +84,7 @@ def compare(rules: dict | None = None) -> dict:
             "annual": {str(y): round(v, 3) for y, v in sorted(series.get(m["key"], {}).items())},
             "rebound_2022": m["kind"] == "stock" and 2022 in values["pl"][1],
         })
-    tally = {k: sum(1 for r in rows if r["winner"] == k) for k in ("pt", "pl", "empate", "sem dados")}
-    return {"rules": rules, "rows": rows, "tally": tally}
+    return {"rules": rules, "rows": rows, "tally": item_tally(rows)}
 
 
 def compare_without_rebound() -> dict:
@@ -81,49 +94,37 @@ def compare_without_rebound() -> dict:
     flows = {m["key"] for m in rules["metrics"] if m["kind"] == "flow"}
     base, alt = compare(), compare(rules)
     rows = [a if a["key"] not in flows else b for a, b in zip(alt["rows"], base["rows"])]
-    tally = {k: sum(1 for r in rows if r["winner"] == k) for k in ("pt", "pl", "empate", "sem dados")}
-    return {"rows": rows, "tally": tally}
+    return {"rows": rows, "tally": item_tally(rows)}
 
 
-CONTEXT = {
-    "pl": [
-        "2020 and 2021 (pandemic years) are not shown.",
-        "Favourable: pension reform approved in 2019; Central Bank autonomy law in 2021.",
-        "Favourable: homicides fell from 27.8 per 100k in 2018 to 21.7 in 2019 (Atlas da Violencia).",
-        "Unfavourable: a 2021 constitutional amendment (PEC dos Precatorios) deferred court-ordered federal payments to later years.",
-        "Unfavourable: Brazil re-entered the UN Hunger Map in 2019-2021 (FAO); Amazon deforestation reached 13,038 km2 in 2021 (PRODES).",
-    ],
-    "pt": [
-        "2026 (incomplete year) is not shown.",
-        "Favourable: Brazil left the UN Hunger Map again in 2025, undernourishment 2.4% in 2022-2024 (FAO).",
-        "Favourable: violent deaths fell 8.2% in 2025 to 19.1 per 100k, the lowest in the series (FBSP).",
-        "Unfavourable: the 2023 central-government deficit (R$ 230.5 billion, 2.1% of GDP) was the second largest since 1997; R$ 92.4 billion of it paid court-ordered debts deferred by the previous government.",
-        "Unfavourable: gross debt rose from 71.7% to 78.6% of GDP in 2023-2025 and the Selic was raised to 15% in 2025.",
-    ],
-}
+# The Selic is set by the autonomous central bank (LC 179/2021), so it is not shown as a government's record.
 RECORD_LINES = [
     ("gdp_growth", "GDP growth %", 1),
     ("inflation", "IPCA inflation %", 1),
-    ("selic", "average Selic %", 1),
     ("unemployment", "unemployment % (Dec)", 1),
     ("debt_gdp", "gross debt % GDP (Dec)", 1),
-    ("primary_balance", "primary balance % GDP", 2),
+    ("primary_balance", "central-government primary balance % GDP", 2),
     ("poverty_rate", "poverty % (IBGE)", 1),
     ("homicides_per_100k", "homicides per 100k (Atlas)", 1),
     ("deforestation_km2", "Amazon deforestation km2 (PRODES)", 0),
 ]
+RECORD_NOTES = {
+    ("primary_balance", 2019): " (about -1.5 excluding one-off revenue)",
+    ("primary_balance", 2022): " (about -0.1 excluding one-off revenue; about -0.55 also counting payments deferred to later years)",
+    ("primary_balance", 2023): " (about -1.4 excluding one-off spending inherited from earlier years)",
+    ("primary_balance", 2024): " (about -0.2 excluding one-off disaster spending)",
+}
 
 
 def record_text(group: str) -> str:
-    """Same template for both groups: official yearly values plus documented context."""
+    """Same template for both groups: official yearly values with years and named events anonymised, as names are hidden too."""
     track = compare()
     rules = track["rules"]["groups"][group]
     annual = {r["key"]: r["annual"] for r in track["rows"]}
-    lines = [f"REAL RECORD OF THE POLITICAL GROUP BEHIND THIS PLATFORM, from its most recent federal government (official data):"]
-    for year in rules["years"]:
-        parts = [f"{label} {annual[key][str(year)]:.{dec}f}" for key, label, dec in RECORD_LINES if str(year) in annual.get(key, {})]
-        lines.append(f"- {year}: " + "; ".join(parts))
-    lines += [f"- {c}" for c in CONTEXT[group]]
+    lines = ["REAL RECORD OF THE POLITICAL GROUP BEHIND THIS PLATFORM, from its most recent federal government (official data; years and events are anonymised):"]
+    for i, year in enumerate(rules["years"], start=1):
+        parts = [f"{label} {annual[key][str(year)]:.{dec}f}{RECORD_NOTES.get((key, year), '')}" for key, label, dec in RECORD_LINES if str(year) in annual.get(key, {})]
+        lines.append(f"- Year {i}: " + "; ".join(parts))
     lines.append("Use this record as evidence about how this group tends to govern, together with the platform.")
     return "\n".join(lines)
 

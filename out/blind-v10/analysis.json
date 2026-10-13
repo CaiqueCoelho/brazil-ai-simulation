@@ -1,0 +1,531 @@
+{
+ "names": {
+  "lula": "Lula",
+  "flavio": "Flávio Bolsonaro",
+  "baseline": "Cenário base (sem novas políticas)"
+ },
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "metrics": [
+  {
+   "key": "gdp_growth",
+   "label": "Crescimento do PIB",
+   "unit": "% ao ano",
+   "dec": 1,
+   "group": "Economia",
+   "item": "Economia",
+   "basis": "média 2027-2030",
+   "mean": {
+    "lula": 1.8366,
+    "flavio": 1.6712,
+    "baseline": 1.5892
+   },
+   "min": {
+    "lula": 1.552,
+    "flavio": 1.4334,
+    "baseline": 1.3893
+   },
+   "max": {
+    "lula": 2.0537,
+    "flavio": 1.9414,
+    "baseline": 1.6978
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "inflation",
+   "label": "Inflação (IPCA)",
+   "unit": "% em 12 meses",
+   "dec": 1,
+   "group": "Economia",
+   "item": "Economia",
+   "basis": "média 2027-2030",
+   "mean": {
+    "lula": 3.8813,
+    "flavio": 3.8022,
+    "baseline": 3.8648
+   },
+   "min": {
+    "lula": 3.555,
+    "flavio": 3.5015,
+    "baseline": 3.5575
+   },
+   "max": {
+    "lula": 4.4337,
+    "flavio": 4.3422,
+    "baseline": 4.414
+   },
+   "winner": "empate",
+   "seeds_better": {
+    "lula": 0,
+    "flavio": 5
+   },
+   "vs_baseline": {
+    "lula": false,
+    "flavio": true
+   }
+  },
+  {
+   "key": "selic",
+   "label": "Taxa Selic",
+   "unit": "% ao ano",
+   "dec": 2,
+   "group": "Economia",
+   "item": "Economia",
+   "basis": "média 2027-2030",
+   "mean": {
+    "lula": 11.8519,
+    "flavio": 11.5894,
+    "baseline": 11.6831
+   },
+   "min": {
+    "lula": 11.1394,
+    "flavio": 10.8425,
+    "baseline": 10.9362
+   },
+   "max": {
+    "lula": 12.9675,
+    "flavio": 12.6237,
+    "baseline": 12.7956
+   },
+   "winner": "flavio",
+   "seeds_better": {
+    "lula": 0,
+    "flavio": 5
+   },
+   "vs_baseline": {
+    "lula": false,
+    "flavio": true
+   }
+  },
+  {
+   "key": "unemployment",
+   "label": "Desemprego",
+   "unit": "% da força de trabalho",
+   "dec": 1,
+   "group": "Economia",
+   "item": "Desemprego",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 5.5074,
+    "flavio": 5.8696,
+    "baseline": 6.0488
+   },
+   "min": {
+    "lula": 4.871,
+    "flavio": 5.247,
+    "baseline": 5.55
+   },
+   "max": {
+    "lula": 6.101,
+    "flavio": 6.354,
+    "baseline": 6.479
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "debt_gdp",
+   "label": "Dívida pública bruta",
+   "unit": "% do PIB",
+   "dec": 1,
+   "group": "Contas públicas",
+   "item": "Contas públicas",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 103.324,
+    "flavio": 102.0294,
+    "baseline": 103.9818
+   },
+   "min": {
+    "lula": 100.611,
+    "flavio": 99.123,
+    "baseline": 101.174
+   },
+   "max": {
+    "lula": 104.98,
+    "flavio": 103.698,
+    "baseline": 105.443
+   },
+   "winner": "flavio",
+   "seeds_better": {
+    "lula": 0,
+    "flavio": 5
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "primary_balance",
+   "label": "Resultado primário",
+   "unit": "% do PIB",
+   "dec": 2,
+   "group": "Contas públicas",
+   "item": "Contas públicas",
+   "basis": "média 2027-2030",
+   "mean": {
+    "lula": -0.3886,
+    "flavio": 0.0034,
+    "baseline": -0.3833
+   },
+   "min": {
+    "lula": -0.4223,
+    "flavio": -0.0437,
+    "baseline": -0.4209
+   },
+   "max": {
+    "lula": -0.3493,
+    "flavio": 0.0377,
+    "baseline": -0.3162
+   },
+   "winner": "flavio",
+   "seeds_better": {
+    "lula": 0,
+    "flavio": 5
+   },
+   "vs_baseline": {
+    "lula": false,
+    "flavio": true
+   }
+  },
+  {
+   "key": "poverty_rate",
+   "label": "Pobreza",
+   "unit": "% da população",
+   "dec": 1,
+   "group": "Social",
+   "item": "Pobreza",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 22.7486,
+    "flavio": 23.2674,
+    "baseline": 23.2902
+   },
+   "min": {
+    "lula": 21.795,
+    "flavio": 22.311,
+    "baseline": 22.423
+   },
+   "max": {
+    "lula": 23.515,
+    "flavio": 23.951,
+    "baseline": 23.933
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "gini",
+   "label": "Desigualdade (Gini)",
+   "unit": "índice de 0 a 1",
+   "dec": 3,
+   "group": "Social",
+   "item": "Desigualdade (Gini)",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 0.4986,
+    "flavio": 0.5034,
+    "baseline": 0.501
+   },
+   "min": {
+    "lula": 0.495,
+    "flavio": 0.5,
+    "baseline": 0.497
+   },
+   "max": {
+    "lula": 0.503,
+    "flavio": 0.507,
+    "baseline": 0.505
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": false
+   }
+  },
+  {
+   "key": "infant_mortality",
+   "label": "Mortalidade infantil",
+   "unit": "mortes por mil nascidos vivos",
+   "dec": 2,
+   "group": "Saúde",
+   "item": "Mortalidade infantil",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 11.017,
+    "flavio": 12.0114,
+    "baseline": 11.5872
+   },
+   "min": {
+    "lula": 10.578,
+    "flavio": 11.56,
+    "baseline": 11.172
+   },
+   "max": {
+    "lula": 11.188,
+    "flavio": 12.185,
+    "baseline": 11.745
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": false
+   }
+  },
+  {
+   "key": "food_insecurity",
+   "label": "Fome (subalimentação)",
+   "unit": "% da população",
+   "dec": 2,
+   "group": "Saúde",
+   "item": "Fome (subalimentação)",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 2.3086,
+    "flavio": 2.4778,
+    "baseline": 2.4838
+   },
+   "min": {
+    "lula": 1.931,
+    "flavio": 2.099,
+    "baseline": 2.127
+   },
+   "max": {
+    "lula": 2.674,
+    "flavio": 2.823,
+    "baseline": 2.818
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "homicides_per_100k",
+   "label": "Homicídios",
+   "unit": "por 100 mil habitantes",
+   "dec": 1,
+   "group": "Segurança",
+   "item": "Homicídios",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 16.8786,
+    "flavio": 18.4234,
+    "baseline": 19.3142
+   },
+   "min": {
+    "lula": 15.636,
+    "flavio": 16.937,
+    "baseline": 18.112
+   },
+   "max": {
+    "lula": 17.769,
+    "flavio": 19.373,
+    "baseline": 20.196
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "deforestation_km2",
+   "label": "Desmatamento na Amazônia",
+   "unit": "km² por ano",
+   "dec": 0,
+   "group": "Meio ambiente",
+   "item": "Desmatamento na Amazônia",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 3939.7928,
+    "flavio": 5366.98,
+    "baseline": 5814.2336
+   },
+   "min": {
+    "lula": 3439.773,
+    "flavio": 4659.472,
+    "baseline": 5055.9
+   },
+   "max": {
+    "lula": 4208.426,
+    "flavio": 5844.566,
+    "baseline": 6336.336
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "approval",
+   "label": "Aprovação do presidente",
+   "unit": "% dos cidadãos simulados",
+   "dec": 0,
+   "group": "Política",
+   "item": "Aprovação do presidente",
+   "basis": "média 2027-2030",
+   "mean": {
+    "lula": 45.4329,
+    "flavio": 42.6455,
+    "baseline": 35.4383
+   },
+   "min": {
+    "lula": 37.7731,
+    "flavio": 40.2737,
+    "baseline": 28.9197
+   },
+   "max": {
+    "lula": 50.9637,
+    "flavio": 45.09,
+    "baseline": 47.0791
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 4,
+    "flavio": 1
+   },
+   "vs_baseline": {
+    "lula": true,
+    "flavio": true
+   }
+  },
+  {
+   "key": "institutional_stability",
+   "label": "Estabilidade institucional",
+   "unit": "índice de 0 a 100",
+   "dec": 0,
+   "group": "Democracia",
+   "item": "Democracia",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 69.7898,
+    "flavio": 60.5942,
+    "baseline": 69.7898
+   },
+   "min": {
+    "lula": 69.142,
+    "flavio": 59.475,
+    "baseline": 69.142
+   },
+   "max": {
+    "lula": 69.983,
+    "flavio": 61.107,
+    "baseline": 69.983
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": false,
+    "flavio": false
+   }
+  },
+  {
+   "key": "democracy_risk",
+   "label": "Risco democrático",
+   "unit": "índice de 0 a 100",
+   "dec": 0,
+   "group": "Democracia",
+   "item": "Democracia",
+   "basis": "fim de 2030",
+   "mean": {
+    "lula": 22.9116,
+    "flavio": 35.9162,
+    "baseline": 22.1122
+   },
+   "min": {
+    "lula": 21.98,
+    "flavio": 33.911,
+    "baseline": 21.428
+   },
+   "max": {
+    "lula": 23.54,
+    "flavio": 37.963,
+    "baseline": 23.178
+   },
+   "winner": "lula",
+   "seeds_better": {
+    "lula": 5,
+    "flavio": 0
+   },
+   "vs_baseline": {
+    "lula": false,
+    "flavio": false
+   }
+  }
+ ],
+ "items": {
+  "Economia": "empate",
+  "Desemprego": "lula",
+  "Contas públicas": "flavio",
+  "Pobreza": "lula",
+  "Desigualdade (Gini)": "lula",
+  "Mortalidade infantil": "lula",
+  "Fome (subalimentação)": "lula",
+  "Homicídios": "lula",
+  "Desmatamento na Amazônia": "lula",
+  "Aprovação do presidente": "lula",
+  "Democracia": "lula"
+ },
+ "tally": {
+  "lula": 9,
+  "flavio": 1,
+  "empate": 1
+ },
+ "overall": "lula",
+ "rule": "Vence quem é melhor na média e na maioria das simulações, comparadas uma a uma (mesmos choques para os dois); diferenças menores que a tolerância oficial (resultado primário ±0,25 ponto do PIB, inflação ±1,5 ponto) são empate. Indicadores que medem a mesma coisa contam uma vez só."
+}

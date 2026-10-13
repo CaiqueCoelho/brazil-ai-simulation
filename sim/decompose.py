@@ -7,7 +7,7 @@ from pathlib import Path
 
 from sim.analysis import compare
 from sim.engine import Params
-from sim.sensitivity import replay_all
+from sim.sensitivity import base_params, replay_all
 
 AGENT_INPUTS = ("market_confidence", "selic_change")
 
@@ -31,7 +31,7 @@ def main() -> None:
     results = json.loads(path.read_text())
     report = {}
     for label, keys in (("mercado", ("market_confidence",)), ("banco_central", ("selic_change",)), ("ambos", AGENT_INPUTS)):
-        analysis = compare(replay_all(equalize(results, keys), Params.load()))
+        analysis = compare(replay_all(equalize(results, keys), base_params(results)))
         report[label] = {"tally": analysis["tally"], "overall": analysis["overall"],
                          "winners": {m["key"]: m["winner"] for m in analysis["metrics"]},
                          "means": {m["key"]: {s: round(v, 2) for s, v in m["mean"].items()} for m in analysis["metrics"]}}

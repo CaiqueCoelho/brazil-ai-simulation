@@ -6,7 +6,6 @@ import re
 import statistics
 from pathlib import Path
 
-from sim.analysis import TIE_FRACTION, score
 from sim.metrics_pt import BY_KEY, METRICS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -75,7 +74,7 @@ def chart(results: dict, key: str) -> str:
 
 def hero(analysis: dict) -> str:
     t = analysis["tally"]
-    rows = [r for r in analysis["metrics"] if r["winner"] is not None]
+    rows = [{"label": item, "winner": w} for item, w in analysis["items"].items()]
     W, H = 680, 150
     parts = [f'<svg viewBox="0 0 {W} {H}" class="hero" role="img" aria-label="Placar final">']
     for x0, who, label in ((0, "lula", "LULA"), (W / 2 + 10, "flavio", "FLÁVIO")):
@@ -90,39 +89,34 @@ def hero(analysis: dict) -> str:
         color = COLORS.get(r["winner"], TIE)
         parts.append(f'<rect x="{x:.1f}" y="108" width="{seg:.1f}" height="22" rx="4" fill="{color}"><title>{r["label"]}: {WINNER_LABEL[r["winner"]]}</title></rect>')
         x += seg + gap
-    parts.append(f'<text x="0" y="146" font-family="{FONT}" font-size="10" fill="#77766f">Cada bloco é um indicador ({len(rows)} com vencedor possível). Azul: Lula · cinza: empate técnico · laranja: Flávio</text>')
+    parts.append(f'<text x="0" y="146" font-family="{FONT}" font-size="10" fill="#77766f">Cada bloco é um item, contado uma vez ({len(rows)} itens). Azul: Lula · cinza: empate técnico · laranja: Flávio</text>')
     parts.append("</svg>")
     return "".join(parts)
 
 
 def advantage(analysis: dict) -> str:
-    """Lead of Lula over Flávio per metric, in units of the tie threshold (1.0 = just enough to win)."""
+    """For each indicator, in how many simulations each candidate did better (same shocks for both)."""
     rows = [r for r in analysis["metrics"] if r["winner"] is not None]
+    n = len(analysis["seeds"])
     W, row_h, L, top = 680, 24, 190, 30
     H = top + row_h * len(rows) + 30
-    cap = 6.0
     mid = L + (W - L - 20) / 2
-    scale = (W - L - 20) / 2 / cap
-    parts = [f'<svg viewBox="0 0 {W} {H}" class="adv" role="img" aria-label="Vantagem por indicador">',
-             f'<rect x="{mid - scale:.1f}" y="{top - 6}" width="{2 * scale:.1f}" height="{row_h * len(rows) + 6}" fill="#f0efec"/>',
-             f'<text x="{mid - scale - 6:.1f}" y="{top - 12}" text-anchor="end" font-family="{FONT}" font-size="11" font-weight="700" fill="{COLORS["flavio"]}">◀ vantagem Flávio</text>',
-             f'<text x="{mid + scale + 6:.1f}" y="{top - 12}" font-family="{FONT}" font-size="11" font-weight="700" fill="{COLORS["lula"]}">vantagem Lula ▶</text>',
-             f'<text x="{mid:.1f}" y="{top - 12}" text-anchor="middle" font-family="{FONT}" font-size="10" fill="#77766f">empate</text>']
+    scale = ((W - L - 20) / 2 - 16) / n
+    parts = [f'<svg viewBox="0 0 {W} {H}" class="adv" role="img" aria-label="Em quantas simulações cada candidato foi melhor">',
+             f'<text x="{mid - 6:.1f}" y="{top - 12}" text-anchor="end" font-family="{FONT}" font-size="11" font-weight="700" fill="{COLORS["flavio"]}">◀ Flávio melhor</text>',
+             f'<text x="{mid + 6:.1f}" y="{top - 12}" font-family="{FONT}" font-size="11" font-weight="700" fill="{COLORS["lula"]}">Lula melhor ▶</text>']
     for i, r in enumerate(rows):
-        m = BY_KEY[r["key"]]
-        spread = statistics.fmean([r["max"][s] - r["min"][s] for s in ("lula", "flavio")])
-        threshold = TIE_FRACTION * spread or 1e-9
-        lead = (score(m, r["mean"]["lula"]) - score(m, r["mean"]["flavio"])) / threshold
-        shown = max(-cap, min(cap, lead))
         y = top + i * row_h
-        color = COLORS.get(r["winner"], TIE)
-        x0, x1 = sorted((mid, mid + shown * scale))
-        parts.append(f'<text x="{L - 10}" y="{y + 15}" text-anchor="end" font-family="{FONT}" font-size="11" fill="#1b1b1a">{r["label"]}</text>'
-                     f'<rect x="{x0:.1f}" y="{y + 4}" width="{max(1.5, x1 - x0):.1f}" height="{row_h - 8}" rx="3" fill="{color}"/>')
-        if abs(lead) > cap:
-            parts.append(f'<text x="{mid + shown * scale + (-6 if lead > 0 else 6):.1f}" y="{y + 15}" text-anchor="{"end" if lead > 0 else "start"}" font-family="{FONT}" font-size="10" font-weight="700" fill="#fff">{fmt(abs(lead), 0)}× ›</text>')
+        lb, fb = r["seeds_better"]["lula"], r["seeds_better"]["flavio"]
+        parts.append(f'<text x="{L - 10}" y="{y + 15}" text-anchor="end" font-family="{FONT}" font-size="11" fill="#1b1b1a">{r["label"]}</text>')
+        for count, sign, who in ((lb, 1, "lula"), (fb, -1, "flavio")):
+            if count:
+                color = COLORS[who] if r["winner"] == who else TIE
+                x0, x1 = sorted((mid, mid + sign * count * scale))
+                parts.append(f'<rect x="{x0:.1f}" y="{y + 4}" width="{x1 - x0:.1f}" height="{row_h - 8}" rx="3" fill="{color}"/>'
+                             f'<text x="{mid + sign * (count * scale + 6):.1f}" y="{y + 15}" text-anchor="{"start" if sign > 0 else "end"}" font-family="{FONT}" font-size="10" fill="#52514e">{count}</text>')
     parts.append(f'<line x1="{mid:.1f}" x2="{mid:.1f}" y1="{top - 6}" y2="{top + row_h * len(rows)}" stroke="#77766f" stroke-width="1"/>')
-    parts.append(f'<text x="0" y="{H - 8}" font-family="{FONT}" font-size="10" fill="#77766f">Barras medidas em "margens de empate". Dentro da faixa cinza, a diferença é menor que o acaso entre simulações.</text>')
+    parts.append(f'<text x="0" y="{H - 8}" font-family="{FONT}" font-size="10" fill="#77766f">Número de simulações (de {n}) em que cada candidato teve o melhor resultado. Colorido: venceu em todas; cinza: empate.</text>')
     parts.append("</svg>")
     return "".join(parts)
 
@@ -156,11 +150,17 @@ def sensitivity(sens: dict) -> str:
 
 def scoreboard(analysis: dict) -> str:
     rows = []
-    for r in analysis["metrics"]:
+    metrics = analysis["metrics"]
+    for r in metrics:
         cells = "".join(f"<td>{fmt(r['mean'][s], r['dec'])}</td>" for s in ("lula", "flavio", "baseline"))
-        win = WINNER_LABEL[r["winner"]]
-        cls = {"Lula": "w-lula", "Flávio": "w-flavio"}.get(win, "w-tie")
-        rows.append(f"<tr><td>{r['label']}<div class='basis'>{r['unit']} · {r['basis']}</div></td>{cells}<td class='{cls}'>{win}</td></tr>")
+        group = [x for x in metrics if x["item"] == r["item"]]
+        win_cell = ""
+        if group[0] is r:
+            win = WINNER_LABEL[analysis["items"][r["item"]]]
+            cls = {"Lula": "w-lula", "Flávio": "w-flavio"}.get(win, "w-tie")
+            note = f"<div class='basis'>{r['item']}: conta 1 vez</div>" if len(group) > 1 else ""
+            win_cell = f"<td class='{cls}' rowspan='{len(group)}'>{win}{note}</td>"
+        rows.append(f"<tr><td>{r['label']}<div class='basis'>{r['unit']} · {r['basis']}</div></td>{cells}{win_cell}</tr>")
     head = "<tr><th>Indicador</th><th>Lula</th><th>Flávio</th><th>Cenário base</th><th>Vencedor</th></tr>"
     return f"<table class='score'>{head}{''.join(rows)}</table>"
 
@@ -198,37 +198,27 @@ def track_table(track: dict) -> str:
     return f"<table class='score track'>{head}{''.join(rows)}</table>"
 
 
-LENS_LABELS = [
-    ("principal", "Simulação principal", "scale", None),
-    ("principal_mercado_igual", "Principal, mercado e BC iguais", "scale", "ambos"),
-    ("informada", "Simulação informada", "informed", None),
-    ("informada_mercado_igual", "Informada, mercado e BC iguais", "informed", "ambos"),
-    ("historico_sem_rebote", "Histórico real, sem rebote", None, None),
+VERSIONS = [
+    ("Versão principal: histórico anônimo, mercado e BC por regras fixas", "analysis.json", ()),
+    ("Rodada anterior (200 cidadãos), refeita com as premissas atuais e mercado e BC por regras fixas", "../blind-v8/second_review.json", ("regra_v3",)),
+    ("Histórico real (sem o rebote de 2022)", None, None),
 ]
 
 
-def lenses_table(domains: dict, run_dir: Path) -> str:
-    def metric_tally(label: str, run: str | None, dec: str | None) -> dict:
-        if run is None:
-            t = json.loads((ROOT / "out" / "track_record.json").read_text())["without_rebound"]["tally"]
-            return {"lula": t["pt"], "flavio": t["pl"]}
-        base = run_dir.with_name(run_dir.name.replace("scale", run))
-        if dec:
-            return json.loads((base / "decompose.json").read_text())[dec]["tally"]
-        return json.loads((base / "analysis.json").read_text())["tally"]
-
+def versions_table(run_dir: Path) -> str:
     rows = []
-    for key, label, run, dec in LENS_LABELS:
-        m = metric_tally(key, run, dec)
-        a = domains[key]["tally"]
-        def verdict(lula, flavio):
-            return ("w-lula", "Lula") if lula > flavio else ("w-flavio", "Flávio") if flavio > lula else ("w-tie", "Empate")
-        c1, w1 = verdict(m["lula"], m["flavio"])
-        c2, w2 = verdict(a["lula"], a["flavio"])
-        rows.append(f"<tr><td>{label}</td><td>{m['lula']} × {m['flavio']}</td><td class='{c1}'>{w1}</td>"
-                    f"<td>{a['lula']} × {a['flavio']}</td><td class='{c2}'>{w2}</td></tr>")
-    head = ("<tr><th>Lente</th><th>Por indicador<br><span class='basis'>Lula × Flávio</span></th><th></th>"
-            "<th>Por área<br><span class='basis'>Lula × Flávio</span></th><th></th></tr>")
+    for label, source, keys in VERSIONS:
+        if source is None:
+            t = json.loads((ROOT / "out" / "track_record.json").read_text())["without_rebound"]["tally"]
+            t = {"lula": t["pt"], "flavio": t["pl"]}
+        else:
+            data = json.loads((run_dir / source).read_text())
+            for key in keys:
+                data = data[key]
+            t = data["tally"]
+        cls, win = ("w-lula", "Lula") if t["lula"] > t["flavio"] else ("w-flavio", "Flávio") if t["flavio"] > t["lula"] else ("w-tie", "Empate")
+        rows.append(f"<tr><td>{label}</td><td>{t['lula']} × {t['flavio']}</td><td class='{cls}'>{win}</td></tr>")
+    head = "<tr><th>Versão</th><th>Lula × Flávio</th><th>Vencedor</th></tr>"
     return f"<table class='score'>{head}{''.join(rows)}</table>"
 
 
@@ -237,67 +227,19 @@ def glossary() -> str:
     return f"<dl class='glossary'>{items}</dl>"
 
 
-REAL_CACHE_HIT_PRICE = 0.020
-
-
-def real_cost(budget: dict) -> float:
-    """DeepSeek bills cached tokens at about US$ 0.020 per million, measured from the account balance; the runs were budgeted at a different price."""
-    miss = budget["prompt_tokens"] - budget["cache_hit_tokens"]
-    return (miss * 0.14 + budget["cache_hit_tokens"] * REAL_CACHE_HIT_PRICE + budget["completion_tokens"] * 0.28) / 1_000_000
-
-
-def load_run(run_dir: Path) -> dict | None:
-    if not (run_dir / "analysis.json").exists():
-        return None
-    out = {"results": json.loads((run_dir / "results.json").read_text()), "analysis": json.loads((run_dir / "analysis.json").read_text())}
-    for name in ("sensitivity", "decompose"):
-        path = run_dir / f"{name}.json"
-        out[name] = json.loads(path.read_text()) if path.exists() else None
-    return out
-
-
 def render(template: str, run_dir: Path, repo: str) -> str:
     results = json.loads((run_dir / "results.json").read_text())
     analysis = json.loads((run_dir / "analysis.json").read_text())
-    informed = load_run(run_dir.with_name(run_dir.name.replace("scale", "informed")))
     sens_path = run_dir / "sensitivity.json"
     sens = json.loads(sens_path.read_text()) if sens_path.exists() else None
     dec_path = run_dir / "decompose.json"
     dec = json.loads(dec_path.read_text()) if dec_path.exists() else None
-    v1_path = ROOT / "out" / "scale-v1" / "analysis.json"
-    v1 = json.loads(v1_path.read_text()) if v1_path.exists() else None
     track_path = ROOT / "out" / "track_record.json"
     track = json.loads(track_path.read_text()) if track_path.exists() else None
     by_key = {r["key"]: r for r in analysis["metrics"]}
 
     def replace(match: re.Match) -> str:
         kind, *args = match.group(1).split(":")
-        if kind.startswith("i_"):
-            kind = kind[2:]
-            run = informed
-            i_by = {r["key"]: r for r in run["analysis"]["metrics"]}
-            if kind == "chart":
-                return chart(run["results"], args[0])
-            if kind == "hero":
-                return hero(run["analysis"])
-            if kind == "advantage":
-                return advantage(run["analysis"])
-            if kind == "scoreboard":
-                return scoreboard(run["analysis"])
-            if kind == "tally":
-                return str(run["analysis"]["tally"][args[0]])
-            if kind == "val":
-                row = i_by[args[0]]
-                return fmt(row["mean"][args[1]], int(args[2]) if len(args) > 2 else row["dec"])
-            if kind == "winner":
-                return WINNER_LABEL[i_by[args[0]]["winner"]]
-            if kind == "dec":
-                return str(run["decompose"][args[0]]["tally"][args[1]])
-            if kind == "sens_overall":
-                return str(run["sensitivity"]["overall"][args[0]])
-            if kind == "cost":
-                return fmt(real_cost(run["results"]["budget"]), 2)
-            raise KeyError(match.group(0))
         if kind == "chart":
             return chart(results, args[0])
         if kind == "hero":
@@ -319,10 +261,17 @@ def render(template: str, run_dir: Path, repo: str) -> str:
             return fmt(row["mean"][args[1]], int(args[2]) if len(args) > 2 else row["dec"])
         if kind == "winner":
             return WINNER_LABEL[by_key[args[0]]["winner"]]
+        if kind == "better":
+            return str(by_key[args[0]]["seeds_better"][args[1]])
+        if kind == "citizens":
+            return str(results["config"]["citizens"])
         if kind == "tally":
             return str(analysis["tally"][args[0]])
-        if kind == "lenses":
-            return lenses_table(json.loads((run_dir / "domains.json").read_text()), run_dir)
+        if kind == "ties":
+            n = analysis["tally"]["empate"]
+            return f"{n} empate" if n == 1 else f"{n} empates"
+        if kind == "versions":
+            return versions_table(run_dir)
         if kind == "track":
             return track_table(track)
         if kind == "track_tally":
@@ -330,10 +279,6 @@ def render(template: str, run_dir: Path, repo: str) -> str:
             return str(source["tally"][args[1]])
         if kind == "dec":
             return str(dec[args[0]]["tally"][args[1]])
-        if kind == "v1tally":
-            return str(v1["tally"][args[0]])
-        if kind == "cost":
-            return fmt(real_cost(results["budget"]), 2)
         if kind == "calls":
             return fmt(results["budget"]["calls"], 0)
         if kind == "seeds":
