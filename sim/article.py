@@ -80,8 +80,8 @@ def hero(analysis: dict) -> str:
     for x0, who, label in ((0, "lula", "LULA"), (W / 2 + 10, "flavio", "FLÁVIO")):
         parts.append(f'<text x="{x0 + 4}" y="22" font-family="{FONT}" font-size="13" font-weight="700" fill="{COLORS[who]}" letter-spacing="1.5">{label}</text>'
                      f'<text x="{x0}" y="86" font-family="{FONT}" font-size="64" font-weight="800" fill="#1b1b1a">{t[who]}</text>'
-                     f'<text x="{x0 + 4 + 40 * len(str(t[who]))}" y="86" font-family="{FONT}" font-size="14" fill="#52514e">vitórias</text>')
-    parts.append(f'<text x="{W}" y="22" text-anchor="end" font-family="{FONT}" font-size="12" fill="#52514e">{t["empate"]} empates técnicos</text>')
+                     f'<text x="{x0 + 4 + 40 * len(str(t[who]))}" y="86" font-family="{FONT}" font-size="14" fill="#52514e">{"vitória" if t[who] == 1 else "vitórias"}</text>')
+    parts.append(f'<text x="{W}" y="22" text-anchor="end" font-family="{FONT}" font-size="12" fill="#52514e">{t["empate"]} {"empate técnico" if t["empate"] == 1 else "empates técnicos"}</text>')
     gap, bar_w, x = 3, W, 0.0
     seg = (bar_w - gap * (len(rows) - 1)) / len(rows)
     order = sorted(rows, key=lambda r: {"lula": 0, "empate": 1, "flavio": 2}[r["winner"]])
@@ -116,7 +116,7 @@ def advantage(analysis: dict) -> str:
                 parts.append(f'<rect x="{x0:.1f}" y="{y + 4}" width="{x1 - x0:.1f}" height="{row_h - 8}" rx="3" fill="{color}"/>'
                              f'<text x="{mid + sign * (count * scale + 6):.1f}" y="{y + 15}" text-anchor="{"start" if sign > 0 else "end"}" font-family="{FONT}" font-size="10" fill="#52514e">{count}</text>')
     parts.append(f'<line x1="{mid:.1f}" x2="{mid:.1f}" y1="{top - 6}" y2="{top + row_h * len(rows)}" stroke="#77766f" stroke-width="1"/>')
-    parts.append(f'<text x="0" y="{H - 8}" font-family="{FONT}" font-size="10" fill="#77766f">Número de simulações (de {n}) em que cada candidato teve o melhor resultado. Colorido: venceu em todas; cinza: empate.</text>')
+    parts.append(f'<text x="0" y="{H - 8}" font-family="{FONT}" font-size="10" fill="#77766f">Número de simulações (de {n}) em que cada candidato teve o melhor resultado. Colorido: venceu o indicador (melhor na média e na maioria das simulações); cinza: empate.</text>')
     parts.append("</svg>")
     return "".join(parts)
 
