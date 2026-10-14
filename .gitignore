@@ -10,3 +10,4 @@ out/dry-run*/
 out/check/
 out/tiny/
 out/smoke/
+.DS_Store

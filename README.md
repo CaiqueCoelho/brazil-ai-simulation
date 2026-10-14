@@ -20,7 +20,7 @@ Lula vence desemprego, pobreza, desigualdade, fome, mortalidade infantil, homic�
 
 O corte de gastos de Flávio usa o tamanho apresentado pela equipe econômica dele (cerca de 1,5% do PIB, R$ 190 bilhões), com aposentadorias, BPC e pisos de saúde e educação corrigidos só pela inflação, itens citados pela própria equipe.
 
-Resultados em `out/blind-v10/`: simulações 1 a 3 de `config/blind-v10.yaml` e 4 e 5 de `config/blind-v10b.yaml`. O cenário base vem de `out/blind-v7` (mesmas sementes), refeito com as regras fixas. Depois da correção do efeito único nos preços, a rodada foi refeita sem custo com as decisões gravadas dos agentes (`out/blind-v10/results-before-one-off.json` guarda a versão anterior); o placar não mudou. Rodadas anteriores preservadas em `out/`.
+Resultados em `out/blind-v10/`: simulações 1 a 3 de `config/blind-v10.yaml` e 4 e 5 de `config/blind-v10b.yaml`. O cenário base vem de `out/blind-v7` (mesmas sementes), refeito com as regras fixas. Depois da correção do efeito único nos preços, a rodada foi refeita sem custo com as decisões gravadas dos agentes; o placar não mudou. Rodadas exploratórias anteriores foram removidas do repositório.
 
 ## Como funciona
 
