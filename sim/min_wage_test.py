@@ -1,4 +1,4 @@
-"""What-if test registered in data/engine_v5_rules.json: Flávio freezes the minimum wage's real gains (his plan does not commit to them)."""
+"""What-if test: Flávio freezes the minimum wage's real gains (his plan does not commit to them)."""
 
 import argparse
 import json

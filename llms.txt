@@ -5,10 +5,9 @@
 ## Resultados (motor v8)
 - [Relatório interativo](out/blind-v10/report.html): resumo, 15 gráficos em SVG com descrição, tabelas e relato trimestral, legíveis sem JavaScript.
 - [Dados brutos](out/blind-v10/results.json), [análise por indicador e por item](out/blind-v10/analysis.json), [sensibilidade](out/blind-v10/sensitivity.json).
-- [Histórico real Bolsonaro 2019/2022 × Lula 2023–2025](out/track_record.json), regras em [data/track_record_rules.json](data/track_record_rules.json).
 - [Artigo em PDF](article/artigo-ia-governa-brasil.pdf).
 
 ## Método
 - [README](README.md): arquitetura, como rodar, limitações.
-- [Propostas modeladas](data/policies_lula.json), [Flávio](data/policies_flavio.json); regras do motor em [data/engine_v2_rules.json](data/engine_v2_rules.json) a [data/engine_v8_rules.json](data/engine_v8_rules.json); regra de vitória em [data/scoring_v2_rules.json](data/scoring_v2_rules.json).
+- [Propostas modeladas](data/policies_lula.json), [Flávio](data/policies_flavio.json); regras do motor em [data/engine_rules.json](data/engine_rules.json); regra de vitória em [data/scoring_rules.json](data/scoring_rules.json).
 - Código: `sim/engine.py` (motor), `sim/agents.py` (prompts), `sim/rule_agents.py` (regras de mercado e Banco Central), `sim/run.py` (orquestração), `sim/analysis.py` (vencedor por indicador e por item, cada item conta uma vez).

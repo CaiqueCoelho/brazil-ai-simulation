@@ -1,6 +1,6 @@
 import re
 
-from sim.track_record import record_text
+from sim.group_history import record_text
 
 IDENTIFYING = ("Bolsonaro", "Lula", "PEC", "Eletrobras", "Rio Grande", "pandemic", "tariff", "Hunger", "reform", "court-ordered")
 

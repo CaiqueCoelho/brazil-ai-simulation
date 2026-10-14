@@ -12,7 +12,7 @@ from openai import AsyncOpenAI
 from sim.agents import platform_block
 from sim.engine import load_policies
 from sim.run import RECORD_GROUP
-from sim.track_record import record_text
+from sim.group_history import record_text
 
 ROOT = Path(__file__).resolve().parent.parent
 CHOICES = ["Lula (2003-2010)", "Dilma Rousseff (2011-2016)", "Michel Temer (2016-2018)", "Jair Bolsonaro (2019-2022)", "Lula (2023-2026)"]

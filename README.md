@@ -4,17 +4,18 @@ Experimento que simula quatro anos de governo no Brasil (2027–2030) sob duas p
 
 > **Não é previsão.** É um experimento estilizado: modelos de linguagem tomam decisões e um modelo de equações simples transforma essas decisões em números. Os resultados refletem as hipóteses do modelo e os vieses dos modelos de IA.
 
+**Artigo:** [ler online](https://caiquecoelho.github.io/brazil-ai-simulation/) · [baixar PDF](https://github.com/CaiqueCoelho/brazil-ai-simulation/raw/main/article/artigo-ia-governa-brasil.pdf)
+
 Todo o experimento, incluindo o código, a calibração, a execução, a análise e o artigo, foi conduzido por IA (Claude, da Anthropic, no Claude Code). O papel humano foi aprovar o orçamento, validar a lista de propostas, decidir algumas premissas registradas nos arquivos de regras e publicar.
 
 ## Resultado final (motor v8)
 
-Agentes sem saber quem governa, com propostas em linguagem neutra e um histórico anônimo de cada grupo (números oficiais por ano, sem anos nem eventos citados). Mercado e Banco Central seguem regras fixas iguais para os dois (regra de Taylor; confiança do mercado pelas contas públicas, dívida, inflação, crescimento e estabilidade), cortes de gasto seguem o efeito líquido medido por Guajardo, Leigh e Pescatori (2014), e mudanças de imposto sobre consumo e de custo do trabalho mexem nos preços uma vez só, sem se arrastar pela inflação dos trimestres seguintes. Custos e efeitos de cada proposta conferidos em fontes públicas e estudos, com a mesma régua para os dois (`data/engine_v7_rules.json`, `data/engine_v8_rules.json`). Vence um indicador quem é melhor na média e na maioria das simulações, comparadas uma a uma; diferenças dentro da tolerância oficial (resultado primário ±0,25 ponto do PIB, inflação ±1,5) são empate (`data/scoring_v3_rules.json`, regra adotada depois de ver o resultado; com a anterior, que exigia todas as simulações, o placar seria 8 × 1). Indicadores que medem a mesma coisa contam uma vez (11 itens).
+Agentes sem saber quem governa, com propostas em linguagem neutra e um histórico anônimo de cada grupo (números oficiais por ano, sem anos nem eventos citados). Mercado e Banco Central seguem regras fixas iguais para os dois (regra de Taylor; confiança do mercado pelas contas públicas, dívida, inflação, crescimento e estabilidade), cortes de gasto seguem o efeito líquido medido por Guajardo, Leigh e Pescatori (2014), e mudanças de imposto sobre consumo e de custo do trabalho mexem nos preços uma vez só, sem se arrastar pela inflação dos trimestres seguintes. Custos e efeitos de cada proposta conferidos em fontes públicas e estudos, com a mesma régua para os dois (`data/engine_rules.json`). Vence um indicador quem é melhor na média e na maioria das simulações, comparadas uma a uma; diferenças dentro da tolerância oficial (resultado primário ±0,25 ponto do PIB, inflação ±1,5) são empate (`data/scoring_rules.json`, regra adotada depois de ver o resultado; com a anterior, que exigia todas as simulações, o placar seria 8 × 1). Indicadores que medem a mesma coisa contam uma vez (11 itens).
 
 | Versão | Lula × Flávio | Sensibilidade (18) |
 |---|---|---|
 | Versão principal (100 cidadãos, 5 simulações, mercado e BC por regras fixas) | **9 × 1** | Lula 18 |
 | Rodada anterior (200 cidadãos), refeita com as premissas atuais e mercado e BC por regras fixas | **8 × 2** | — |
-| Histórico real (Bolsonaro 2019/2022 × Lula 2023–2025, sem rebote da pandemia) | **3 × 2** | — |
 
 Lula vence desemprego, pobreza, desigualdade, fome, mortalidade infantil, homicídios, Amazônia e democracia nas 5 simulações; Flávio vence contas públicas nas 5. Lula vence também aprovação (45% contra 43% na média, à frente em 4 de 5 simulações). Economia empata (Lula cresce mais, Flávio tem Selic um pouco menor).
 
@@ -56,11 +57,11 @@ PIB, inflação, Selic, desemprego, dívida pública, resultado primário, pobre
 | `sim/llm.py` | Cliente DeepSeek, cache SQLite, limite de gasto |
 | `sim/history.py`, `sim/calibrate.py` | Download de dados oficiais e calibração |
 | `sim/analysis.py` | Vencedor por indicador e por item (com regra de empate) |
-| `sim/track_record.py` | Histórico real: governo Bolsonaro (2019, 2022) x governo Lula (2023-2025) com dados oficiais e regras pré-registradas em `data/track_record_rules.json` |
-| `sim/rule_agents.py` | Regras fixas de mercado e Banco Central (`data/engine_v8_rules.json`) |
+| `sim/group_history.py` | Histórico anônimo de cada grupo que os agentes recebem (dados oficiais por ano, sem anos nem eventos citados; `data/group_history.json` e `data/bcb/`) |
+| `sim/rule_agents.py` | Regras fixas de mercado e Banco Central (`data/engine_rules.json`) |
 | `sim/sensitivity.py` | Teste de sensibilidade: reexecuta as decisões gravadas com hipóteses alternativas (US$ 0) |
 | `sim/report.py` | Relatório HTML interativo com replay (1 ano = 1 minuto) |
-| `sim/article.py`, `article/` | Artigo em PDF |
+| `sim/article.py`, `article/` | Artigo em PDF ([baixar](https://github.com/CaiqueCoelho/brazil-ai-simulation/raw/main/article/artigo-ia-governa-brasil.pdf)) |
 | `data/` | Propostas, ponto de partida, choques, séries oficiais, parâmetros calibrados |
 | `out/blind-v10/` | Resultados, análises e relatório publicados |
 
@@ -75,7 +76,7 @@ uv run python -m sim.run --config config/blind-v10.yaml             # execução
 uv run python -m sim.analysis out/blind-v10/results.json
 uv run python -m sim.sensitivity out/blind-v10/results.json
 uv run python -m sim.report out/blind-v10/results.json
-uv run python -m sim.article out/blind-v10 --repo https://github.com/CaiqueCoelho/brazil-ai-simulation   # depois imprima article/artigo.html em PDF
+uv run python -m sim.article out/blind-v10 --repo https://github.com/CaiqueCoelho/brazil-ai-simulation --pdf   # gera article/artigo.html e o PDF (precisa do Chrome)
 ```
 
 O custo é protegido em camadas: verificação prévia (recusa se o custo esperado passar do limite), reserva do pior caso antes de cada chamada (para em `budget_usd`), cache de respostas e saldo pré-pago da conta.

@@ -1,4 +1,4 @@
-"""Replaces the market and central-bank agents with fixed rules (data/engine_v8_rules.json) and replays the other recorded decisions at zero cost."""
+"""Replaces the market and central-bank agents with fixed rules (data/engine_rules.json) and replays the other recorded decisions at zero cost."""
 
 import argparse
 import json
@@ -8,7 +8,7 @@ from sim.analysis import compare
 from sim.engine import INFLATION_TARGET, Metrics, Params
 from sim.sensitivity import replay_all
 
-RULES_FILE = Path(__file__).resolve().parent.parent / "data" / "engine_v8_rules.json"
+RULES_FILE = Path(__file__).resolve().parent.parent / "data" / "engine_rules.json"
 
 
 def load_rules(path: Path = RULES_FILE) -> dict:

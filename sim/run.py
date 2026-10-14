@@ -61,7 +61,7 @@ async def run_scenario(name: str, seed: int, cfg: dict, client: LLMClient, perso
     record = ""
     group = RECORD_GROUP.get(name)
     if cfg.get("track_record") and group:
-        from sim.track_record import record_text
+        from sim.group_history import record_text
 
         record = record_text(group)
     # The central bank is autonomous by law (LC 179/2021) and decides on current data, not on a party's past.

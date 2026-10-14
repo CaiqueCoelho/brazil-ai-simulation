@@ -7,7 +7,7 @@ from sim.engine import PARAMS_FILE, Metrics, Params, TickInputs, World
 from sim.shocks import Shock
 
 HISTORY = Path(__file__).resolve().parent.parent / "data" / "history_2018_2026.json"
-TRANSFERS = json.loads((HISTORY.parent / "engine_v2_rules.json").read_text())["historical_transfers"]["values_pct_gdp_above_2019"]
+TRANSFERS = json.loads((HISTORY.parent / "engine_rules.json").read_text())["historical_transfers"]["values_pct_gdp_above_2019"]
 
 GRID = {
     "trend_growth": [2.0, 2.5],

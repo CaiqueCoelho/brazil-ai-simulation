@@ -1,6 +1,6 @@
 {
  "_note": "Registered on 2026-10-13 after the blind-v10 result was scored, at the author's request; disclosed in the article as a post-hoc change. Applies to every indicator and both candidates.",
- "old_rule": "A side wins an indicator only if it is better in every seed (data/scoring_v2_rules.json).",
+ "old_rule": "A side wins an indicator only if it is better in every seed.",
  "new_rule": "Seeds are still compared in pairs. A side wins an indicator if it is better on average and in most seeds; if the average and the majority point to different sides, it is a tie. Differences smaller than an official tolerance band are a tie: primary balance +/-0.25 pp of GDP, inflation +/-1.5 pp.",
  "effect_on_blind_v10": "Only approval changes: Lula 45.4% vs 42.6% on average, better in 4 of 5 seeds, becomes a Lula win. Score goes from Lula 8 x 1 to Lula 9 x 1."
 }

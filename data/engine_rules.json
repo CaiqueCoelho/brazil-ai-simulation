@@ -149,5 +149,25 @@
   "sources": [
    "https://www12.senado.leg.br/ifi"
   ]
+ },
+ "historical_transfers": {
+  "series": "Bolsa Familia / Auxilio Brasil spending as % of GDP minus the 2019 level (0.63%). Emergency aid of 2020-2021 stays in general spending.",
+  "values_pct_gdp_above_2019": {
+   "2018": 0.0,
+   "2019": 0.0,
+   "2020": 0.0,
+   "2021": 0.02,
+   "2022": 0.42,
+   "2023": 0.91,
+   "2024": 0.8,
+   "2025": 0.63,
+   "2026": 0.6
+  },
+  "sources": [
+   "https://agenciagov.ebc.com.br/noticias/202412/governo-federal-repassa-r-168-3-bilhoes-pelo-bolsa-familia-em-2024-1",
+   "https://www.poder360.com.br/poder-governo/governo-federal-deu-r-156-trilhao-em-auxilios-desde-a-pandemia/",
+   "https://en.wikipedia.org/wiki/Aux%C3%ADlio_Brasil",
+   "https://exame.com/brasil/bolsa-familia-o-que-explica-a-saida-de-1-milhao-de-beneficiarios-e-o-futuro-do-programa/"
+  ]
  }
 }

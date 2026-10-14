@@ -3,13 +3,19 @@
 import argparse
 import json
 import re
+import shutil
 import statistics
+import subprocess
+import tempfile
 from pathlib import Path
 
 from sim.metrics_pt import BY_KEY, METRICS
+from sim.sensitivity import base_params
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLE = ROOT / "article"
+PDF = ARTICLE / "artigo-ia-governa-brasil.pdf"
+CHROME_CANDIDATES = ("google-chrome", "google-chrome-stable", "chromium", "chromium-browser", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 COLORS = {"lula": "#2a78d6", "flavio": "#eb6834", "baseline": "#1baf7a"}
 TIE = "#b5b4ae"
 SHORT = {"lula": "Lula", "flavio": "Flávio", "baseline": "Base"}
@@ -121,31 +127,56 @@ def advantage(analysis: dict) -> str:
     return "".join(parts)
 
 
-def sensitivity(sens: dict) -> str:
+def sensitivity(sens: dict, main: dict) -> str:
     bc, fm, tp = sens["variants"]["growth_business_climate"], sens["variants"]["fiscal_multiplier"], sens["variants"]["tax_cut_passthrough"]
-    cell, gap, L, top = 64, 4, 120, 46
+    main_fm = min(fm, key=lambda f: abs(f - main["fiscal_multiplier"]))
+    strength = dict(zip(sorted(bc), ("fraco", "médio", "forte")))
+    cell, gap, L, top, panel_gap = 74, 6, 112, 78, 28
     panel_w = L + len(bc) * (cell + gap)
-    W, H = panel_w * len(tp) + 20, top + len(fm) * (cell + gap) + 40
-    parts = [f'<svg viewBox="0 0 {W} {H}" class="sens" role="img" aria-label="Teste de sensibilidade">']
+    W, H = panel_w * len(tp) + panel_gap * (len(tp) - 1), top + len(fm) * (cell + gap) + 44
+    text = lambda x, y, body, size=10, color="#52514e", anchor="start", weight=400: (
+        f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" font-family="{FONT}" font-size="{size}" font-weight="{weight}" fill="{color}">{body}</text>')
+    parts = [f'<svg viewBox="0 0 {W} {H}" class="sens" role="img" aria-label="Teste de sensibilidade: placar Lula × Flávio em cada combinação de hipóteses">']
     for p_i, pass_value in enumerate(tp):
-        ox = p_i * (panel_w + 20)
-        title = "com repasse de cortes de imposto aos preços" if pass_value else "sem repasse aos preços"
-        parts.append(f'<text x="{ox + L}" y="14" font-family="{FONT}" font-size="11" font-weight="700" fill="#1b1b1a">{title}</text>'
-                     f'<text x="{ox + L}" y="{top - 8}" font-family="{FONT}" font-size="9" fill="#77766f">efeito do "ambiente de negócios" no PIB →</text>')
+        ox = p_i * (panel_w + panel_gap)
+        title = f"Corte de imposto chega aos preços ({fmt(pass_value * 100, 0)}% do corte)" if pass_value else "Corte de imposto não chega aos preços"
+        parts.append(text(ox, 14, title, 11.5, "#1b1b1a", weight=700))
+        parts.append(text(ox + L, 36, "Efeito do ambiente de negócios no PIB →", 9.5, "#77766f"))
+        parts.append(text(ox + L - 10, top - 10, "Gasto público ↓", 9.5, "#77766f", "end"))
         for c_i, b in enumerate(bc):
-            parts.append(f'<text x="{ox + L + c_i * (cell + gap) + cell / 2:.1f}" y="{top - 20}" text-anchor="middle" font-family="{FONT}" font-size="10" fill="#52514e">{fmt(b, 1)}</text>')
+            cx = ox + L + c_i * (cell + gap) + cell / 2
+            parts.append(text(cx, 54, strength.get(b, fmt(b, 1)), 10.5, "#1b1b1a", "middle", 700))
+            parts.append(text(cx, 66, fmt(b, 1), 9, "#77766f", "middle"))
         for r_i, f in enumerate(fm):
             y = top + r_i * (cell + gap)
-            parts.append(f'<text x="{ox + L - 8}" y="{y + cell / 2 + 4:.1f}" text-anchor="end" font-family="{FONT}" font-size="10" fill="#52514e">gasto público {fmt(f, 1)}</text>')
+            parts.append(text(ox + L - 10, y + cell / 2 - 2, f"R$ {fmt(f, 2)}", 10.5, "#1b1b1a", "end", 700))
+            parts.append(text(ox + L - 10, y + cell / 2 + 11, "por R$ 1", 9, "#77766f", "end"))
             for c_i, b in enumerate(bc):
                 row = next(r for r in sens["rows"] if r["params"] == {"growth_business_climate": b, "fiscal_multiplier": f, "tax_cut_passthrough": pass_value})
-                color = COLORS.get(row["overall"], TIE)
                 x = ox + L + c_i * (cell + gap)
-                parts.append(f'<rect x="{x:.1f}" y="{y}" width="{cell}" height="{cell}" rx="6" fill="{color}"/>'
-                             f'<text x="{x + cell / 2:.1f}" y="{y + cell / 2 + 4:.1f}" text-anchor="middle" font-family="{FONT}" font-size="12" font-weight="700" fill="#fff">{row["tally"]["lula"]} × {row["tally"]["flavio"]}</text>')
-    parts.append(f'<text x="0" y="{H - 8}" font-family="{FONT}" font-size="10" fill="#77766f">Cada quadrado mostra o placar Lula × Flávio com aquela combinação de hipóteses. Azul: Lula vence · laranja: Flávio vence · cinza: empate.</text>')
+                ties = row["tally"]["empate"]
+                is_main = b == main["growth_business_climate"] and f == main_fm and pass_value == main["tax_cut_passthrough"]
+                parts.append(f'<rect x="{x:.1f}" y="{y}" width="{cell}" height="{cell}" rx="6" fill="{COLORS.get(row["overall"], TIE)}"/>')
+                if is_main:
+                    parts.append(f'<rect class="main" x="{x - 3:.1f}" y="{y - 3}" width="{cell + 6}" height="{cell + 6}" rx="8" fill="none" stroke="#1b1b1a" stroke-width="2.5"/>')
+                parts.append(text(x + cell / 2, y + cell / 2 + 2, f'{row["tally"]["lula"]} × {row["tally"]["flavio"]}', 15, "#fff", "middle", 700))
+                if ties:
+                    parts.append(text(x + cell / 2, y + cell / 2 + 17, f"{ties} empate" if ties == 1 else f"{ties} empates", 9, "#fff", "middle"))
+    parts.append(text(0, H - 24, "Cada quadrado é o placar Lula × Flávio com aquela combinação. Azul: Lula à frente · laranja: Flávio · cinza: empate.", 10, "#77766f"))
+    parts.append(text(0, H - 9, f"Contorno preto: hipóteses mais próximas das do resultado principal (gasto público R$ {fmt(main['fiscal_multiplier'], 2)} por R$ 1).", 10, "#77766f"))
     parts.append("</svg>")
     return "".join(parts)
+
+
+def sensitivity_summary(sens: dict) -> str:
+    rows = sens["rows"]
+    tallies = {(r["tally"]["lula"], r["tally"]["flavio"], r["tally"]["empate"]) for r in rows}
+    if len(tallies) == 1:
+        lula, flavio, ties = tallies.pop()
+        tie_text = f", com {ties} empate" if ties == 1 else f", com {ties} empates" if ties else ""
+        return f"Nas {len(rows)} combinações o placar é o mesmo: Lula {lula} × {flavio} Flávio{tie_text}. Trocar essas hipóteses não muda o resultado."
+    o = sens["overall"]
+    return f"Lula fica à frente em {o['lula']} das {len(rows)} combinações; Flávio, em {o['flavio']}; há empate em {o['empate']}."
 
 
 def scoreboard(analysis: dict) -> str:
@@ -165,57 +196,19 @@ def scoreboard(analysis: dict) -> str:
     return f"<table class='score'>{head}{''.join(rows)}</table>"
 
 
-TRACK_LABELS = {
-    "gdp_growth": ("Crescimento do PIB", "% ao ano, média"),
-    "inflation": ("Inflação (distância da meta de 3%)", "p.p., média"),
-    "selic": ("Taxa Selic", "% ao ano, média"),
-    "unemployment": ("Desemprego", "variação anual, p.p."),
-    "debt_gdp": ("Dívida pública bruta", "variação anual, p.p. do PIB"),
-    "primary_balance": ("Resultado primário", "% do PIB, média"),
-    "poverty_rate": ("Pobreza", "variação anual, p.p."),
-    "gini": ("Desigualdade (Gini)", "variação anual"),
-    "infant_mortality": ("Mortalidade infantil", "variação anual"),
-    "homicides_per_100k": ("Homicídios", "variação anual, por 100 mil"),
-    "deforestation_km2": ("Desmatamento na Amazônia", "variação anual, km²"),
-}
-TRACK_WINNER = {"pt": ("Lula", "w-lula"), "pl": ("Bolsonaro", "w-flavio"), "empate": ("Empate", "w-tie"), "sem dados": ("Sem dados", "w-tie")}
-
-
-def track_table(track: dict) -> str:
-    alt = {r["key"]: r for r in track["without_rebound"]["rows"]}
-    rows = []
-    for r in track["rows"]:
-        label, unit = TRACK_LABELS[r["key"]]
-        dec = 3 if r["key"] == "gini" else 0 if r["key"] == "deforestation_km2" else 2
-        cell = lambda v: "—" if v is None else fmt(v, dec)  # noqa: E731
-        w, cls = TRACK_WINNER[r["winner"]]
-        w2, cls2 = TRACK_WINNER[alt[r["key"]]["winner"]]
-        mark = " *" if r["rebound_2022"] else ""
-        rows.append(f"<tr><td>{label}<div class='basis'>{unit}</div></td><td>{cell(r['pl'])}{mark}</td><td>{cell(r['pt'])}</td>"
-                    f"<td class='{cls}'>{w}</td><td class='{cls2}'>{w2}</td></tr>")
-    head = ("<tr><th>Indicador</th><th>Bolsonaro<br><span class='basis'>2019 e 2022</span></th><th>Lula<br><span class='basis'>2023 a 2025</span></th>"
-            "<th>Vencedor<br><span class='basis'>regra registrada</span></th><th>Vencedor<br><span class='basis'>sem o rebote de 2022</span></th></tr>")
-    return f"<table class='score track'>{head}{''.join(rows)}</table>"
-
-
 VERSIONS = [
     ("Versão principal: histórico anônimo, mercado e BC por regras fixas", "analysis.json", ()),
     ("Rodada anterior (200 cidadãos), refeita com as premissas atuais e mercado e BC por regras fixas", "../blind-v8/second_review.json", ("regra_v3",)),
-    ("Histórico real (sem o rebote de 2022)", None, None),
 ]
 
 
 def versions_table(run_dir: Path) -> str:
     rows = []
     for label, source, keys in VERSIONS:
-        if source is None:
-            t = json.loads((ROOT / "out" / "track_record.json").read_text())["without_rebound"]["tally"]
-            t = {"lula": t["pt"], "flavio": t["pl"]}
-        else:
-            data = json.loads((run_dir / source).read_text())
-            for key in keys:
-                data = data[key]
-            t = data["tally"]
+        data = json.loads((run_dir / source).read_text())
+        for key in keys:
+            data = data[key]
+        t = data["tally"]
         cls, win = ("w-lula", "Lula") if t["lula"] > t["flavio"] else ("w-flavio", "Flávio") if t["flavio"] > t["lula"] else ("w-tie", "Empate")
         rows.append(f"<tr><td>{label}</td><td>{t['lula']} × {t['flavio']}</td><td class='{cls}'>{win}</td></tr>")
     head = "<tr><th>Versão</th><th>Lula × Flávio</th><th>Vencedor</th></tr>"
@@ -234,8 +227,6 @@ def render(template: str, run_dir: Path, repo: str) -> str:
     sens = json.loads(sens_path.read_text()) if sens_path.exists() else None
     dec_path = run_dir / "decompose.json"
     dec = json.loads(dec_path.read_text()) if dec_path.exists() else None
-    track_path = ROOT / "out" / "track_record.json"
-    track = json.loads(track_path.read_text()) if track_path.exists() else None
     by_key = {r["key"]: r for r in analysis["metrics"]}
 
     def replace(match: re.Match) -> str:
@@ -247,7 +238,10 @@ def render(template: str, run_dir: Path, repo: str) -> str:
         if kind == "advantage":
             return advantage(analysis)
         if kind == "sensitivity":
-            return sensitivity(sens)
+            main = base_params(results)
+            return sensitivity(sens, {k: getattr(main, k) for k in sens["variants"]})
+        if kind == "sens_summary":
+            return sensitivity_summary(sens)
         if kind == "sens_overall":
             return str(sens["overall"][args[0]])
         if kind == "sens_total":
@@ -272,11 +266,6 @@ def render(template: str, run_dir: Path, repo: str) -> str:
             return f"{n} empate" if n == 1 else f"{n} empates"
         if kind == "versions":
             return versions_table(run_dir)
-        if kind == "track":
-            return track_table(track)
-        if kind == "track_tally":
-            source = track["without_rebound"] if args[0] == "alt" else track
-            return str(source["tally"][args[1]])
         if kind == "dec":
             return str(dec[args[0]]["tally"][args[1]])
         if kind == "calls":
@@ -290,12 +279,30 @@ def render(template: str, run_dir: Path, repo: str) -> str:
     return re.sub(r"\{\{([^}]+)\}\}", replace, template)
 
 
+def find_chrome() -> str:
+    for name in CHROME_CANDIDATES:
+        found = shutil.which(name) or (name if Path(name).exists() else None)
+        if found:
+            return found
+    raise SystemExit("Chrome not found; install it or print article/artigo.html to PDF by hand.")
+
+
+def pdf_command(chrome: str, html: Path, pdf: Path, profile: Path) -> list[str]:
+    return [chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer", f"--user-data-dir={profile}", f"--print-to-pdf={pdf}", html.as_uri()]
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("run_dir", type=Path)
     parser.add_argument("--repo", default="[link do repositório no GitHub: a inserir]")
+    parser.add_argument("--pdf", action="store_true", help=f"also print the article to {PDF.relative_to(ROOT)} with headless Chrome")
     args = parser.parse_args()
     body = render((ARTICLE / "corpo.html").read_text(), args.run_dir, args.repo)
     shell = (ARTICLE / "modelo.html").read_text()
-    (ARTICLE / "artigo.html").write_text(shell.replace("{{body}}", body))
-    print(ARTICLE / "artigo.html")
+    html = ARTICLE / "artigo.html"
+    html.write_text(shell.replace("{{body}}", body))
+    print(html)
+    if args.pdf:
+        with tempfile.TemporaryDirectory() as profile:
+            subprocess.run(pdf_command(find_chrome(), html.resolve(), PDF.resolve(), Path(profile)), check=True, capture_output=True)
+        print(PDF)
