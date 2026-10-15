@@ -4,7 +4,7 @@ Experimento que simula quatro anos de governo no Brasil (2027–2030) sob duas p
 
 > **Não é previsão.** É um experimento estilizado: modelos de linguagem tomam decisões e um modelo de equações simples transforma essas decisões em números. Os resultados refletem as hipóteses do modelo e os vieses dos modelos de IA.
 
-**Artigo:** [ler online](https://caiquecoelho.github.io/brazil-ai-simulation/) · [baixar PDF](https://github.com/CaiqueCoelho/brazil-ai-simulation/raw/main/article/artigo-ia-governa-brasil.pdf)
+**Artigo:** [ler online (GitHub Pages)](https://caiquecoelho.github.io/brazil-ai-simulation/) · [Medium](https://medium.com/@caiquecoelho/um-experimento-com-intelig%C3%AAncia-artificial-testou-os-planos-de-governo-de-lula-e-de-fl%C3%A1vio-7ae218323605) · [Post no X](https://x.com/caiqueocoelho/status/2110754543847829682) · [baixar PDF](https://github.com/CaiqueCoelho/brazil-ai-simulation/raw/main/article/artigo-ia-governa-brasil.pdf)
 
 Todo o experimento, incluindo o código, a calibração, a execução, a análise e o artigo, foi conduzido por IA (Claude, da Anthropic, no Claude Code). O papel humano foi aprovar o orçamento, validar a lista de propostas, decidir algumas premissas registradas nos arquivos de regras e publicar.
 
