@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Emprego e Mercado de Trabalho - Vencedor: Lula</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    background: #090d16;
+    background-image: 
+      radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(249, 115, 22, 0.08) 0%, transparent 40%);
+    color: #f1f5f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px;
+    position: relative;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .badge-winner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .badge-winner span.trophy { font-size: 13px; }
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+  
+  .score-capsule {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px 16px;
+    text-align: right;
+  }
+  .score-capsule .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    font-weight: 700;
+  }
+  .score-capsule .val {
+    font-size: 14px;
+    color: #38bdf8;
+    font-weight: 800;
+  }
+  
+  /* Metric Row */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 12px 0;
+  }
+  .metric-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px 18px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .metric-card.lula {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0.03) 100%);
+    border: 1.5px solid rgba(56, 189, 248, 0.45);
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.12);
+  }
+  .metric-card.flavio {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0.02) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.25);
+  }
+  .metric-info .cand-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .metric-card.lula .cand-name { color: #38bdf8; }
+  .metric-card.flavio .cand-name { color: #fb923c; }
+  .metric-card.base .cand-name { color: #94a3b8; }
+  .metric-info .desc {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+  }
+  .metric-val-group {
+    text-align: right;
+  }
+  .metric-val {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .metric-card.lula .metric-val { color: #38bdf8; }
+  .metric-card.flavio .metric-val { color: #fb923c; }
+  .metric-card.base .metric-val { color: #e2e8f0; }
+  .metric-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-top: 3px;
+  }
+  .metric-card.lula .metric-tag { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+  .metric-card.flavio .metric-tag { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+  .metric-card.base .metric-tag { background: rgba(255, 255, 255, 0.08); color: #94a3b8; }
+
+  /* Content Columns */
+  .grid-body {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 16px;
+    flex: 1;
+    margin-bottom: 8px;
+  }
+  
+  .chart-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .chart-box svg {
+    width: 100%;
+    height: auto;
+  }
+  .chart .ct { font-size: 12px; font-weight: 700; fill: #ffffff; }
+  .chart .cu { font-weight: 400; fill: #94a3b8; }
+  .chart .ax { font-size: 9.5px; fill: #94a3b8; }
+  .chart .lab { font-size: 10px; fill: #ffffff; font-weight: 600; }
+  .chart .grid { stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+  
+  .chart-footer {
+    font-size: 10.5px;
+    color: #64748b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .mechanisms-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+  .mech-card {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+  .mech-card.lula {
+    border-left: 3.5px solid #38bdf8;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+  }
+  .mech-card.flavio {
+    border-left: 3.5px solid #fb923c;
+    background: linear-gradient(90deg, rgba(249, 115, 22, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  }
+  .mech-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mech-card.lula .mech-title { color: #38bdf8; }
+  .mech-card.flavio .mech-title { color: #fb923c; }
+  .mech-desc {
+    color: #cbd5e1;
+  }
+  .mech-desc strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #64748b;
+  }
+  .footer-brand {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <div class="badge-winner"><span class="trophy">🏆</span> Vencedor: Lula · Indicador 1 de 11</div>
+      <h1>Emprego e Mercado de Trabalho</h1>
+      <p class="subtitle">Fim da escala 6x1 e valorização do consumo superam a desoneração ampla da folha</p>
+    </div>
+    <div class="score-capsule">
+      <div class="label">Placar da Simulação</div>
+      <div class="val">Lula 9 x 1 Flávio</div>
+    </div>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-card lula">
+      <div class="metric-info">
+        <div class="cand-name">Lula 🏆</div>
+        <div class="desc">Desemprego em 2030</div>
+      </div>
+      <div class="metric-val-group">
+        <div class="metric-val">5,5%</div>
+        <div class="metric-tag">-0,5 p.p. vs Base</div>
+      </div>
+    </div>
+    
+    <div class="metric-card flavio">
+      <div class="metric-info">
+        <div class="cand-name">Flávio Bolsonaro</div>
+        <div class="desc">Desemprego em 2030</div>
+      </div>
+      <div class="metric-val-group">
+        <div class="metric-val">5,9%</div>
+        <div class="metric-tag">-0,1 p.p. vs Base</div>
+      </div>
+    </div>
+
+    <div class="metric-card base">
+      <div class="metric-info">
+        <div class="cand-name">Cenário Base</div>
+        <div class="desc">Referência inercial</div>
+      </div>
+      <div class="metric-val-group">
+        <div class="metric-val">6,0%</div>
+        <div class="metric-tag">Sem novas políticas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-body">
+    <div class="chart-box">
+      <svg viewBox="0 0 520 210" class="chart" role="img" aria-label="Desemprego"><text x="46" y="15" class="ct">Desemprego <tspan class="cu">% da força de trabalho</tspan></text><line x1="46" x2="442" y1="186.0" y2="186.0" class="grid"/><text x="40" y="189.5" class="ax" text-anchor="end">4,6</text><line x1="46" x2="442" y1="146.5" y2="146.5" class="grid"/><text x="40" y="150.0" class="ax" text-anchor="end">5,2</text><line x1="46" x2="442" y1="107.0" y2="107.0" class="grid"/><text x="40" y="110.5" class="ax" text-anchor="end">5,7</text><line x1="46" x2="442" y1="67.5" y2="67.5" class="grid"/><text x="40" y="71.0" class="ax" text-anchor="end">6,3</text><line x1="46" x2="442" y1="28.0" y2="28.0" class="grid"/><text x="40" y="31.5" class="ax" text-anchor="end">6,9</text><text x="46.0" y="204" class="ax" text-anchor="middle">2026</text><text x="145.0" y="204" class="ax" text-anchor="middle">2027</text><text x="244.0" y="204" class="ax" text-anchor="middle">2028</text><text x="343.0" y="204" class="ax" text-anchor="middle">2029</text><text x="442.0" y="204" class="ax" text-anchor="middle">2030</text><polygon points="46.0,137.3 70.8,123.7 95.5,109.7 120.2,102.3 145.0,109.9 169.8,112.4 194.5,104.3 219.2,107.0 244.0,102.4 268.8,95.7 293.5,67.9 318.2,72.3 343.0,63.6 367.8,62.2 392.5,60.0 417.2,64.1 442.0,83.1 442.0,166.3 417.2,172.8 392.5,159.3 367.8,154.6 343.0,148.2 318.2,138.3 293.5,148.6 268.8,150.5 244.0,142.4 219.2,144.8 194.5,142.5 169.8,153.6 145.0,140.8 120.2,142.3 95.5,139.4 70.8,137.6 46.0,137.3" fill="#2a78d6" fill-opacity="0.10"/><polygon points="46.0,137.3 70.8,114.6 95.5,103.4 120.2,88.1 145.0,93.5 169.8,98.4 194.5,89.4 219.2,95.6 244.0,98.1 268.8,83.0 293.5,58.3 318.2,61.5 343.0,42.9 367.8,48.1 392.5,45.6 417.2,52.1 442.0,66.0 442.0,140.8 417.2,150.7 392.5,137.5 367.8,134.1 343.0,125.7 318.2,113.3 293.5,123.7 268.8,124.7 244.0,127.1 219.2,128.6 194.5,132.3 169.8,140.5 145.0,128.8 120.2,135.2 95.5,133.3 70.8,131.8 46.0,137.3" fill="#eb6834" fill-opacity="0.10"/><polygon points="46.0,137.3 70.8,122.4 95.5,108.2 120.2,94.3 145.0,95.3 169.8,92.8 194.5,82.4 219.2,84.2 244.0,92.5 268.8,76.1 293.5,53.7 318.2,58.7 343.0,41.2 367.8,45.8 392.5,41.9 417.2,43.7 442.0,57.5 442.0,120.4 417.2,133.6 392.5,117.0 367.8,118.4 343.0,112.0 318.2,108.7 293.5,117.6 268.8,124.1 244.0,121.7 219.2,116.0 194.5,120.6 169.8,132.9 145.0,131.7 120.2,133.9 95.5,135.4 70.8,136.7 46.0,137.3" fill="#1baf7a" fill-opacity="0.10"/><polyline points="46.0,137.3 70.8,129.8 95.5,125.3 120.2,125.8 145.0,128.0 169.8,130.2 194.5,126.0 219.2,124.5 244.0,126.1 268.8,125.1 293.5,120.0 318.2,114.8 343.0,114.3 367.8,117.6 392.5,116.5 417.2,118.1 442.0,123.2" fill="none" stroke="#2a78d6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,137.3 70.8,123.7 95.5,118.1 120.2,113.5 145.0,113.1 169.8,115.6 194.5,113.9 219.2,111.2 244.0,113.1 268.8,108.1 293.5,104.2 318.2,97.4 343.0,92.8 367.8,97.5 392.5,96.5 417.2,96.8 442.0,98.7" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,137.3 70.8,129.2 95.5,120.2 120.2,116.2 145.0,113.8 169.8,112.9 194.5,106.6 219.2,102.1 244.0,102.2 268.8,96.1 293.5,88.7 318.2,83.9 343.0,80.0 367.8,84.7 392.5,83.1 417.2,84.2 442.0,86.6" fill="none" stroke="#1baf7a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 3"/><circle cx="442.0" cy="86.6" r="4" fill="#1baf7a" stroke="#fff" stroke-width="2"/><text x="450.0" y="90.6" class="lab"><tspan font-weight="700">Base</tspan> 6,0</text><circle cx="442.0" cy="98.7" r="4" fill="#eb6834" stroke="#fff" stroke-width="2"/><text x="450.0" y="103.6" class="lab"><tspan font-weight="700">Flávio</tspan> 5,9</text><circle cx="442.0" cy="123.2" r="4" fill="#2a78d6" stroke="#fff" stroke-width="2"/><text x="450.0" y="127.2" class="lab"><tspan font-weight="700">Lula</tspan> 5,5</text></svg>
+      <div class="chart-footer">
+        <span>Faixas sombreadas: bandas de confiança de 90% (5 rodadas estocásticas)</span>
+        <span>Fonte: simulação multi-agente</span>
+      </div>
+    </div>
+
+    <div class="mechanisms-box">
+      <div class="mech-card lula">
+        <div class="mech-title">
+          <span>✓</span> Por que as propostas de Lula geram mais empregos:
+        </div>
+        <div class="mech-desc">
+          • <strong>Fim da escala 6x1:</strong> Conforme nota técnica do Ipea, o impacto no custo empresarial é inferior a 1% do faturamento, sendo absorvido por ganhos de produtividade horária e novos turnos sem destruição de vagas.<br>
+          • <strong>Multiplicador do consumo:</strong> Aumento real do salário mínimo e transferências elevam a demanda no comércio e serviços, setor responsável por mais de 70% das admissões formais.
+        </div>
+      </div>
+
+      <div class="mech-card flavio">
+        <div class="mech-title">
+          <span>⚠</span> Por que o plano de Flávio estagnou a criação de vagas:
+        </div>
+        <div class="mech-desc">
+          • <strong>Desoneração ineficaz:</strong> Evidência empírica brasileira (Ipea sobre 2012) comprova que desoneração ampla vira ampliação de margem de lucro corporativa, gerando saldo líquido desprezível de novas vagas.<br>
+          • <strong>Compressão fiscal:</strong> Choque de cortes orçamentários (1,5% do PIB) esfria a demanda agregada no curto prazo, travando decisões empresariais de contratação.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Simulação econométrica multi-agente 2026–2030 · 100.000 agentes sintéticos calibrados via PNAD-C e Ipea</div>
+    <div class="footer-brand">github.com/CaiqueCoelho/brazil-ai-simulation</div>
+  </div>
+
+</body>
+</html>
