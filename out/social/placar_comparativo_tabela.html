@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1920px;
+    height: 1280px;
+    overflow: hidden;
+    background: #080d1a;
+    color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 56px 80px 50px 80px;
+    position: relative;
+  }
+
+  /* Ambient glow effects */
+  .glow-top-left {
+    position: absolute;
+    top: -150px;
+    left: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .glow-bottom-right {
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.10) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    width: fit-content;
+  }
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #38bdf8;
+  }
+  h1 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+    color: #ffffff;
+    line-height: 1.1;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+
+  /* Scoreboard summary pill in header */
+  .scoreboard-pill {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 24px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  }
+  .score-candidate {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .score-num {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .score-label {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .score-vs {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 700;
+    padding: 0 4px;
+  }
+
+  /* Table styling */
+  .table-card {
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    padding: 16px 32px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 19px;
+  }
+
+  thead th {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    padding: 14px 18px;
+    color: #94a3b8;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.16);
+    text-align: left;
+  }
+  thead th.th-lula {
+    color: #38bdf8;
+    width: 32%;
+  }
+  thead th.th-flavio {
+    color: #fb923c;
+    width: 32%;
+  }
+  thead th.th-res {
+    color: #cbd5e1;
+    text-align: center;
+    width: 13%;
+  }
+  thead th.th-ind {
+    width: 23%;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  tbody td {
+    padding: 13px 18px;
+    vertical-align: middle;
+    line-height: 1.35;
+  }
+
+  .td-ind {
+    font-weight: 700;
+    color: #f8fafc;
+    font-size: 19.5px;
+  }
+  .td-lula {
+    color: #e0f2fe;
+    font-weight: 500;
+  }
+  .td-flavio {
+    color: #ffedd5;
+    font-weight: 500;
+  }
+  .td-res {
+    text-align: center;
+  }
+
+  /* Highlight specific numbers */
+  .val-bold {
+    font-weight: 900;
+    font-size: 22px;
+  }
+  .val-lula {
+    color: #38bdf8;
+  }
+  .val-flavio {
+    color: #fb923c;
+  }
+
+  /* Result badges */
+  .badge-res {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .badge-lula {
+    background: rgba(56, 189, 248, 0.20);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.45);
+  }
+  .badge-flavio {
+    background: rgba(249, 115, 22, 0.22);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.5);
+  }
+  .badge-tie {
+    background: rgba(148, 163, 184, 0.18);
+    color: #e2e8f0;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+  }
+
+  /* Highlight row for Flávio sole win */
+  tr.row-flavio-win {
+    background: rgba(249, 115, 22, 0.10);
+    border-left: 5px solid #f97316;
+  }
+
+  /* Footer banner */
+  .footer-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 14px 28px;
+    margin-top: 18px;
+    position: relative;
+    z-index: 2;
+  }
+  .verdict-text {
+    font-size: 19px;
+    font-weight: 800;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .verdict-tag {
+    background: #0284c7;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .source-text {
+    font-size: 14px;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+  .source-text b {
+    color: #38bdf8;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-top-left"></div>
+  <div class="glow-bottom-right"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="badge"><div class="badge-dot"></div> Simulação Computacional · Eleições 2026–2030</div>
+      <h1>Placar Comparativo dos Indicadores</h1>
+      <div class="subtitle">Comportamento dos 11 indicadores fundamentais simulados trimestre a trimestre sob choques reais</div>
+    </div>
+    <div class="scoreboard-pill">
+      <div class="score-candidate">
+        <span class="score-num" style="color: #38bdf8;">9</span>
+        <div>
+          <div class="score-label" style="color: #38bdf8;">Lula</div>
+          <div style="font-size: 12px; color: #94a3b8;">vitórias</div>
+        </div>
+      </div>
+      <div class="score-vs">VS</div>
+      <div class="score-candidate">
+        <span class="score-num" style="color: #fb923c;">1</span>
+        <div>
+          <div class="score-label" style="color: #fb923c;">Flávio</div>
+          <div style="font-size: 12px; color: #94a3b8;">vitória</div>
+        </div>
+      </div>
+      <div style="width: 1px; height: 36px; background: rgba(255,255,255,0.15); margin: 0 4px;"></div>
+      <div style="text-align: center;">
+        <div style="font-size: 18px; font-weight: 800; color: #cbd5e1;">1</div>
+        <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Empate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Card -->
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th class="th-ind">Indicador</th>
+          <th class="th-lula">Plano de Lula</th>
+          <th class="th-flavio">Plano de Flávio</th>
+          <th class="th-res">Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-ind">Desemprego ao fim de 2030</td>
+          <td class="td-lula"><span class="val-bold val-lula">5,5%</span> (fim da escala 6x1 e produtividade)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">5,9%</span> (desoneração sem saldo de vagas)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Pobreza extrema e moderada</td>
+          <td class="td-lula"><span class="val-bold val-lula">17,4%</span> (ganho real do mínimo + BPC)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">23,8%</span> (desindexação das aposentadorias)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Desigualdade — Índice de Gini</td>
+          <td class="td-lula"><span class="val-bold val-lula">0,489</span> (maior transferência para a base)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">0,518</span> (compressão na base da pirâmide)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Insegurança alimentar grave (fome)</td>
+          <td class="td-lula"><span class="val-bold val-lula">3,1%</span> (PAA e merenda escolar preservados)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">4,2%</span> (perda real de poder de compra)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Mortalidade infantil (por mil nascidos)</td>
+          <td class="td-lula"><span class="val-bold val-lula">11,02</span> (piso do SUS e saneamento básico)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">12,01</span> (congelamento de repasses da saúde)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Homicídios por 100 mil habitantes</td>
+          <td class="td-lula"><span class="val-bold val-lula">16,9</span> (câmeras corporais e inteligência)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">18,4</span> (medidas penais barradas no STF)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Desmatamento na Amazônia (km²/ano)</td>
+          <td class="td-lula"><span class="val-bold val-lula">3.940</span> (fiscalização presencial e multas)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">5.367</span> (satélites sem autuação em campo)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Aprovação dos cidadãos virtuais</td>
+          <td class="td-lula"><span class="val-bold val-lula">45%</span> (alívio no bolso e saúde percebida)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">43%</span> (queixas de custo de vida e serviços)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Estabilidade institucional</td>
+          <td class="td-lula"><span class="val-bold val-lula">Menor atrito</span> (0 medidas barradas no STF)</td>
+          <td class="td-flavio"><span class="val-bold val-flavio">Alto atrito</span> (2,8 medidas barradas no STF)</td>
+          <td class="td-res"><span class="badge-res badge-lula">🏆 Lula</span></td>
+        </tr>
+        <tr class="row-flavio-win">
+          <td class="td-ind" style="color: #ffedd5;">Contas públicas (Dívida e Primário)</td>
+          <td class="td-lula">Déficit primário de <span class="val-bold val-lula">-0,48%</span> · Dívida: <span class="val-bold val-lula">88,4%</span></td>
+          <td class="td-flavio">Superávit primário de <span class="val-bold val-flavio">+0,41%</span> · Dívida: <span class="val-bold val-flavio">85,2%</span></td>
+          <td class="td-res"><span class="badge-res badge-flavio">🎯 Flávio</span></td>
+        </tr>
+        <tr>
+          <td class="td-ind">Economia geral (PIB, IPCA e Selic)</td>
+          <td class="td-lula">PIB: <span class="val-bold val-lula">1,8%</span> a.a. · IPCA: 3,88% · Selic: 9,25%</td>
+          <td class="td-flavio">PIB: <span class="val-bold val-flavio">1,7%</span> a.a. · IPCA: 3,80% · Selic: 8,85%</td>
+          <td class="td-res"><span class="badge-res badge-tie">🤝 Empate</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer Banner -->
+  <div class="footer-banner">
+    <div class="verdict-text">
+      <span class="verdict-tag">Veredito Geral</span>
+      Lula vence em 9 indicadores, Flávio vence em 1 (contas públicas), e há 1 empate técnico.
+    </div>
+    <div class="source-text">
+      Dados oficiais: <b>TSE · Banco Central · IBGE · Ipea · FMI</b> &nbsp;|&nbsp; <b>github.com/CaiqueCoelho/brazil-ai-simulation</b>
+    </div>
+  </div>
+</body>
+</html>
