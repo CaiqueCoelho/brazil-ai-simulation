@@ -157,14 +157,27 @@ def make_thread_card2():
     # Fiscal e Dívida
     c1 = chart(results, "debt_gdp")
     c2 = chart(results, "primary_balance")
-    insight = "<strong>Mecanismo Fiscal:</strong> A única vitória de Flávio vem das contas públicas: o corte de R$ 190 bi zera o déficit primário (+0,1% PIB) e baixa a dívida para <strong>85,2%</strong>. Com Lula, o arcabouço fiscal estabiliza o déficit em -0,6% do PIB, com a dívida fechando em 88,4% (abaixo do cenário base de 89,7%)."
+    insight = """
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <span style="font-weight:800; color:#f97316; font-size:12.5px; text-transform:uppercase; letter-spacing:0.5px;">
+          🎯 O Único Destaque de Flávio Bolsonaro (1 de 11 Indicadores)
+        </span>
+        <span style="background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.3); color:#38bdf8; font-weight:800; padding:2px 10px; border-radius:999px; font-size:11px;">
+          PLACAR GERAL: LULA 9 × 1 FLÁVIO (1 EMPATE)
+        </span>
+      </div>
+      <div>
+        O corte de R$ 190 bi (1,5% do PIB) zera o déficit primário (+0,1% PIB) e reduz a dívida para <strong>85,2% do PIB</strong> (vs 88,4% com Lula e 89,7% no cenário base). Contudo, este foi o <strong>único indicador onde Flávio superou Lula</strong> em toda a simulação: todas as áreas de emprego, renda, pobreza, saúde e meio ambiente tiveram vitória de Lula.
+      </div>
+    """
     return wrap_thread_card(
-        "A Vitória de Flávio: Contas Públicas e Dívida",
-        "Trajetória trimestral da dívida bruta e do resultado primário (% do PIB)",
-        "DETALHAMENTO · FISCAL",
+        "A Única Vitória de Flávio (1 de 11): Contas Públicas e Dívida",
+        "No placar geral onde Lula vence por 9x1, o plano de Flávio só supera o petista na trajetória fiscal e da dívida",
+        "PLACAR GERAL: LULA 9 × 1 FLÁVIO · ÚNICA VITÓRIA DE FLÁVIO",
         c1 + c2,
         insight
     )
+
 
 def make_thread_card3():
     # Social: Pobreza e Fome
