@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    background: #0f141c;
+    color: #f1f5f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 34px 44px;
+    position: relative;
+  }
+  .header {
+    position: relative;
+    z-index: 2;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 8px;
+  }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+  }
+  h1 {
+    font-size: 27px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 4px;
+    letter-spacing: -0.4px;
+  }
+  .subtitle {
+    font-size: 13.5px;
+    color: #94a3b8;
+  }
+  .main-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0;
+  }
+  .charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 14px 20px;
+  }
+  .chart {
+    width: 100%;
+    height: auto;
+  }
+  .chart .ct { font-size: 12px; font-weight: 700; fill: #ffffff; }
+  .chart .cu { font-weight: 400; fill: #94a3b8; }
+  .chart .ax { font-size: 9.5px; fill: #94a3b8; }
+  .chart .lab { font-size: 10px; fill: #ffffff; font-weight: 600; }
+  .chart .grid { stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+  
+  .quotes-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .quote-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .quote-card.lula {
+    border-left: 3px solid #3b82f6;
+  }
+  .quote-card.flavio {
+    border-left: 3px solid #f97316;
+  }
+  .quote-title {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    margin-bottom: 3px;
+  }
+  .quote-text {
+    color: #e2e8f0;
+    font-style: italic;
+  }
+  .footer {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: #64748b;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><span class="badge-dot"></span>A VOZ DOS 200 CIDADÃOS VIRTUAIS · IA</div>
+    <h1>Popularidade Popular e Estabilidade Democrática</h1>
+    <p class="subtitle">Como personagens de IA representando a demografia do IBGE reagiram a cada governo simulado</p>
+  </div>
+
+  <div class="main-content">
+    <div class="charts-row">
+      <svg viewBox="0 0 520 210" class="chart" role="img" aria-label="Aprovação do presidente"><text x="46" y="15" class="ct">Aprovação do presidente <tspan class="cu">% dos cidadãos simulados</tspan></text><line x1="46" x2="442" y1="186.0" y2="186.0" class="grid"/><text x="40" y="189.5" class="ax" text-anchor="end">13</text><line x1="46" x2="442" y1="146.5" y2="146.5" class="grid"/><text x="40" y="150.0" class="ax" text-anchor="end">26</text><line x1="46" x2="442" y1="107.0" y2="107.0" class="grid"/><text x="40" y="110.5" class="ax" text-anchor="end">39</text><line x1="46" x2="442" y1="67.5" y2="67.5" class="grid"/><text x="40" y="71.0" class="ax" text-anchor="end">52</text><line x1="46" x2="442" y1="28.0" y2="28.0" class="grid"/><text x="40" y="31.5" class="ax" text-anchor="end">64</text><text x="46.0" y="204" class="ax" text-anchor="middle">2026</text><text x="145.0" y="204" class="ax" text-anchor="middle">2027</text><text x="244.0" y="204" class="ax" text-anchor="middle">2028</text><text x="343.0" y="204" class="ax" text-anchor="middle">2029</text><text x="442.0" y="204" class="ax" text-anchor="middle">2030</text><polygon points="46.0,72.2 70.8,60.1 95.5,54.6 120.2,58.5 145.0,57.5 169.8,66.0 194.5,70.2 219.2,74.5 244.0,76.5 268.8,72.2 293.5,62.4 318.2,65.0 343.0,68.9 367.8,58.9 392.5,67.0 417.2,67.2 442.0,74.6 442.0,142.9 417.2,140.4 392.5,143.0 367.8,135.6 343.0,139.4 318.2,137.7 293.5,134.5 268.8,126.3 244.0,116.8 219.2,118.9 194.5,97.6 169.8,83.3 145.0,84.5 120.2,71.7 95.5,64.2 70.8,65.0 46.0,72.2" fill="#2a78d6" fill-opacity="0.10"/><polygon points="46.0,72.2 70.8,63.0 95.5,66.0 120.2,58.2 145.0,53.5 169.8,60.9 194.5,57.7 219.2,76.5 244.0,74.7 268.8,72.8 293.5,76.9 318.2,92.0 343.0,94.0 367.8,92.4 392.5,99.3 417.2,100.7 442.0,105.0 442.0,152.0 417.2,135.0 392.5,139.7 367.8,133.7 343.0,141.3 318.2,123.7 293.5,118.2 268.8,118.8 244.0,109.0 219.2,92.6 194.5,89.2 169.8,85.0 145.0,94.7 120.2,87.5 95.5,76.6 70.8,71.2 46.0,72.2" fill="#eb6834" fill-opacity="0.10"/><polygon points="46.0,72.2 70.8,70.6 95.5,83.1 120.2,84.9 145.0,89.5 169.8,98.6 194.5,109.0 219.2,99.8 244.0,97.3 268.8,80.2 293.5,74.3 318.2,64.6 343.0,58.6 367.8,47.8 392.5,41.2 417.2,47.3 442.0,45.8 442.0,172.8 417.2,169.0 392.5,161.6 367.8,152.6 343.0,150.6 318.2,149.2 293.5,151.5 268.8,146.0 244.0,149.9 219.2,148.9 194.5,139.5 169.8,136.9 145.0,140.4 120.2,126.4 95.5,104.1 70.8,77.5 46.0,72.2" fill="#1baf7a" fill-opacity="0.10"/><polyline points="46.0,72.2 70.8,61.7 95.5,60.2 120.2,63.0 145.0,69.8 169.8,72.9 194.5,81.2 219.2,87.6 244.0,87.8 268.8,87.5 293.5,87.8 318.2,93.0 343.0,101.7 367.8,102.3 392.5,107.0 417.2,109.6 442.0,109.3" fill="none" stroke="#2a78d6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,72.2 70.8,67.0 95.5,72.5 120.2,71.1 145.0,68.9 169.8,75.5 194.5,79.2 219.2,84.6 244.0,92.4 268.8,101.2 293.5,102.8 318.2,106.3 343.0,115.3 367.8,117.6 392.5,122.2 417.2,123.0 442.0,121.6" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,72.2 70.8,74.1 95.5,94.7 120.2,112.7 145.0,123.8 169.8,125.1 194.5,126.5 219.2,132.6 244.0,132.7 268.8,128.2 293.5,120.9 318.2,117.8 343.0,118.9 367.8,118.0 392.5,115.7 417.2,118.6 442.0,119.2" fill="none" stroke="#1baf7a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 3"/><circle cx="442.0" cy="109.3" r="4" fill="#2a78d6" stroke="#fff" stroke-width="2"/><text x="450.0" y="113.3" class="lab"><tspan font-weight="700">Lula</tspan> 38</text><circle cx="442.0" cy="119.2" r="4" fill="#1baf7a" stroke="#fff" stroke-width="2"/><text x="450.0" y="126.3" class="lab"><tspan font-weight="700">Base</tspan> 35</text><circle cx="442.0" cy="121.6" r="4" fill="#eb6834" stroke="#fff" stroke-width="2"/><text x="450.0" y="139.3" class="lab"><tspan font-weight="700">Flávio</tspan> 34</text></svg><svg viewBox="0 0 520 210" class="chart" role="img" aria-label="Risco democrático"><text x="46" y="15" class="ct">Risco democrático <tspan class="cu">índice de 0 a 100</tspan></text><line x1="46" x2="442" y1="186.0" y2="186.0" class="grid"/><text x="40" y="189.5" class="ax" text-anchor="end">19</text><line x1="46" x2="442" y1="146.5" y2="146.5" class="grid"/><text x="40" y="150.0" class="ax" text-anchor="end">25</text><line x1="46" x2="442" y1="107.0" y2="107.0" class="grid"/><text x="40" y="110.5" class="ax" text-anchor="end">31</text><line x1="46" x2="442" y1="67.5" y2="67.5" class="grid"/><text x="40" y="71.0" class="ax" text-anchor="end">37</text><line x1="46" x2="442" y1="28.0" y2="28.0" class="grid"/><text x="40" y="31.5" class="ax" text-anchor="end">43</text><text x="46.0" y="204" class="ax" text-anchor="middle">2026</text><text x="145.0" y="204" class="ax" text-anchor="middle">2027</text><text x="244.0" y="204" class="ax" text-anchor="middle">2028</text><text x="343.0" y="204" class="ax" text-anchor="middle">2029</text><text x="442.0" y="204" class="ax" text-anchor="middle">2030</text><polygon points="46.0,116.1 70.8,135.4 95.5,144.3 120.2,149.9 145.0,147.4 169.8,146.7 194.5,146.8 219.2,147.9 244.0,150.0 268.8,151.9 293.5,153.4 318.2,154.4 343.0,155.5 367.8,156.0 392.5,156.1 417.2,157.1 442.0,158.9 442.0,169.2 417.2,168.2 392.5,166.9 367.8,166.1 343.0,163.6 318.2,161.7 293.5,160.3 268.8,160.3 244.0,159.5 219.2,158.3 194.5,156.3 169.8,155.2 145.0,155.1 120.2,152.2 95.5,147.7 70.8,137.3 46.0,116.1" fill="#2a78d6" fill-opacity="0.10"/><polygon points="46.0,116.1 70.8,133.8 95.5,142.2 120.2,145.6 145.0,148.3 169.8,101.9 194.5,71.8 219.2,53.4 244.0,48.3 268.8,45.3 293.5,41.2 318.2,41.6 343.0,44.5 367.8,49.8 392.5,54.6 417.2,58.6 442.0,63.5 442.0,90.3 417.2,82.0 392.5,73.3 367.8,67.2 343.0,62.9 318.2,59.9 293.5,72.8 268.8,92.1 244.0,123.2 219.2,135.6 194.5,157.7 169.8,155.6 145.0,154.5 120.2,151.4 95.5,145.1 70.8,135.7 46.0,116.1" fill="#eb6834" fill-opacity="0.10"/><polygon points="46.0,116.1 70.8,136.4 95.5,141.6 120.2,144.8 145.0,146.4 169.8,150.1 194.5,152.2 219.2,153.7 244.0,155.9 268.8,157.6 293.5,159.3 318.2,160.2 343.0,158.1 367.8,158.4 392.5,159.5 417.2,159.6 442.0,161.3 442.0,172.8 417.2,171.6 392.5,170.1 367.8,168.7 343.0,167.3 318.2,165.8 293.5,165.0 268.8,163.9 244.0,161.3 219.2,159.9 194.5,158.4 169.8,157.0 145.0,154.2 120.2,151.3 95.5,146.0 70.8,136.8 46.0,116.1" fill="#1baf7a" fill-opacity="0.10"/><polyline points="46.0,116.1 70.8,136.5 95.5,146.0 120.2,150.6 145.0,152.4 169.8,153.0 194.5,153.2 219.2,153.5 244.0,154.5 268.8,155.6 293.5,156.5 318.2,158.5 343.0,159.3 367.8,160.6 392.5,161.4 417.2,162.5 442.0,163.0" fill="none" stroke="#2a78d6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,116.1 70.8,135.0 95.5,143.7 120.2,148.9 145.0,151.4 169.8,143.0 194.5,114.0 219.2,90.9 244.0,73.6 268.8,60.0 293.5,53.4 318.2,51.6 343.0,52.8 367.8,56.5 392.5,62.3 417.2,69.2 442.0,77.0" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,116.1 70.8,136.6 95.5,143.8 120.2,147.1 145.0,149.4 169.8,152.7 194.5,154.9 219.2,156.7 244.0,158.7 268.8,160.8 293.5,162.1 318.2,163.5 343.0,163.4 367.8,163.9 392.5,165.3 417.2,166.8 442.0,168.3" fill="none" stroke="#1baf7a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 3"/><circle cx="442.0" cy="77.0" r="4" fill="#eb6834" stroke="#fff" stroke-width="2"/><text x="450.0" y="81.0" class="lab"><tspan font-weight="700">Flávio</tspan> 36</text><circle cx="442.0" cy="163.0" r="4" fill="#2a78d6" stroke="#fff" stroke-width="2"/><text x="450.0" y="167.0" class="lab"><tspan font-weight="700">Lula</tspan> 23</text><circle cx="442.0" cy="168.3" r="4" fill="#1baf7a" stroke="#fff" stroke-width="2"/><text x="450.0" y="180.0" class="lab"><tspan font-weight="700">Base</tspan> 22</text></svg>
+    </div>
+    
+    <div class="quotes-row">
+      <div class="quote-card lula">
+        <div class="quote-title" style="color: #60a5fa;">Cidadão Virtual no Brasil de Lula (Aprovação: 44%)</div>
+        <div class="quote-text">"Vendo pouco, tudo caro. A seca secou meu bolso, mas ao menos a violência deu uma trégua."</div>
+      </div>
+      <div class="quote-card flavio">
+        <div class="quote-title" style="color: #fb923c;">Cidadão Virtual no Brasil de Flávio (Aprovação: 31%)</div>
+        <div class="quote-text">"Vendo pouco, o povo reclama do preço e da conta de luz, mas o governo só fala em dívida."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Nenhuma pessoa real foi entrevistada · Cidadãos virtuais gerados por IA refletindo a pirâmide do IBGE</div>
+    <div style="color: #38bdf8; font-weight: 600;">github.com/CaiqueCoelho/brazil-ai-simulation</div>
+  </div>
+</body>
+</html>

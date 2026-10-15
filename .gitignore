@@ -10,4 +10,5 @@ out/dry-run*/
 out/check/
 out/tiny/
 out/smoke/
+scratch/
 .DS_Store

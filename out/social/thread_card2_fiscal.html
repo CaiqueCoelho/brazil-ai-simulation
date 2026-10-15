@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    background: #0f141c;
+    color: #f1f5f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 34px 44px;
+    position: relative;
+  }
+  .header {
+    position: relative;
+    z-index: 2;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 8px;
+  }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #38bdf8;
+  }
+  h1 {
+    font-size: 27px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 4px;
+    letter-spacing: -0.4px;
+  }
+  .subtitle {
+    font-size: 13.5px;
+    color: #94a3b8;
+  }
+  .main-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0;
+  }
+  .charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 16px 20px;
+  }
+  .chart {
+    width: 100%;
+    height: auto;
+  }
+  .chart .ct { font-size: 12px; font-weight: 700; fill: #ffffff; }
+  .chart .cu { font-weight: 400; fill: #94a3b8; }
+  .chart .ax { font-size: 9.5px; fill: #94a3b8; }
+  .chart .lab { font-size: 10px; fill: #ffffff; font-weight: 600; }
+  .chart .grid { stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+  .insight-box {
+    background: rgba(56, 189, 248, 0.06);
+    border-left: 3px solid #38bdf8;
+    padding: 8px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 12.5px;
+    color: #e2e8f0;
+    line-height: 1.4;
+  }
+  .footer {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: #64748b;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><span class="badge-dot"></span>DETALHAMENTO · FISCAL</div>
+    <h1>A Vitória de Flávio: Contas Públicas e Dívida</h1>
+    <p class="subtitle">Trajetória trimestral da dívida bruta e do resultado primário (% do PIB)</p>
+  </div>
+
+  <div class="main-content">
+    <div class="charts-row">
+      <svg viewBox="0 0 520 210" class="chart" role="img" aria-label="Dívida pública bruta"><text x="46" y="15" class="ct">Dívida pública bruta <tspan class="cu">% do PIB</tspan></text><line x1="46" x2="442" y1="186.0" y2="186.0" class="grid"/><text x="40" y="189.5" class="ax" text-anchor="end">80,6</text><line x1="46" x2="442" y1="146.5" y2="146.5" class="grid"/><text x="40" y="150.0" class="ax" text-anchor="end">87,4</text><line x1="46" x2="442" y1="107.0" y2="107.0" class="grid"/><text x="40" y="110.5" class="ax" text-anchor="end">94,2</text><line x1="46" x2="442" y1="67.5" y2="67.5" class="grid"/><text x="40" y="71.0" class="ax" text-anchor="end">100,9</text><line x1="46" x2="442" y1="28.0" y2="28.0" class="grid"/><text x="40" y="31.5" class="ax" text-anchor="end">107,7</text><text x="46.0" y="204" class="ax" text-anchor="middle">2026</text><text x="145.0" y="204" class="ax" text-anchor="middle">2027</text><text x="244.0" y="204" class="ax" text-anchor="middle">2028</text><text x="343.0" y="204" class="ax" text-anchor="middle">2029</text><text x="442.0" y="204" class="ax" text-anchor="middle">2030</text><polygon points="46.0,172.8 70.8,163.0 95.5,154.1 120.2,145.8 145.0,137.8 169.8,129.3 194.5,120.8 219.2,112.0 244.0,104.9 268.8,98.8 293.5,93.1 318.2,83.8 343.0,75.0 367.8,66.2 392.5,58.2 417.2,50.3 442.0,43.9 442.0,69.3 417.2,74.0 392.5,75.8 367.8,80.9 343.0,85.8 318.2,89.8 293.5,96.9 268.8,104.9 244.0,114.3 219.2,122.7 194.5,130.3 169.8,138.5 145.0,145.1 120.2,152.3 95.5,158.5 70.8,165.9 46.0,172.8" fill="#2a78d6" fill-opacity="0.10"/><polygon points="46.0,172.8 70.8,162.6 95.5,153.9 120.2,145.5 145.0,137.8 169.8,130.2 194.5,122.6 219.2,114.8 244.0,107.9 268.8,102.4 293.5,97.6 318.2,89.6 343.0,80.8 367.8,73.8 392.5,65.0 417.2,57.8 442.0,51.3 442.0,78.0 417.2,82.2 392.5,83.3 367.8,87.6 343.0,91.4 318.2,94.4 293.5,99.1 268.8,108.9 244.0,118.4 219.2,125.9 194.5,132.7 169.8,139.2 145.0,145.4 120.2,152.2 95.5,158.5 70.8,165.6 46.0,172.8" fill="#eb6834" fill-opacity="0.10"/><polygon points="46.0,172.8 70.8,162.9 95.5,153.4 120.2,144.8 145.0,136.2 169.8,127.7 194.5,119.3 219.2,110.5 244.0,103.0 268.8,96.3 293.5,90.3 318.2,80.0 343.0,72.1 367.8,64.8 392.5,54.9 417.2,47.4 442.0,41.2 442.0,66.1 417.2,71.4 392.5,72.8 367.8,78.4 343.0,83.3 318.2,87.7 293.5,93.6 268.8,104.0 244.0,114.3 219.2,122.6 194.5,130.5 169.8,137.3 145.0,144.6 120.2,151.7 95.5,158.0 70.8,165.9 46.0,172.8" fill="#1baf7a" fill-opacity="0.10"/><polyline points="46.0,172.8 70.8,164.6 95.5,156.5 120.2,149.2 145.0,141.5 169.8,134.2 194.5,126.2 219.2,118.3 244.0,110.5 268.8,102.9 293.5,94.5 318.2,86.7 343.0,79.7 367.8,72.9 392.5,65.9 417.2,59.9 442.0,53.5" fill="none" stroke="#2a78d6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,172.8 70.8,164.3 95.5,156.4 120.2,149.1 145.0,141.8 169.8,135.1 194.5,127.9 219.2,120.5 244.0,113.2 268.8,105.8 293.5,98.3 318.2,91.0 343.0,84.5 367.8,78.7 392.5,72.4 417.2,67.0 442.0,61.1" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,172.8 70.8,164.6 95.5,156.0 120.2,148.4 145.0,140.3 169.8,132.7 194.5,124.6 219.2,116.4 244.0,108.2 268.8,100.0 293.5,91.5 318.2,83.7 343.0,76.3 367.8,69.7 392.5,62.5 417.2,56.4 442.0,49.7" fill="none" stroke="#1baf7a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 3"/><circle cx="442.0" cy="49.7" r="4" fill="#1baf7a" stroke="#fff" stroke-width="2"/><text x="450.0" y="53.7" class="lab"><tspan font-weight="700">Base</tspan> 104,0</text><circle cx="442.0" cy="53.5" r="4" fill="#2a78d6" stroke="#fff" stroke-width="2"/><text x="450.0" y="66.7" class="lab"><tspan font-weight="700">Lula</tspan> 103,3</text><circle cx="442.0" cy="61.1" r="4" fill="#eb6834" stroke="#fff" stroke-width="2"/><text x="450.0" y="79.7" class="lab"><tspan font-weight="700">Flávio</tspan> 102,0</text></svg><svg viewBox="0 0 520 210" class="chart" role="img" aria-label="Resultado primário"><text x="46" y="15" class="ct">Resultado primário <tspan class="cu">% do PIB</tspan></text><line x1="46" x2="442" y1="186.0" y2="186.0" class="grid"/><text x="40" y="189.5" class="ax" text-anchor="end">-0,7</text><line x1="46" x2="442" y1="146.5" y2="146.5" class="grid"/><text x="40" y="150.0" class="ax" text-anchor="end">-0,4</text><line x1="46" x2="442" y1="107.0" y2="107.0" class="grid"/><text x="40" y="110.5" class="ax" text-anchor="end">-0,2</text><line x1="46" x2="442" y1="67.5" y2="67.5" class="grid"/><text x="40" y="71.0" class="ax" text-anchor="end">0,1</text><line x1="46" x2="442" y1="28.0" y2="28.0" class="grid"/><text x="40" y="31.5" class="ax" text-anchor="end">0,4</text><text x="46.0" y="204" class="ax" text-anchor="middle">2026</text><text x="145.0" y="204" class="ax" text-anchor="middle">2027</text><text x="244.0" y="204" class="ax" text-anchor="middle">2028</text><text x="343.0" y="204" class="ax" text-anchor="middle">2029</text><text x="442.0" y="204" class="ax" text-anchor="middle">2030</text><polygon points="46.0,172.8 70.8,137.1 95.5,123.8 120.2,112.4 145.0,129.2 169.8,136.1 194.5,121.7 219.2,128.7 244.0,93.7 268.8,125.6 293.5,132.8 318.2,114.7 343.0,132.8 367.8,97.1 392.5,95.8 417.2,101.7 442.0,100.0 442.0,164.6 417.2,144.9 392.5,165.2 367.8,146.2 343.0,162.2 318.2,158.9 293.5,155.0 268.8,149.7 244.0,154.0 219.2,156.6 194.5,162.5 169.8,163.2 145.0,167.2 120.2,158.0 95.5,162.3 70.8,155.4 46.0,172.8" fill="#2a78d6" fill-opacity="0.10"/><polygon points="46.0,172.8 70.8,112.8 95.5,88.2 120.2,73.8 145.0,41.2 169.8,54.3 194.5,74.8 219.2,70.5 244.0,62.2 268.8,68.8 293.5,74.0 318.2,53.5 343.0,43.9 367.8,44.8 392.5,59.4 417.2,45.8 442.0,49.5 442.0,101.7 417.2,88.2 392.5,95.7 367.8,90.5 343.0,94.8 318.2,112.3 293.5,100.0 268.8,98.4 244.0,101.6 219.2,100.3 194.5,98.4 169.8,87.8 145.0,95.8 120.2,94.3 95.5,117.9 70.8,137.7 46.0,172.8" fill="#eb6834" fill-opacity="0.10"/><polygon points="46.0,172.8 70.8,136.4 95.5,126.9 120.2,111.7 145.0,122.3 169.8,120.3 194.5,120.6 219.2,131.2 244.0,115.7 268.8,122.9 293.5,114.6 318.2,128.9 343.0,125.6 367.8,103.6 392.5,117.1 417.2,99.4 442.0,117.9 442.0,162.3 417.2,165.8 392.5,151.0 367.8,159.5 343.0,166.8 318.2,152.4 293.5,160.9 268.8,158.0 244.0,154.8 219.2,157.1 194.5,156.7 169.8,148.2 145.0,144.6 120.2,155.1 95.5,165.6 70.8,164.5 46.0,172.8" fill="#1baf7a" fill-opacity="0.10"/><polyline points="46.0,172.8 70.8,149.7 95.5,146.0 120.2,142.7 145.0,150.3 169.8,147.8 194.5,149.2 219.2,144.0 244.0,127.2 268.8,140.1 293.5,143.8 318.2,138.7 343.0,143.5 367.8,126.6 392.5,132.2 417.2,119.6 442.0,131.0" fill="none" stroke="#2a78d6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,172.8 70.8,122.9 95.5,106.7 120.2,84.3 145.0,73.6 169.8,72.0 194.5,88.2 219.2,87.1 244.0,76.9 268.8,80.7 293.5,89.5 318.2,85.7 343.0,77.4 367.8,65.1 392.5,78.5 417.2,68.4 442.0,73.0" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,172.8 70.8,152.0 95.5,143.9 120.2,132.9 145.0,136.1 169.8,136.0 194.5,143.2 219.2,143.1 244.0,135.0 268.8,141.0 293.5,139.7 318.2,141.4 343.0,141.8 367.8,131.3 392.5,140.2 417.2,128.5 442.0,134.2" fill="none" stroke="#1baf7a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 3"/><circle cx="442.0" cy="73.0" r="4" fill="#eb6834" stroke="#fff" stroke-width="2"/><text x="450.0" y="77.0" class="lab"><tspan font-weight="700">Flávio</tspan> 0,07</text><circle cx="442.0" cy="131.0" r="4" fill="#2a78d6" stroke="#fff" stroke-width="2"/><text x="450.0" y="135.0" class="lab"><tspan font-weight="700">Lula</tspan> -0,33</text><circle cx="442.0" cy="134.2" r="4" fill="#1baf7a" stroke="#fff" stroke-width="2"/><text x="450.0" y="148.0" class="lab"><tspan font-weight="700">Base</tspan> -0,35</text></svg>
+    </div>
+    <div class="insight-box">
+      <strong>Mecanismo Fiscal:</strong> A única vitória de Flávio vem das contas públicas: o corte de R$ 190 bi zera o déficit primário (+0,1% PIB) e baixa a dívida para <strong>85,2%</strong>. Com Lula, o arcabouço fiscal estabiliza o déficit em -0,6% do PIB, com a dívida fechando em 88,4% (abaixo do cenário base de 89,7%).
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Azul: Lula · Laranja: Flávio Bolsonaro · Tracejado verde: Cenário Base sem novas políticas</div>
+    <div style="color: #38bdf8; font-weight: 600;">github.com/CaiqueCoelho/brazil-ai-simulation</div>
+  </div>
+</body>
+</html>

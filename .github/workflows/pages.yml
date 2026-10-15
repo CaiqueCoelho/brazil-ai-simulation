@@ -38,6 +38,7 @@ jobs:
           mkdir -p _site
           cp article/artigo.html _site/index.html
           cp article/artigo-ia-governa-brasil.pdf _site/
+          cp article/og-image.png _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
