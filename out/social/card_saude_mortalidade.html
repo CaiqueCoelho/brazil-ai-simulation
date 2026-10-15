@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Saúde Pública e Mortalidade Infantil - Vencedor: Lula</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    background: #090d16;
+    background-image: 
+      radial-gradient(circle at 12% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 88% 85%, rgba(249, 115, 22, 0.08) 0%, transparent 40%);
+    color: #f1f5f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px;
+    position: relative;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .badge-winner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #10b981;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .badge-winner span.trophy { font-size: 13px; }
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 2px;
+  }
+  
+  .score-capsule {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px 16px;
+    text-align: right;
+  }
+  .score-capsule .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    font-weight: 700;
+  }
+  .score-capsule .val {
+    font-size: 14px;
+    color: #38bdf8;
+    font-weight: 800;
+  }
+  
+  /* Metric Row */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 12px 0;
+  }
+  .metric-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px 18px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .metric-card.lula {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(16, 185, 129, 0.04) 100%);
+    border: 1.5px solid rgba(56, 189, 248, 0.45);
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.12);
+  }
+  .metric-card.flavio {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0.02) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.25);
+  }
+  .metric-info .cand-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .metric-card.lula .cand-name { color: #38bdf8; }
+  .metric-card.flavio .cand-name { color: #fb923c; }
+  .metric-card.base .cand-name { color: #94a3b8; }
+  .metric-info .desc {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+  }
+  .metric-val-group {
+    text-align: right;
+  }
+  .metric-val {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .metric-card.lula .metric-val { color: #38bdf8; }
+  .metric-card.flavio .metric-val { color: #fb923c; }
+  .metric-card.base .metric-val { color: #e2e8f0; }
+  .metric-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-top: 3px;
+  }
+  .metric-card.lula .metric-tag { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+  .metric-card.flavio .metric-tag { background: rgba(249, 115, 22, 0.2); color: #fb923c; }
+  .metric-card.base .metric-tag { background: rgba(255, 255, 255, 0.08); color: #94a3b8; }
+
+  /* Content Columns */
+  .grid-body {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 16px;
+    flex: 1;
+    margin-bottom: 8px;
+  }
+  
+  .chart-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .chart-box svg {
+    width: 100%;
+    height: auto;
+  }
+  .chart .ct { font-size: 12px; font-weight: 700; fill: #ffffff; }
+  .chart .cu { font-weight: 400; fill: #94a3b8; }
+  .chart .ax { font-size: 9.5px; fill: #94a3b8; }
+  .chart .lab { font-size: 10px; fill: #ffffff; font-weight: 600; }
+  .chart .grid { stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+  
+  .chart-footer {
+    font-size: 10.5px;
+    color: #64748b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .mechanisms-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+  .mech-card {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 11.5px;
+    line-height: 1.45;
+  }
+  .mech-card.lula {
+    border-left: 3.5px solid #10b981;
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
+  }
+  .mech-card.flavio {
+    border-left: 3.5px solid #fb923c;
+    background: linear-gradient(90deg, rgba(249, 115, 22, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  }
+  .mech-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mech-card.lula .mech-title { color: #10b981; }
+  .mech-card.flavio .mech-title { color: #fb923c; }
+  .mech-desc {
+    color: #cbd5e1;
+  }
+  .mech-desc strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #64748b;
+  }
+  .footer-brand {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <div class="badge-winner"><span class="trophy">🏆</span> Vencedor: Lula · Indicador 5 de 11</div>
+      <h1>Saúde Pública e Mortalidade Infantil</h1>
+      <p class="subtitle">Pisos constitucionais do SUS e atenção básica evitam óbitos infantis em larga escala</p>
+    </div>
+    <div class="score-capsule">
+      <div class="label">Placar da Simulação</div>
+      <div class="val">Lula 9 x 1 Flávio</div>
+    </div>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-card lula">
+      <div class="metric-info">
+        <div class="cand-name">Lula 🏆</div>
+        <div class="desc">Mortalidade por mil nascidos (2030)</div>
+      </div>
+      <div class="metric-val-group">
+        <div class="metric-val">11,02</div>
+        <div class="metric-tag">-0,57 vs Base · Menor índice</div>
+      </div>
+    </div>
+    
+    <div class="metric-card flavio">
+      <div class="metric-info">
+        <div class="cand-name">Flávio Bolsonaro</div>
+        <div class="desc">Mortalidade por mil nascidos (2030)</div>
+      </div>
+      <div class="metric-val-group">
+        <div class="metric-val">12,01</div>
+        <div class="metric-tag">+0,42 vs Base · Piora no índice</div>
+      </div>
+    </div>
+
+    <div class="metric-card base">
+      <div class="metric-info">
+        <div class="cand-name">Cenário Base</div>
+        <div class="desc">Referência inercial (2030)</div>
+      </div>
+      <div class="metric-val-group">
+        <div class="metric-val">11,59</div>
+        <div class="metric-tag">Sem novas políticas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-body">
+    <div class="chart-box">
+      <svg viewBox="0 0 520 210" class="chart" role="img" aria-label="Mortalidade infantil"><text x="46" y="15" class="ct">Mortalidade infantil <tspan class="cu">mortes por mil nascidos vivos</tspan></text><line x1="46" x2="442" y1="186.0" y2="186.0" class="grid"/><text x="40" y="189.5" class="ax" text-anchor="end">10,4</text><line x1="46" x2="442" y1="146.5" y2="146.5" class="grid"/><text x="40" y="150.0" class="ax" text-anchor="end">11,0</text><line x1="46" x2="442" y1="107.0" y2="107.0" class="grid"/><text x="40" y="110.5" class="ax" text-anchor="end">11,5</text><line x1="46" x2="442" y1="67.5" y2="67.5" class="grid"/><text x="40" y="71.0" class="ax" text-anchor="end">12,1</text><line x1="46" x2="442" y1="28.0" y2="28.0" class="grid"/><text x="40" y="31.5" class="ax" text-anchor="end">12,7</text><text x="46.0" y="204" class="ax" text-anchor="middle">2026</text><text x="145.0" y="204" class="ax" text-anchor="middle">2027</text><text x="244.0" y="204" class="ax" text-anchor="middle">2028</text><text x="343.0" y="204" class="ax" text-anchor="middle">2029</text><text x="442.0" y="204" class="ax" text-anchor="middle">2030</text><polygon points="46.0,41.2 70.8,43.0 95.5,44.4 120.2,49.0 145.0,57.6 169.8,58.7 194.5,66.1 219.2,69.7 244.0,76.0 268.8,86.5 293.5,86.6 318.2,92.8 343.0,97.8 367.8,104.5 392.5,109.8 417.2,120.0 442.0,131.0 442.0,172.8 417.2,169.7 392.5,160.3 367.8,149.3 343.0,145.3 318.2,133.4 293.5,130.8 268.8,122.5 244.0,118.0 219.2,106.8 194.5,93.2 169.8,86.6 145.0,76.7 120.2,69.8 95.5,58.4 70.8,48.2 46.0,41.2" fill="#2a78d6" fill-opacity="0.10"/><polygon points="46.0,41.2 70.8,41.2 95.5,41.2 120.2,41.4 145.0,46.3 169.8,42.9 194.5,44.9 219.2,44.0 244.0,46.2 268.8,50.8 293.5,46.4 318.2,47.6 343.0,46.3 367.8,49.5 392.5,50.1 417.2,56.6 442.0,62.7 442.0,105.6 417.2,107.3 392.5,101.8 367.8,94.9 343.0,95.1 318.2,87.5 293.5,90.6 268.8,86.2 244.0,86.7 219.2,80.4 194.5,70.9 169.8,68.7 145.0,63.8 120.2,61.9 95.5,53.7 70.8,47.1 46.0,41.2" fill="#eb6834" fill-opacity="0.10"/><polygon points="46.0,41.2 70.8,42.8 95.5,43.3 120.2,45.3 145.0,52.9 169.8,51.0 194.5,55.3 219.2,55.7 244.0,59.8 268.8,66.2 293.5,64.5 318.2,68.2 343.0,69.3 367.8,74.6 392.5,77.1 417.2,84.7 442.0,92.9 442.0,132.1 417.2,132.3 392.5,124.5 367.8,116.5 343.0,114.9 318.2,105.9 293.5,105.5 268.8,99.5 244.0,98.6 219.2,90.5 194.5,79.6 169.8,76.2 145.0,68.8 120.2,65.4 95.5,55.8 70.8,48.4 46.0,41.2" fill="#1baf7a" fill-opacity="0.10"/><polyline points="46.0,41.2 70.8,45.3 95.5,50.8 120.2,58.8 145.0,65.4 169.8,71.7 194.5,77.4 219.2,83.4 244.0,90.8 268.8,97.4 293.5,104.2 318.2,107.1 343.0,114.5 367.8,119.7 392.5,126.3 417.2,134.1 442.0,142.8" fill="none" stroke="#2a78d6" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,41.2 70.8,43.6 95.5,47.3 120.2,51.6 145.0,53.8 169.8,55.6 194.5,56.8 219.2,57.8 244.0,60.5 268.8,61.9 293.5,64.2 318.2,62.1 343.0,64.3 367.8,65.2 392.5,67.4 417.2,70.7 442.0,74.6" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><polyline points="46.0,41.2 70.8,45.1 95.5,49.3 120.2,55.4 145.0,59.5 169.8,62.9 194.5,65.6 219.2,68.5 244.0,73.0 268.8,76.4 293.5,80.3 318.2,80.7 343.0,85.1 367.8,88.1 392.5,92.3 417.2,97.7 442.0,103.7" fill="none" stroke="#1baf7a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 3"/><circle cx="442.0" cy="74.6" r="4" fill="#eb6834" stroke="#fff" stroke-width="2"/><text x="450.0" y="78.6" class="lab"><tspan font-weight="700">Flávio</tspan> 12,01</text><circle cx="442.0" cy="103.7" r="4" fill="#1baf7a" stroke="#fff" stroke-width="2"/><text x="450.0" y="107.7" class="lab"><tspan font-weight="700">Base</tspan> 11,59</text><circle cx="442.0" cy="142.8" r="4" fill="#2a78d6" stroke="#fff" stroke-width="2"/><text x="450.0" y="146.8" class="lab"><tspan font-weight="700">Lula</tspan> 11,02</text></svg>
+      <div class="chart-footer">
+        <span>Faixas sombreadas: bandas de confiança de 90% (5 rodadas estocásticas)</span>
+        <span>Fonte: simulação multi-agente</span>
+      </div>
+    </div>
+
+    <div class="mechanisms-box">
+      <div class="mech-card lula">
+        <div class="mech-title">
+          <span>✓</span> Por que o plano de Lula salva mais vidas de crianças:
+        </div>
+        <div class="mech-desc">
+          • <strong>Pisos constitucionais e Estratégia Saúde da Família (ESF):</strong> A vinculação de receitas ao SUS financia pré-natal e vacinação na atenção primária nos municípios mais vulneráveis.<br>
+          • <strong>Evidência seminal (The Lancet):</strong> Estudos comprovam que a combinação de atenção básica do SUS com transferências de renda (Bolsa Família) é o motor decisivo na erradicação de mortes infantis evitáveis.
+        </div>
+      </div>
+
+      <div class="mech-card flavio">
+        <div class="mech-title">
+          <span>⚠</span> Por que o arrocho de Flávio eleva a mortalidade:
+        </div>
+        <div class="mech-desc">
+          • <strong>Compressão per capita do SUS:</strong> Desvincular ou limitar a saúde apenas à inflação enquanto a população e os custos de insumos médicos crescem asfixia postos de saúde locais.<br>
+          • <strong>Retrocesso sanitário:</strong> A perda de cobertura da atenção primária e o arrocho social geram um repique na taxa para 12,01 óbitos por mil, piorando inclusive em relação ao cenário inercial (11,59).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Simulação econométrica multi-agente 2026–2030 · 100.000 agentes sintéticos calibrados via Datasus, PNAD-C e The Lancet</div>
+    <div class="footer-brand">github.com/CaiqueCoelho/brazil-ai-simulation</div>
+  </div>
+
+</body>
+</html>
