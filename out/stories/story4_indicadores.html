@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #090d16;
+    color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 160px 64px 200px 64px;
+    position: relative;
+  }
+
+  /* Ambient glowing gradients */
+  .glow-1 {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .glow-2 {
+    position: absolute;
+    bottom: 100px;
+    left: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.10) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 24px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 16px;
+  }
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #38bdf8;
+  }
+  h1 {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-size: 22px;
+    line-height: 1.4;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+
+  .main-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    margin: 16px 0;
+  }
+
+  .card {
+    background: rgba(18, 24, 38, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 28px 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  .footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    color: #64748b;
+  }
+  .footer-left {
+    font-weight: 500;
+  }
+  .footer-right {
+    color: #38bdf8;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* SVG Chart styles in Dark Mode */
+  .chart {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  }
+  .chart .ct { font-size: 18px; font-weight: 700; fill: #f8fafc; }
+  .chart .cu { font-weight: 400; fill: #94a3b8; font-size: 15px; }
+  .chart .ax { font-size: 14px; fill: #64748b; }
+  .chart .lab { font-size: 15px; fill: #f8fafc; font-weight: 700; }
+  .chart .grid { stroke: #334155; stroke-width: 1; stroke-dasharray: 2 4; }
+</style>
+</head>
+<body>
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <div class="header">
+    <div class="badge"><div class="badge-dot"></div>ECONOMIA REAL · VIDAS · FLORESTA</div>
+    <h1>Trabalho, Saúde e Meio Ambiente</h1>
+    <div class="subtitle">Evidências empíricas mostram os efeitos reais das políticas públicas aplicadas aos dois modelos.</div>
+  </div>
+
+  <div class="main-content">
+    
+    <!-- 3 Pillars Row -->
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <!-- Emprego -->
+      <div class="card" style="border-left: 6px solid #38bdf8; padding: 20px 26px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="font-size: 20px; font-weight: 800; color: #ffffff;">💼 Emprego & Desemprego (2030)</div>
+          <div style="font-size: 14px; font-weight: 800; color: #38bdf8;">LULA 5,5% vs 5,9%</div>
+        </div>
+        <div style="font-size: 16px; color: #94a3b8; line-height: 1.45;">
+          Estudos do Ipea apontam que o <b>fim da escala 6x1</b> (Lula) eleva a produtividade horária e induz novas contratações sem custo agregado relevante. Já a <b>desoneração da folha</b> (Flávio) vira margem empresarial sem gerar saldo líquido de vagas.
+        </div>
+      </div>
+
+      <!-- Saúde -->
+      <div class="card" style="border-left: 6px solid #38bdf8; padding: 20px 26px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="font-size: 20px; font-weight: 800; color: #ffffff;">🏥 Mortalidade Infantil (por mil)</div>
+          <div style="font-size: 14px; font-weight: 800; color: #38bdf8;">LULA 11,02 vs 12,01</div>
+        </div>
+        <div style="font-size: 16px; color: #94a3b8; line-height: 1.45;">
+          Flávio termina pior inclusive que o cenário base (11,70). A literatura médica (<i>The Lancet</i>) comprova que o piso constitucional do SUS e saneamento salvam vidas infantis; o congelamento orçamentário eleva óbitos evitáveis.
+        </div>
+      </div>
+
+      <!-- Meio Ambiente -->
+      <div class="card" style="border-left: 6px solid #38bdf8; padding: 20px 26px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="font-size: 20px; font-weight: 800; color: #ffffff;">🌳 Desmatamento na Amazônia</div>
+          <div style="font-size: 14px; font-weight: 800; color: #38bdf8;">LULA 3.940 vs 5.367 km²</div>
+        </div>
+        <div style="font-size: 16px; color: #94a3b8; line-height: 1.45;">
+          A fiscalização presencial do Ibama com multas e apreensão (PPCDAm) contém o crime ambiental. A proposta de monitoramento por satélites sem autos punitivos de Flávio deixa a fronteira agrícola ilegal avançar.
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart: Desmatamento -->
+    <div class="card" style="padding: 20px 24px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div style="font-size: 18px; font-weight: 800; color: #ffffff;">Desmatamento Anual na Amazônia (km²)</div>
+        <div style="font-size: 13px; font-weight: 700; color: #38bdf8; background: rgba(56,189,248,0.15); padding: 3px 10px; border-radius: 999px;">-26,5% COM LULA</div>
+      </div>
+      <div style="width: 100%;"><svg viewBox="0 0 560 200" class="chart" role="img" aria-label="Desmatamento na Amazônia"><line x1="50" x2="445" y1="174.0" y2="174.0" class="grid"/><text x="42" y="178.0" class="ax" text-anchor="end">3.136</text><line x1="50" x2="445" y1="135.0" y2="135.0" class="grid"/><text x="42" y="139.0" class="ax" text-anchor="end">4.048</text><line x1="50" x2="445" y1="96.0" y2="96.0" class="grid"/><text x="42" y="100.0" class="ax" text-anchor="end">4.960</text><line x1="50" x2="445" y1="57.0" y2="57.0" class="grid"/><text x="42" y="61.0" class="ax" text-anchor="end">5.873</text><line x1="50" x2="445" y1="18.0" y2="18.0" class="grid"/><text x="42" y="22.0" class="ax" text-anchor="end">6.785</text><text x="50.0" y="194" class="ax" text-anchor="middle">2026</text><text x="148.8" y="194" class="ax" text-anchor="middle">2027</text><text x="247.5" y="194" class="ax" text-anchor="middle">2028</text><text x="346.2" y="194" class="ax" text-anchor="middle">2029</text><text x="445.0" y="194" class="ax" text-anchor="middle">2030</text><polygon points="50.0,60.1 74.7,46.0 99.4,54.8 124.1,61.3 148.8,59.3 173.4,56.6 198.1,67.2 222.8,78.7 247.5,88.1 272.2,89.8 296.9,92.7 321.6,103.0 346.2,103.4 370.9,110.0 395.6,115.8 420.3,119.8 445.0,128.1 445.0,161.0 420.3,156.9 395.6,149.1 370.9,149.9 346.2,147.0 321.6,143.9 296.9,137.9 272.2,142.2 247.5,130.7 222.8,108.7 198.1,101.8 173.4,101.7 148.8,90.6 124.1,83.9 99.4,83.7 74.7,70.0 50.0,60.1" fill="#2a78d6" fill-opacity="0.14"/><polygon points="50.0,60.1 74.7,44.3 99.4,49.8 124.1,51.8 148.8,43.8 173.4,35.0 198.1,51.9 222.8,47.5 247.5,52.3 272.2,48.9 296.9,46.4 321.6,53.3 346.2,48.3 370.9,51.0 395.6,52.8 420.3,52.5 445.0,58.2 445.0,108.9 420.3,107.8 395.6,102.3 370.9,107.7 346.2,108.4 321.6,109.2 296.9,106.5 272.2,115.7 247.5,107.1 222.8,87.5 198.1,85.0 173.4,89.7 148.8,83.2 124.1,80.1 99.4,82.4 74.7,70.0 50.0,60.1" fill="#eb6834" fill-opacity="0.14"/><polygon points="50.0,60.1 74.7,44.3 99.4,49.4 124.1,50.7 148.8,41.4 173.4,31.0 198.1,46.4 222.8,40.3 247.5,43.8 272.2,38.7 296.9,34.4 321.6,40.1 346.2,33.1 370.9,34.3 395.6,34.7 420.3,32.7 445.0,37.2 445.0,91.9 420.3,92.1 395.6,87.5 370.9,94.5 346.2,96.6 321.6,98.6 296.9,97.1 272.2,107.8 247.5,100.2 222.8,81.5 198.1,80.3 173.4,86.3 148.8,81.1 124.1,79.1 99.4,82.0 74.7,70.0 50.0,60.1" fill="#1baf7a" fill-opacity="0.14"/><polyline points="50.0,60.1 74.7,59.0 99.4,69.3 124.1,71.2 148.8,70.6 173.4,72.2 198.1,83.0 222.8,89.8 247.5,102.4 272.2,107.8 296.9,110.0 321.6,117.4 346.2,120.1 370.9,126.4 395.6,129.0 420.3,137.4 445.0,139.6" fill="none" stroke="#2a78d6" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><polyline points="50.0,60.1 74.7,58.3 99.4,66.9 124.1,65.6 148.8,60.6 173.4,57.1 198.1,63.2 222.8,65.1 247.5,73.6 272.2,74.5 296.9,72.0 321.6,75.6 346.2,73.8 370.9,76.5 395.6,74.8 420.3,80.6 445.0,78.6" fill="none" stroke="#eb6834" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><polyline points="50.0,60.1 74.7,58.3 99.4,66.6 124.1,64.7 148.8,58.6 173.4,53.6 198.1,58.3 222.8,58.8 247.5,66.0 272.2,65.4 296.9,61.4 321.6,63.7 346.2,60.3 370.9,61.7 395.6,58.4 420.3,63.1 445.0,59.5" fill="none" stroke="#1baf7a" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 3"/><circle cx="445.0" cy="59.5" r="4.5" fill="#1baf7a" stroke="#fff" stroke-width="2"/><text x="453.0" y="63.5" class="lab"><tspan font-weight="800">Base</tspan> 5.814</text><circle cx="445.0" cy="78.6" r="4.5" fill="#eb6834" stroke="#fff" stroke-width="2"/><text x="453.0" y="82.6" class="lab"><tspan font-weight="800">Flávio</tspan> 5.367</text><circle cx="445.0" cy="139.6" r="4.5" fill="#2a78d6" stroke="#fff" stroke-width="2"/><text x="453.0" y="143.6" class="lab"><tspan font-weight="800">Lula</tspan> 3.940</text></svg></div>
+    </div>
+    
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Veja o que disseram os Cidadãos Virtuais ➔</div>
+    <div class="footer-right">github.com/CaiqueCoelho/brazil-ai-simulation</div>
+  </div>
+</body>
+</html>

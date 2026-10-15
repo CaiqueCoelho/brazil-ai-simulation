@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #090d16;
+    color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 160px 64px 200px 64px;
+    position: relative;
+  }
+
+  /* Ambient glowing gradients */
+  .glow-1 {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .glow-2 {
+    position: absolute;
+    bottom: 100px;
+    left: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.10) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 24px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 16px;
+  }
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #38bdf8;
+  }
+  h1 {
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-size: 22px;
+    line-height: 1.4;
+    color: #94a3b8;
+    font-weight: 400;
+  }
+
+  .main-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    margin: 16px 0;
+  }
+
+  .card {
+    background: rgba(18, 24, 38, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 28px 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  .footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    color: #64748b;
+  }
+  .footer-left {
+    font-weight: 500;
+  }
+  .footer-right {
+    color: #38bdf8;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* SVG Chart styles in Dark Mode */
+  .chart {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  }
+  .chart .ct { font-size: 18px; font-weight: 700; fill: #f8fafc; }
+  .chart .cu { font-weight: 400; fill: #94a3b8; font-size: 15px; }
+  .chart .ax { font-size: 14px; fill: #64748b; }
+  .chart .lab { font-size: 15px; fill: #f8fafc; font-weight: 700; }
+  .chart .grid { stroke: #334155; stroke-width: 1; stroke-dasharray: 2 4; }
+</style>
+</head>
+<body>
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <div class="header">
+    <div class="badge"><div class="badge-dot"></div>SCORECARD COMPLETO · 11 INDICADORES</div>
+    <h1>O Placar Final: 9 a 1 a Favor de Lula</h1>
+    <div class="subtitle">Lula vence em 9 itens, Flávio vence em 1 (contas públicas) e há 1 empate técnico.</div>
+  </div>
+
+  <div class="main-content">
+    
+    <!-- Top Big Scorecard -->
+    <div class="card" style="display: flex; justify-content: space-between; align-items: center; padding: 24px 36px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(255,255,255,0.18);">
+      <div style="text-align: left;">
+        <div style="font-size: 18px; font-weight: 800; color: #38bdf8; letter-spacing: 1.5px;">LULA</div>
+        <div style="font-size: 68px; font-weight: 900; color: #ffffff; line-height: 1;">9</div>
+        <div style="font-size: 16px; color: #94a3b8; font-weight: 600;">vitórias</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 24px; font-weight: 900; color: #475569;">VS</div>
+        <div style="font-size: 15px; color: #94a3b8; margin-top: 4px; background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 999px;">1 Empate</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 18px; font-weight: 800; color: #f97316; letter-spacing: 1.5px;">FLÁVIO</div>
+        <div style="font-size: 68px; font-weight: 900; color: #ffffff; line-height: 1;">1</div>
+        <div style="font-size: 16px; color: #94a3b8; font-weight: 600;">vitória</div>
+      </div>
+    </div>
+
+    <!-- Indicator Breakdown Table -->
+    <div class="card" style="padding: 20px 24px;">
+      <div style="font-size: 17px; font-weight: 800; color: #cbd5e1; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px;">
+        Comparativo Item a Item (Média 2027–2030)
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 9px; font-size: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Desemprego (2030)</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 5,5% vs 5,9% 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Pobreza</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 17,4% vs 23,8% 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Fome (Subalimentação)</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 3,1% vs 4,2% 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Desigualdade (Índice Gini)</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 0,489 vs 0,518 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Saúde (Mortalidade Infantil)</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 11,0 vs 12,0 por mil 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Segurança (Homicídios)</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 16,9 vs 18,4 por 100k 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Desmatamento Amazônia</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 3.940 vs 5.367 km² 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(56, 189, 248, 0.08); border-radius: 10px; border-left: 4px solid #38bdf8;">
+          <span style="font-weight: 600;">Aprovação dos Cidadãos</span>
+          <span style="font-weight: 800; color: #38bdf8;">Lula 45% vs 43% 🏆</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(148, 163, 184, 0.08); border-radius: 10px; border-left: 4px solid #94a3b8;">
+          <span style="font-weight: 600;">Economia Geral (PIB anual)</span>
+          <span style="font-weight: 800; color: #94a3b8;">Lula 1,8% vs 1,7% (Empate) 🤝</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(249, 115, 22, 0.12); border-radius: 10px; border-left: 4px solid #f97316;">
+          <span style="font-weight: 700; color: #ffedd5;">Contas Públicas (Dívida)</span>
+          <span style="font-weight: 900; color: #f97316;">Flávio 85,2% vs 88,4% 🎯</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Explanatory Insight Box -->
+    <div class="card" style="border-left: 6px solid #f97316; background: rgba(30, 20, 15, 0.7);">
+      <div style="font-size: 18px; font-weight: 800; color: #f97316; margin-bottom: 6px;">A ÚNICA VITÓRIA DE FLÁVIO (1 DE 11)</div>
+      <div style="font-size: 17px; line-height: 1.45; color: #fed7aa;">
+        Flávio vence exclusivamente nas contas públicas com um arrocho de R$ 190 bi (~1,5% do PIB). Porém, essa contenção exige desindexar o BPC, aposentadorias e os pisos da saúde e educação, cobrando um preço severo em pobreza e mortalidade infantil.
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Veja os gráficos reais na próxima tela ➔</div>
+    <div class="footer-right">github.com/CaiqueCoelho/brazil-ai-simulation</div>
+  </div>
+</body>
+</html>
